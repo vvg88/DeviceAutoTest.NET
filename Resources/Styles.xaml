@@ -1,0 +1,68 @@
+﻿<ResourceDictionary x:Uid="ResourceDictionary_1" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:common="clr-namespace:NeuroSoft.WPFPrototype.Interface.Common;assembly=NeuroSoft.WPFPrototype.Interface.Common"
+                    xmlns:input="clr-namespace:System.Windows.Input;assembly=PresentationCore"     
+                    xmlns:nsg="clr-namespace:NeuroSoft.WPFComponents.NSGridView;assembly=NeuroSoft.WPFComponents.NSGrid"
+                    xmlns:nstoolkit="http://schemas.microsoft.com/wpf/2008/nstoolkit"
+                    xmlns:local="clr-namespace:NeuroSoft.DeviceAutoTest">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary x:Uid="ResourceDictionary_2" Source="/NeuroSoft.DeviceAutoTest;component/Resources/VectorImages.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    <!-- Стиль используемый для всех объектов Image c IsEnabled=False -->
+    <Style x:Uid="Style_1" TargetType="Image" x:Key="CommonImageStyle">
+        <Setter x:Uid="Setter_1" Property="Width" Value="20"/>
+        <Setter x:Uid="Setter_2" Property="Height" Value="20"/>
+        <Style.Triggers>
+            <Trigger x:Uid="Trigger_1" Property="IsEnabled" Value="False">
+                <Setter x:Uid="Setter_3" Property="Opacity" Value="{x:Static common:Settings.ImageDisabledOpacity}"/>
+                <Setter x:Uid="Setter_4" Property="Effect" Value="{x:Static common:GrayscaleEffect.Instance}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Стиль используемый для всех объектов MenuItem //J Нужен хороший шаблон -->
+    <Style x:Uid="Style_2" TargetType="MenuItem">
+        <Style.Resources>
+            <Style x:Uid="Style_3" TargetType="Image" BasedOn="{StaticResource CommonImageStyle}">
+                <Setter x:Uid="Setter_5" Property="Width" Value="20" />
+                <Setter x:Uid="Setter_6" Property="Height" Value="20" />
+            </Style>
+        </Style.Resources>
+        <Setter x:Uid="Setter_7" Property="Padding" Value="8,2,8,2" />
+    </Style>
+
+    <!--Стиль таблицы с историей процесса наладки-->
+    <Style x:Uid="Style_4" TargetType="nsg:NSGrid" x:Key="HistoryNSGridStyle">
+        <Setter x:Uid="Setter_8" Property="AutoGenerateColumns" Value="False"/>
+        <Setter x:Uid="Setter_9" Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+        <Setter x:Uid="Setter_10" Property="IsReadOnly" Value="True"/>
+        <Setter x:Uid="Setter_11" Property="VerticalGridLinesBrush" Value="LightGray"/>
+        <Setter x:Uid="Setter_12" Property="HorizontalGridLinesBrush" Value="LightGray"/>
+        <Setter x:Uid="Setter_13" Property="HeadersVisibility" Value="Column"/>
+        <Setter x:Uid="Setter_14" Property="CanUserDeleteRows" Value="False"/>
+        <Setter x:Uid="Setter_15" Property="CanUserAddRows" Value="False"/>
+        <Setter x:Uid="Setter_16" Property="SelectionMode" Value="Single"/>
+        <!--<Setter x:Uid="Setter_17" Property="HeaderHorizontalAlignment" Value="Center"/>
+        <Setter x:Uid="Setter_18" Property="HeaderBackground" Value="LightBlue"/>-->
+    </Style>
+
+    <Style x:Uid="Style_5" x:Key="ListBoxItemEvenStyle" TargetType="ListBoxItem">
+        <Setter x:Uid="Setter_19" Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter x:Uid="Setter_20" Property="VerticalContentAlignment" Value="Center"/>        
+        <Setter x:Uid="Setter_21" Property="Padding" Value="2,7"/>
+    </Style>
+
+    <Style x:Uid="Style_6" x:Key="ListBoxItemOddStyle" TargetType="ListBoxItem" BasedOn="{StaticResource ListBoxItemEvenStyle}">
+        <Setter x:Uid="Setter_22" Property="Background">
+            <Setter.Value>
+                <SolidColorBrush x:Uid="SolidColorBrush_1" Color="LightBlue" Opacity="0.6"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <local:ItemsControlAlternatingStyleSelector
+          x:Uid="local:ItemsControlAlternatingStyleSelector_1" x:Key="ListBoxItemAlternatingStyleSelector" 
+          EvenStyle="{StaticResource ListBoxItemEvenStyle}"
+          OddStyle="{StaticResource ListBoxItemOddStyle}"
+        />
+</ResourceDictionary>

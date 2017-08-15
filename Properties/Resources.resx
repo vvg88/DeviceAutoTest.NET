@@ -1,0 +1,485 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Confirm" xml:space="preserve">
+    <value>Подтверждение</value>
+  </data>
+  <data name="ConfirmDeleteTests" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить {0} тестов?</value>
+  </data>
+  <data name="ConfirmRemoveDATTemplate" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить инструкцию по наладке "{0}"?</value>
+  </data>
+  <data name="ConfirmRemoveFolder" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить папку '{0}' со всем её содержимым?</value>
+  </data>
+  <data name="ConfirmRemoveTest" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить тест '{0}'?</value>
+  </data>
+  <data name="CouldNotLoadClass" xml:space="preserve">
+    <value>Не удалось загрузить класс {0}</value>
+  </data>
+  <data name="DefaultFolderName" xml:space="preserve">
+    <value>Новая папка</value>
+  </data>
+  <data name="DefaultTemplateName" xml:space="preserve">
+    <value>Новая инструкция по наладке</value>
+  </data>
+  <data name="DefaultTestItemName" xml:space="preserve">
+    <value>Новый тест</value>
+  </data>
+  <data name="DefaultVariableDescription" xml:space="preserve">
+    <value>Переменная</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="InitialSnapshot" xml:space="preserve">
+    <value>Начальный снимок</value>
+  </data>
+  <data name="InvalidVariableName" xml:space="preserve">
+    <value>Недопустимое имя переменной</value>
+  </data>
+  <data name="LoadTemplateError" xml:space="preserve">
+    <value>Не удалось загрузить инструкцию по наладке: {0}</value>
+  </data>
+  <data name="SaveModifiedTemplate" xml:space="preserve">
+    <value>Инструкция по наладке была изменена, сохранить изменения?</value>
+  </data>
+  <data name="SerialNumberMustBeNotEmpty" xml:space="preserve">
+    <value>Серийный номер не может быть пустым</value>
+  </data>
+  <data name="TemplateNameExists" xml:space="preserve">
+    <value>Инструкция по наладке с таким именем уже существует</value>
+  </data>
+  <data name="TemplateNameMustBeNotEmpty" xml:space="preserve">
+    <value>Имя инструкции по наладке не может быть пустым</value>
+  </data>
+  <data name="TestFailed" xml:space="preserve">
+    <value>Тест '{0}' выполнен c отрицательным результатом.</value>
+  </data>
+  <data name="TestIdExists" xml:space="preserve">
+    <value>Тест с таким идентификатором уже существует</value>
+  </data>
+  <data name="TestIdMustBeNotEmpty" xml:space="preserve">
+    <value>Идентификатор теста не может быть пустым</value>
+  </data>
+  <data name="TestsTreeObjectHeader" xml:space="preserve">
+    <value>Наладка устройства (v. {0})</value>
+  </data>
+  <data name="TestSuccess" xml:space="preserve">
+    <value>Тест '{0}' успешно выполнен</value>
+  </data>
+  <data name="VariableAlreadyExists" xml:space="preserve">
+    <value>Переменная с таким именем уже существует.</value>
+  </data>
+  <data name="NeedToExecuteTests" xml:space="preserve">
+    <value>Не все необходимые тесты выполнены.</value>
+  </data>
+  <data name="TestExecutedSuccessfully" xml:space="preserve">
+    <value>Тест успешно выполнен.</value>
+  </data>
+  <data name="StartTestingText" xml:space="preserve">
+    <value>Приступить к наладке...</value>
+  </data>
+  <data name="StartTestingToolTip" xml:space="preserve">
+    <value>Приступить к процессу наладки устройства...</value>
+  </data>
+  <data name="TestingCheckupGroupName" xml:space="preserve">
+    <value>Наладка</value>
+  </data>
+  <data name="DATTemplateFilter" xml:space="preserve">
+    <value>DeviceAutoTest Template Archieve (*.dattmp) | *.dattmp</value>
+  </data>
+  <data name="CloseTesting" xml:space="preserve">
+    <value>Завершить наладку</value>
+  </data>
+  <data name="SerialNumberAlreadyExists" xml:space="preserve">
+    <value>Для данного устройства уже существует процесс наладки.</value>
+  </data>
+  <data name="TestIsAborted" xml:space="preserve">
+    <value>Результаты теста '{0}' отменены.</value>
+  </data>
+  <data name="TestWasCorrected" xml:space="preserve">
+    <value>Произведено исправление</value>
+  </data>
+  <data name="InvalidTestIdVariableExitsts" xml:space="preserve">
+    <value>Добавление теста с таким идентификатором влечет к созданию переменной, имя которой занято: {0}</value>
+  </data>
+  <data name="CommonPPMBlocks" xml:space="preserve">
+    <value>Общие</value>
+  </data>
+  <data name="CycleBlock" xml:space="preserve">
+    <value>Цикл</value>
+  </data>
+  <data name="IfThenElseBlock" xml:space="preserve">
+    <value>Если...То</value>
+  </data>
+  <data name="TestExecutedWithCorrections" xml:space="preserve">
+    <value>Тест выполнен с исправлениями.</value>
+  </data>
+  <data name="TestExecutedWithErrors" xml:space="preserve">
+    <value>Тест выполнен с ошибками.</value>
+  </data>
+  <data name="AbortReason" xml:space="preserve">
+    <value>Причина:</value>
+  </data>
+  <data name="AbortStr" xml:space="preserve">
+    <value>Отмена результатов действия</value>
+  </data>
+  <data name="InvalidScriptName" xml:space="preserve">
+    <value>Недопустимое имя скрипта</value>
+  </data>
+  <data name="DefaultScriptDescription" xml:space="preserve">
+    <value>Описание скрипта</value>
+  </data>
+  <data name="InvalidId" xml:space="preserve">
+    <value>Недопустимый идентификатор</value>
+  </data>
+  <data name="DefaultContentPresenterTagDescription" xml:space="preserve">
+    <value>Ссылка на содержимое</value>
+  </data>
+  <data name="TagAlreadyExists" xml:space="preserve">
+    <value>Тег с таким идентификатором уже существует</value>
+  </data>
+  <data name="EnvironmentTagDescription" xml:space="preserve">
+    <value>Переменная окружения</value>
+  </data>
+  <data name="TestIsNotLoaded" xml:space="preserve">
+    <value>Идет загрузка теста...</value>
+  </data>
+  <data name="CorrectionsAndErrorsTagDescription" xml:space="preserve">
+    <value>Описание всех исправлений и отклонений.</value>
+  </data>
+  <data name="CorrectionsAndErrorsTestNamesTagDescription" xml:space="preserve">
+    <value>Имена тестов с исправлениями или отклонениями</value>
+  </data>
+  <data name="ScriptExecutionError" xml:space="preserve">
+    <value>В результате выполнения скрипта произошла ошибка:
+{0}</value>
+  </data>
+  <data name="TemplateForImportDoesNotFound" xml:space="preserve">
+    <value>Не удалось найти подходяющую инструкцию для импорта</value>
+  </data>
+  <data name="TemplateItemForImportDoesNotFound" xml:space="preserve">
+    <value>Не удалось найти шаблон теста для импорта</value>
+  </data>
+  <data name="ConfirmImportTest" xml:space="preserve">
+    <value>Вы уверены, что хотите импортировать тест '{0}' из инструкции по наладке '{1}'? В результате обновления теста текущие данные теста будут потеряны.</value>
+  </data>
+  <data name="TestSuccessfullyImported" xml:space="preserve">
+    <value>Импорт теста успешно завершен</value>
+  </data>
+  <data name="Complete" xml:space="preserve">
+    <value>Операция завершена</value>
+  </data>
+  <data name="DefaultButtonScriptDescription" xml:space="preserve">
+    <value>Выполнить</value>
+  </data>
+  <data name="DefaultButtonScriptName" xml:space="preserve">
+    <value>Button</value>
+  </data>
+  <data name="ScriptNameExists" xml:space="preserve">
+    <value>Скрипт с таким идентификатором уже существует</value>
+  </data>
+  <data name="TestIdLimitations" xml:space="preserve">
+    <value>Идентификатор теста должен начинаться с латинской буквы и содержать только латинские буквы, цифры и знак подчеркивания.</value>
+  </data>
+  <data name="ScriptNameMustBeNotEmpty" xml:space="preserve">
+    <value>Идентификатор скрипта не может быть пустым</value>
+  </data>
+  <data name="ConfirmRemoveScript" xml:space="preserve">
+    <value>Вы уверены,что хотите удалить скрипт '{0}'?</value>
+  </data>
+  <data name="ValidationError" xml:space="preserve">
+    <value>Ошибка при выполнении валидации</value>
+  </data>
+  <data name="ValidationCanceled" xml:space="preserve">
+    <value>Валидация прервана</value>
+  </data>
+  <data name="ValidationFinished" xml:space="preserve">
+    <value>Валидация завершена</value>
+  </data>
+  <data name="ValidationScriptProgressMsg" xml:space="preserve">
+    <value>Тест: {0}. Скрипт: {1}.</value>
+  </data>
+  <data name="DefaultTestGroupName" xml:space="preserve">
+    <value>Группа тестов</value>
+  </data>
+  <data name="ConfirmRemoveTestGroup" xml:space="preserve">
+    <value>Вы уверены,что хотите удалить группу тестов '{0}'?</value>
+  </data>
+  <data name="SupplyCurrentTag" xml:space="preserve">
+    <value>Индикатор тока потребления</value>
+  </data>
+  <data name="NewTesting" xml:space="preserve">
+    <value>Начать наладку устройства...</value>
+  </data>
+  <data name="NewTestingTooltip" xml:space="preserve">
+    <value>Начать наладку нового устройства...</value>
+  </data>
+  <data name="SaveTesting" xml:space="preserve">
+    <value>Сохранить результаты наладки</value>
+  </data>
+  <data name="ConfirmIgnoreTestDependencies" xml:space="preserve">
+    <value>Вы уверены, что хотите игнорировать состояния тестов, выполнение которых необходимо для прохождения данного теста?</value>
+  </data>
+  <data name="ConfirmOverwriteTemplateByImport" xml:space="preserve">
+    <value>Инструкция с таким идентификатором уже существует. Удалить существующую инструкцию?</value>
+  </data>
+  <data name="ConfirmTestFinishing" xml:space="preserve">
+    <value>Подтвержение завершения теста</value>
+  </data>
+  <data name="ReTestComment" xml:space="preserve">
+    <value>Повторное прохождение теста</value>
+  </data>
+  <data name="ConfirmIncreaseTemplateVersion" xml:space="preserve">
+    <value>Вы уверены, что хотите увеличить версию инструкции '{0}'?</value>
+  </data>
+  <data name="TestTemplateWasUpdated" xml:space="preserve">
+    <value>Инструкция '{0}' версии {1} успешно изменена. Для фиксации изменений сохраните обследование.</value>
+  </data>
+  <data name="ReplaceExistingTemplate" xml:space="preserve">
+    <value>В базе данных уже существует инструкция '{0}' версии {1}. Перезаписать существующую инструкцию?</value>
+  </data>
+  <data name="TemplateVersionTagDescription" xml:space="preserve">
+    <value>Версия инструкции по наладке</value>
+  </data>
+  <data name="CurrentDateTagDescription" xml:space="preserve">
+    <value>Текущая дата</value>
+  </data>
+  <data name="DeviceSNTagDescription" xml:space="preserve">
+    <value>Серийный номер устройства</value>
+  </data>
+  <data name="DefaultTestCorrectionStr" xml:space="preserve">
+    <value>Описание внесенного исправления</value>
+  </data>
+  <data name="ValueAlreadyExists" xml:space="preserve">
+    <value>Такое значение уже существует</value>
+  </data>
+  <data name="ValueMustBeNotEmpty" xml:space="preserve">
+    <value>Значение не должно быть пустым</value>
+  </data>
+  <data name="atComplete" xml:space="preserve">
+    <value>Автоматическое тестирование завершено.</value>
+  </data>
+  <data name="atCompleteFull" xml:space="preserve">
+    <value>Автоматическое тестирование завершено.
+Тестов запущено: {0} из {1}
+Пропущено: {2} из {0}
+Выполнено: {3} из {0}</value>
+  </data>
+  <data name="atExecuteTest" xml:space="preserve">
+    <value>Завершение теста '{0}'...</value>
+  </data>
+  <data name="atStartTest" xml:space="preserve">
+    <value>Запуск теста '{0}'...</value>
+  </data>
+  <data name="atWaitTest" xml:space="preserve">
+    <value>Выполнение теста '{0}'...</value>
+  </data>
+  <data name="ConfirmExportToDB" xml:space="preserve">
+    <value>Вы уверены, что хотите перезаписать инструкцию '{0}' версии '{1}' в базе данных '{2}'?</value>
+  </data>
+  <data name="OnlyAdminError" xml:space="preserve">
+    <value>Данная операция доступна только администратору системы</value>
+  </data>
+  <data name="atManualTest" xml:space="preserve">
+    <value>Выполнение теста в РУЧНОМ РЕЖИМЕ: '{0}'</value>
+  </data>
+  <data name="atStopped" xml:space="preserve">
+    <value>Автоматическое тестирование остановлено.</value>
+  </data>
+  <data name="TemplateNotFound" xml:space="preserve">
+    <value>Данная инструкция не найдена</value>
+  </data>
+  <data name="NoDeviceTypeFilter" xml:space="preserve">
+    <value>Любое</value>
+  </data>
+  <data name="TestHistoryStr" xml:space="preserve">
+    <value>Журнал действий</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="BackGr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>BackGr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="close_1_english" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>close_1_english.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="close_1_russian" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>close_1_russian.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="close_2_english" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>close_2_english.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="close_2_russian" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>close_2_russian.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Nsft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Nsft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Nsft_ru" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Nsft_ru.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pctgrm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Pctgrm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AboutFormAppVersionEng" xml:space="preserve">
+    <value>Version:</value>
+  </data>
+  <data name="AboutFormAppVersionRu" xml:space="preserve">
+    <value>Версия:</value>
+  </data>
+  <data name="AboutFormAppVersionUni" xml:space="preserve">
+    <value>Version / Версия:</value>
+  </data>
+  <data name="AboutFormReleaseDateEng" xml:space="preserve">
+    <value>Release date:</value>
+  </data>
+  <data name="AboutFormReleaseDateRu" xml:space="preserve">
+    <value>Дата релиза:</value>
+  </data>
+  <data name="AboutFormReleaseDateUni" xml:space="preserve">
+    <value>Release date / Дата релиза:</value>
+  </data>
+  <data name="AboutFormSuppDevsEng" xml:space="preserve">
+    <value>Supported devices:</value>
+  </data>
+  <data name="AboutFormSuppDevsRu" xml:space="preserve">
+    <value>Поддерживаемые устройства:</value>
+  </data>
+  <data name="AboutFormSuppDevsUni" xml:space="preserve">
+    <value>Supported devices / Поддерживаемые устройства:</value>
+  </data>
+  <data name="AboutFormSuppOsEng" xml:space="preserve">
+    <value>OS:</value>
+  </data>
+  <data name="AboutFormSuppOsRu" xml:space="preserve">
+    <value>ОС:</value>
+  </data>
+  <data name="AboutFormSuppOsUni" xml:space="preserve">
+    <value>OS / ОС:</value>
+  </data>
+  <data name="OscScopeControlSettings" xml:space="preserve">
+    <value>OscScopeControlSettings</value>
+  </data>
+  <data name="UsbDevsListControlSettings" xml:space="preserve">
+    <value>UsbDevsListControlSettings</value>
+  </data>
+</root>

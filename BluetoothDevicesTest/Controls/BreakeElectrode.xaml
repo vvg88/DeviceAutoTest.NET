@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="NeuroSoft.DeviceAutoTest.BluetoothDevicesTest.Controls.BreakeElectrode"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="80" d:DesignWidth="400">
+    <Grid Width="400" >
+        <Label Content="L" Height="25" Margin="10,10,0,0" Name="labelL" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Width="25" />
+        <Label Content="F" Height="25" HorizontalAlignment="Left" Margin="50,10,0,0" Name="labelF" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" />
+        <Label Content="C1" Height="25" HorizontalAlignment="Left" Margin="90,10,0,0" Name="labelC1" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" />
+        <Label Content="C2" Height="25" HorizontalAlignment="Left" Margin="130,10,0,0" Name="labelC2" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" />
+        <Label Content="C3" Height="25" HorizontalAlignment="Left" Margin="170,10,0,0" Name="labelC3" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" />
+        <Label Content="C4" Height="25" HorizontalAlignment="Left" Margin="210,10,0,0" Name="labelC4" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" />
+        <Label Content="C5" Height="25" HorizontalAlignment="Left" Margin="250,10,0,0" Name="labelC5" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" />
+        <Label Content="C6" Height="25" HorizontalAlignment="Left" Margin="290,10,0,0" Name="labelC6" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" />
+        <Label Content="R" Height="25" HorizontalAlignment="Left" Margin="330,10,0,0" Name="labelR" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" />
+        <Label Content="N" Height="25" HorizontalAlignment="Left" Margin="370,10,0,0" Name="labelN" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" />
+        <CheckBox Content="" Height="16" HorizontalAlignment="Left" Margin="10,50,0,0" Name="checkBoxL" VerticalAlignment="Top" IsChecked="True" Checked="checkBoxL_Checked" Unchecked="checkBoxL_Unchecked" />
+        <CheckBox Content="" Height="16" HorizontalAlignment="Left" Margin="50,50,0,0" Name="checkBoxF" VerticalAlignment="Top" IsChecked="True" Checked="checkBoxF_Checked" Unchecked="checkBoxF_Unchecked" />
+        <CheckBox Content="" Height="16" HorizontalAlignment="Left" Margin="95,50,0,0" Name="checkBoxC1" VerticalAlignment="Top" IsChecked="True" Unchecked="checkBoxC1_Unchecked" Checked="checkBoxC1_Checked" />
+        <CheckBox Content="" Height="16" HorizontalAlignment="Left" Margin="135,50,0,0" Name="checkBoxC2" VerticalAlignment="Top" IsChecked="True" Checked="checkBoxC2_Checked" Unchecked="checkBoxC2_Unchecked" />
+        <CheckBox Content="" Height="16" HorizontalAlignment="Left" Margin="175,50,0,0" Name="checkBoxC3" VerticalAlignment="Top" IsChecked="True" Unchecked="checkBoxC3_Unchecked" Checked="checkBoxC3_Checked" />
+        <CheckBox Content="" Height="16" HorizontalAlignment="Left" Margin="215,50,0,0" Name="checkBoxC4" VerticalAlignment="Top" IsChecked="True" Checked="checkBoxC4_Checked" Unchecked="checkBoxC4_Unchecked" />
+        <CheckBox Content="" Height="16" HorizontalAlignment="Left" Margin="255,50,0,0" Name="checkBoxC5" VerticalAlignment="Top" IsChecked="True" Checked="checkBoxC5_Checked" Unchecked="checkBoxC5_Unchecked" />
+        <CheckBox Content="" Height="16" HorizontalAlignment="Left" Margin="295,50,0,0" Name="checkBoxC6" VerticalAlignment="Top" IsChecked="True" Checked="checkBoxC6_Checked" Unchecked="checkBoxC6_Unchecked" />
+        <CheckBox Content="" Height="16" HorizontalAlignment="Left" Margin="330,50,0,0" Name="checkBoxR" VerticalAlignment="Top" IsChecked="True" Checked="checkBoxR_Checked" Unchecked="checkBoxR_Unchecked" />
+        <CheckBox Content="" Height="16" HorizontalAlignment="Left" Margin="370,50,0,0" Name="checkBoxN" VerticalAlignment="Top" IsChecked="True" Checked="checkBoxN_Checked" Unchecked="checkBoxN_Unchecked" />
+    </Grid>
+</UserControl>

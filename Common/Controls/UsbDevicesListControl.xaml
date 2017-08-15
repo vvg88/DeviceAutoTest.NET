@@ -1,0 +1,22 @@
+﻿<ad:DockableContent x:Class="NeuroSoft.DeviceAutoTest.Common.Controls.UsbDevicesListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NeuroSoft.DeviceAutoTest.Common.Controls"
+             xmlns:ad="clr-namespace:AvalonDock;assembly=AvalonDock"
+             mc:Ignorable="d" Title="USB устройсва"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <GroupBox Header="Список USB устройств:" Margin="5,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <ListBox ItemsSource="{Binding DeviceItems}" SelectedItem="{Binding SelectedDeviceItem}" ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
+                <Button Grid.Row="1" Content="Принудительно обновить список" Click="Button_Click_1"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</ad:DockableContent>

@@ -1,0 +1,15 @@
+﻿<commonDialogs:DATDialogWindow x:Uid="commonDialogs:DATDialogWindow_1" x:Class="NeuroSoft.DeviceAutoTest.Dialogs.PreviewTemplateWindow"
+                               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                               xmlns:commonDialogs="clr-namespace:NeuroSoft.DeviceAutoTest.Dialogs;assembly=NeuroSoft.DeviceAutoTest.Common"
+                               Title="Предварительный просмотр" MinHeight="400" MinWidth="500"
+                               WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+    <DockPanel x:Uid="DockPanel_1" LastChildFill="True">
+        <StackPanel x:Uid="StackPanel_1" DockPanel.Dock="Bottom" HorizontalAlignment="Right">
+            <Button x:Uid="Button_1" Margin="10" Padding="5,2" Content="OK" MinWidth="60" IsCancel="True" IsDefault="True" Click="Button_Click"/>
+        </StackPanel>
+        <Border x:Uid="Border_1" Background="White">
+            <FlowDocumentScrollViewer x:Uid="FlowDocumentScrollViewer_1" Document="{Binding ContentDocument}"/>
+        </Border>
+    </DockPanel>
+</commonDialogs:DATDialogWindow>

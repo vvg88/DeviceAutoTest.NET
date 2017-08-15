@@ -1,0 +1,10 @@
+﻿<av:DockableContent x:Uid="TestContent" x:Class="NeuroSoft.DeviceAutoTest.TestHistoryDockableContent"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"                     
+                    xmlns:av="clr-namespace:AvalonDock;assembly=AvalonDock"  
+                    xmlns:controls="clr-namespace:NeuroSoft.DeviceAutoTest.Controls"
+                    Name="TestHistoryContent">    
+    <Grid x:Uid="ContentGrid" Name="ContentGrid">
+        <controls:TestingHistoryControl x:Uid="HistoryControl" x:Name="HistoryControl" Ancestor="{Binding Ancestor, Mode=OneWay}" Test="{Binding Test, Mode=OneWay}"/>
+    </Grid>
+</av:DockableContent>

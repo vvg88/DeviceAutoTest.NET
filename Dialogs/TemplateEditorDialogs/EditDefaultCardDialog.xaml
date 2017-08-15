@@ -1,0 +1,51 @@
+﻿<commonDialogs:DATDialogWindow x:Uid="commonDialogs:DATDialogWindow_1" x:Class="NeuroSoft.DeviceAutoTest.Dialogs.EditDefaultCardDialog"
+                               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                               xmlns:commonDialogs="clr-namespace:NeuroSoft.DeviceAutoTest.Dialogs;assembly=NeuroSoft.DeviceAutoTest.Common"
+                               xmlns:commonConverters="clr-namespace:NeuroSoft.DeviceAutoTest.Common.Converters;assembly=NeuroSoft.DeviceAutoTest.Common"
+                               Title="Картотека по умолчанию" Width="500" SizeToContent="Height"
+                               ResizeMode="NoResize" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+    <StackPanel x:Uid="StackPanel_1" Margin="10">
+        <Grid x:Uid="Grid_1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Uid="ColumnDefinition_5" Width="Auto"/>
+                <ColumnDefinition x:Uid="ColumnDefinition_6" />
+                <ColumnDefinition x:Uid="ColumnDefinition_7" Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Uid="TextBlock_1" Text="Картотека: " VerticalAlignment="Center" Margin="5,0,5,0"/>
+            <TextBox x:Uid="EditedValueTextBox" HorizontalAlignment="Stretch" Grid.Column="1" Text="{Binding DefaultCardPath, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button x:Uid="Button_2" Content="..." ToolTip="Выбрать картотеку из текущей базы..."
+                    Grid.Column="2" Margin="3,0" Padding="4,0" Click="Button_Click_1"/>            
+        </Grid>
+        <TextBlock x:Uid="TextBlock_2" Foreground="Gray" Text="Картотека с таким именем не найдена в текущей базе данных" TextWrapping="Wrap" Margin="5,3">
+            <TextBlock.Style>
+                <Style x:Uid="Style_2" TargetType="TextBlock">
+                    <Style.Triggers>
+                        <DataTrigger x:Uid="DataTrigger_1" Binding="{Binding CardExists}" Value="True">
+                            <Setter x:Uid="Setter_2" Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <Grid x:Uid="Grid_2">
+            <Grid.Resources>
+                <Style x:Uid="Style_1" TargetType="Button">
+                    <Setter x:Uid="Setter_1" Property="Padding" Value="10,0,10,0"/>
+                    <Setter x:Uid="Setter_3" Property="Margin" Value="5"/>
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>                
+                <ColumnDefinition x:Uid="ColumnDefinition_8" />
+                <ColumnDefinition x:Uid="ColumnDefinition_9" Width="Auto"/>
+                <ColumnDefinition x:Uid="ColumnDefinition_4" Width="Auto"/>
+            </Grid.ColumnDefinitions>            
+            <TextBlock x:Uid="TextBlock_3" Text="{Binding CurrentConnection.DbPath}" VerticalAlignment="Center" 
+                       TextWrapping="Wrap" Foreground="Gray"/>
+            <Button x:Uid="Button_1" Content="OK" Margin="5" Width="{Binding ActualWidth, ElementName=CancelBtn}"
+                    IsDefault="True" Click="Button_Click" Grid.Column="1"/>
+            <Button x:Uid="CancelBtn" Content="Отмена" Grid.Column="2" Margin="5"
+                    IsCancel="True" Name="CancelBtn"/>
+        </Grid>
+    </StackPanel>
+</commonDialogs:DATDialogWindow>

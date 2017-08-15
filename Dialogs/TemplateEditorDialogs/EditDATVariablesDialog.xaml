@@ -1,0 +1,277 @@
+﻿<commonDialogs:DATDialogWindow x:Uid="Window_1" x:Class="NeuroSoft.DeviceAutoTest.Dialogs.EditDATVariablesDialog"
+                               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"                    
+                               xmlns:nsg="clr-namespace:NeuroSoft.WPFComponents.NSGridView;assembly=NeuroSoft.WPFComponents.NSGrid"
+                               xmlns:nstoolkit="http://schemas.microsoft.com/wpf/2008/nstoolkit"                    
+                               xmlns:common="clr-namespace:NeuroSoft.WPFPrototype.Interface.Common;assembly=NeuroSoft.WPFPrototype.Interface.Common"
+                               xmlns:commonDialogs="clr-namespace:NeuroSoft.DeviceAutoTest.Dialogs;assembly=NeuroSoft.DeviceAutoTest.Common"
+                               xmlns:local="clr-namespace:NeuroSoft.DeviceAutoTest.Dialogs"
+                               xmlns:dat="clr-namespace:NeuroSoft.DeviceAutoTest" 
+                               xmlns:command_manager="clr-namespace:NeuroSoft.WPFComponents.CommandManager;assembly=NeuroSoft.WPFComponents.CommandManager"
+                               xmlns:ni="clr-namespace:NeuroSoft.WPFComponents.NumericInput;assembly=NeuroSoft.WPFComponents.NumericUpDown"
+                               xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                               Title="Список переменных" Width="800" Height="700"
+                               WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+    <Grid x:Uid="Grid_3">        
+        <Grid.RowDefinitions>
+            <RowDefinition x:Uid="RowDefinition_1"/>
+            <RowDefinition x:Uid="RowDefinition_2" Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+            <Style x:Uid="Style_5" x:Key="PaddedButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                <Setter x:Uid="Setter_6" Property="Padding" Value="10,0,10,0"/>
+                <Setter x:Uid="Setter_8" Property="Focusable" Value="False"/>
+            </Style>
+            <dat:IntToDoubleConverter x:Uid="dat:IntToDoubleConverter_1" x:Key="IntToDoubleConverter"/>
+            <dat:DecimalPlacesToIncrementConverter x:Uid="dat:DecimalPlacesToIncrementConverter_1" x:Key="DecimalPlacesToIncrementConverter"/>
+            <Style x:Uid="Style_4" TargetType="Button" BasedOn="{StaticResource PaddedButton}"/>
+            <Style x:Uid="Style_6" x:Key="DisableOnEmptySelection" TargetType="Button" BasedOn="{StaticResource PaddedButton}">
+                <Style.Triggers>
+                    <DataTrigger x:Uid="DataTrigger_1" Binding="{Binding SelectionCount}" Value="0">
+                        <Setter x:Uid="Setter_9" Property="IsEnabled" Value="False"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Uid="Style_7" x:Key="DisableOnNotOneSelected" TargetType="Button" BasedOn="{StaticResource PaddedButton}">
+                <Setter x:Uid="Setter_10" Property="IsEnabled" Value="False"/>
+                <Style.Triggers>
+                    <DataTrigger x:Uid="DataTrigger_2" Binding="{Binding SelectionCount}" Value="1">
+                        <Setter x:Uid="Setter_11" Property="IsEnabled" Value="True"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <DataTemplate x:Uid="DataTemplate_1" x:Key="DefaultValueEditCellTemplate">
+                <ContentControl x:Uid="ContentControl_1" Margin="3,0">
+                    <ContentControl.Style>
+                        <Style x:Uid="Style_8" TargetType="ContentControl">
+                            <Setter x:Uid="Setter_12" Property="Content">
+                                <Setter.Value>
+                                    <TextBox x:Uid="TextBox_1" Text="{Binding DefaultValue}"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <DataTrigger x:Uid="DataTrigger_3" Binding="{Binding Type}" Value="Boolean">
+                                    <Setter x:Uid="Setter_13" Property="Content">
+                                        <Setter.Value>
+                                            <CheckBox x:Uid="CheckBox_1" IsChecked="{Binding DefaultValue}"
+                                                      VerticalAlignment="Center"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                                <DataTrigger x:Uid="DataTrigger_4" Binding="{Binding Type}" Value="Double">
+                                    <Setter x:Uid="Setter_14" Property="Content">
+                                        <Setter.Value>
+                                            <ni:NumericUpDown x:Uid="ni:NumericUpDown_1" DecimalPlaces="{Binding DoubleValueDecimalPlaces, Mode=OneWay}"
+                                                              Increment="{Binding DoubleValueIncrement, Mode=OneWay}"
+                                                              Value="{Binding DefaultValue}" Foreground="Black"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                                <DataTrigger x:Uid="DataTrigger_5" Binding="{Binding Type}" Value="Integer">
+                                    <Setter x:Uid="Setter_15" Property="Content">
+                                        <Setter.Value>
+                                            <ni:NumericUpDown x:Uid="ni:NumericUpDown_2" Value="{Binding DefaultValue, Converter={StaticResource IntToDoubleConverter}}" DecimalPlaces="0" Foreground="Black"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                                <DataTrigger x:Uid="DataTrigger_6" Binding="{Binding Type}" Value="ArrayDouble">
+                                    <Setter x:Uid="Setter_16" Property="Content">
+                                        <Setter.Value>
+                                            <TextBlock x:Uid="TextBlock_1" Text="{Binding DefaultValue}"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                                <DataTrigger x:Uid="DataTrigger_7" Binding="{Binding Type}" Value="ArrayString">
+                                    <Setter x:Uid="Setter_17" Property="Content">
+                                        <Setter.Value>
+                                            <TextBlock x:Uid="TextBlock_2" Text="{Binding DefaultValue}"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ContentControl.Style>
+                </ContentControl>
+            </DataTemplate>
+            <DataTemplate x:Uid="DataTemplate_2" x:Key="RowDetailsTemplate">
+                <Grid x:Uid="Border_1">
+                    <Grid.Style>
+                        <Style x:Uid="Style_9" TargetType="Grid">
+                            <Setter x:Uid="Setter_18" Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger x:Uid="DataTrigger_8" Binding="{Binding Type}" Value="Double">
+                                    <Setter x:Uid="Setter_19" Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                    <StackPanel x:Uid="StackPanel_5" Orientation="Horizontal">
+                        <TextBlock x:Uid="TextBlock_3" Text="Знаков после зпт: " Margin="3" VerticalAlignment="Center"/>
+                        <ni:NumericUpDown x:Uid="ni:NumericUpDown_3" Value="{Binding DoubleValueDecimalPlaces, UpdateSourceTrigger=PropertyChanged}" 
+                                          MinValue="0" MaxValue="7" Increment="1" DecimalPlaces="0"
+                                          Margin="3" Width="60" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <TextBlock x:Uid="TextBlock_4" Text="Шаг: " Margin="10,3,3,3" VerticalAlignment="Center"/>
+                        <ni:NumericUpDown x:Uid="ni:NumericUpDown_4" DecimalPlaces="{Binding DoubleValueDecimalPlaces, Mode=OneWay}"
+                                          Increment="{Binding DoubleValueDecimalPlaces, Mode=OneWay, Converter={StaticResource DecimalPlacesToIncrementConverter}}"
+                                          Value="{Binding DoubleValueIncrement, UpdateSourceTrigger=PropertyChanged}" MinValue="0"
+                                          Margin="3" Width="60" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                        <CheckBox x:Uid="CheckBox_2" IsChecked="{Binding ValidateNumerics}" VerticalAlignment="Center"
+                                  ToolTip="Включить/отключить валидацию числового значения"
+                                  Margin="3" Content="Валидация"/>
+                        <StackPanel x:Uid="StackPanel_6" Orientation="Horizontal">
+                            <StackPanel.Style>
+                                <Style x:Uid="Style_11" TargetType="StackPanel">
+                                    <Style.Triggers>
+                                        <DataTrigger x:Uid="DataTrigger_10" Binding="{Binding ValidateNumerics}" Value="False">
+                                            <Setter x:Uid="Setter_22" Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </StackPanel.Style>
+                            <TextBlock x:Uid="TextBlock_6" Text="Мин.: " Margin="10,3,3,3" VerticalAlignment="Center"/>
+                            <ni:NumericUpDown x:Uid="ni:NumericUpDown_5" DecimalPlaces="{Binding DoubleValueDecimalPlaces, Mode=OneWay}"
+                                              Increment="1"
+                                              Value="{Binding NumericMinValue, UpdateSourceTrigger=PropertyChanged}"
+                                              MaxValue="{Binding NumericMaxValue, UpdateSourceTrigger=PropertyChanged}"
+                                              Margin="3" Width="70" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <TextBlock x:Uid="TextBlock_7" Text="Макс.: " Margin="10,3,3,3" VerticalAlignment="Center"/>
+                            <ni:NumericUpDown x:Uid="ni:NumericUpDown_6" DecimalPlaces="{Binding DoubleValueDecimalPlaces, Mode=OneWay}"
+                                              Increment="1"
+                                              Value="{Binding NumericMaxValue, UpdateSourceTrigger=PropertyChanged}"
+                                              MinValue="{Binding NumericMinValue, UpdateSourceTrigger=PropertyChanged}"
+                                              Margin="3" Width="70" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>                    
+                </Grid>
+            </DataTemplate>
+            <ObjectDataProvider x:Uid="ObjectDataProvider_1" MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="GetEnumValues">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type x:Uid="x:Type_1" TypeName="dat:DATVariableType"/>
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+        </Grid.Resources>
+        <Grid x:Uid="Grid_1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Uid="ColumnDefinition_1"/>
+                <ColumnDefinition x:Uid="ColumnDefinition_2" Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <nsg:NSGrid x:Uid="nsGrid" ItemsSource="{Binding Variables}"
+                        Name="nsGrid" HorizontalGridLinesBrush="LightGray"
+                        VerticalGridLinesBrush="LightGray"
+                        GridLinesVisibility="None"
+                        SelectionChanged="nsGrid_SelectionChanged"
+                        MinHeight="200"
+                        AutoGenerateColumns="False"
+                        IsOneClickEdit="True"                        
+                        CanUserAddRows="False" CanUserEditGroups="False"
+                        SelectionMode="Extended" SelectionUnit="FullRow" 
+                        PreparingCellForEdit="NSGrid_PreparingCellForEdit"
+                        RowDetailsTemplate="{StaticResource RowDetailsTemplate}"                        
+                        Focusable="False">
+                <nsg:NSGrid.Style>
+                    <Style x:Uid="Style_12" TargetType="nsg:NSGrid">
+                        <Setter x:Uid="Setter_23" Property="RowDetailsVisibilityMode" Value="Visible"/>
+                        <Style.Triggers>
+                            <DataTrigger x:Uid="DataTrigger_11" Binding="{Binding ShowDetails}" Value="False">
+                                <Setter x:Uid="Setter_24" Property="RowDetailsVisibilityMode" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </nsg:NSGrid.Style>
+                <nsg:NSGrid.Resources>
+                    <Style x:Uid="Style_1" x:Key="errorStyle" TargetType="{x:Type TextBox}">
+                        <Setter x:Uid="Setter_1" Property="Padding" Value="-2"/>
+                        <Style.Triggers>
+                            <Trigger x:Uid="Trigger_1" Property="Validation.HasError" Value="True">
+                                <Setter x:Uid="Setter_2" Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </nsg:NSGrid.Resources>
+                <nsg:NSGrid.AlternatingRowBackground>
+                    <SolidColorBrush x:Uid="SolidColorBrush_1" Color="LightBlue" Opacity="0.6"/>
+                </nsg:NSGrid.AlternatingRowBackground>
+                <nsg:NSGrid.ContextMenu>
+                    <ContextMenu x:Uid="ContextMenu_1">
+                        <MenuItem x:Uid="MenuItem_1" Header="Добавить переменную" Click="AddTagBtn_Click"/>
+                        <MenuItem x:Uid="MenuItem_2" Header="Удалить переменную" Click="DeleteTagBtn_Click"
+                                  IsEnabled="{Binding IsEnabled, ElementName=DeleteTagBtn}"/>
+                        <MenuItem x:Uid="MenuItem_3" Header="Создать копию" Click="CopyVariable_Click">
+                            <MenuItem.Style>
+                                <Style x:Uid="Style_10" TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                                    <Setter x:Uid="Setter_20" Property="IsEnabled" Value="False"/>
+                                    <Style.Triggers>
+                                        <DataTrigger x:Uid="DataTrigger_9" Binding="{Binding SelectionCount}" Value="1">
+                                            <Setter x:Uid="Setter_21" Property="IsEnabled" Value="True"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </MenuItem.Style>
+                        </MenuItem>
+                    </ContextMenu>
+                </nsg:NSGrid.ContextMenu>                
+                <nsg:NSGrid.Columns>
+                    <nsg:NSGridTextColumn x:Uid="nstoolkit:NSDataGridTextColumn_1" Width="Auto" Header="Имя переменной" EditingElementStyle="{StaticResource errorStyle}"
+                                                    Name="NameColumn">
+                        <nsg:NSGridTextColumn.Binding>
+                            <Binding x:Uid="Binding_1" Path="Name">
+                                <Binding.ValidationRules>
+                                    <local:ValidateVariableName x:Uid="local:ValidateVariableName_1"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </nsg:NSGridTextColumn.Binding>
+                    </nsg:NSGridTextColumn>
+                    <nsg:NSGridTextColumn x:Uid="nstoolkit:NSDataGridTextColumn_2" Width="1*" Header="Описание" Binding="{Binding Description}"/>
+                    <nsg:NSGridComboBoxColumn x:Uid="nstoolkit:NSDataGridComboBoxColumn_1" Width="Auto" Header="Тип" 
+                                                        ItemsSource="{Binding Source={StaticResource GetEnumValues}}"
+                                                        SelectedValueBinding="{Binding Type}"/>
+                    <nsg:NSGridTemplateColumn x:Uid="nstoolkit:NSDataGridTemplateColumn_1" Header="Значение по умолчанию"
+                                                        CellEditingTemplate="{StaticResource DefaultValueEditCellTemplate}">
+                        <nsg:NSGridTemplateColumn.CellTemplate>
+                            <DataTemplate x:Uid="DataTemplate_3">
+                                <TextBlock x:Uid="TextBlock_5" Text="{Binding DefaultValue}" Margin="3,0"/>
+                            </DataTemplate>
+                        </nsg:NSGridTemplateColumn.CellTemplate>
+                    </nsg:NSGridTemplateColumn>
+                </nsg:NSGrid.Columns>                
+            </nsg:NSGrid>
+            <StackPanel x:Uid="StackPanel_4" Grid.Column="1">
+                <Button x:Uid="AddTagBtn" Content="Добавить"
+                    Grid.Column="0" Margin="5"
+                    Name="AddTagBtn" Click="AddTagBtn_Click" />
+                <Button x:Uid="DeleteTagBtn" Content="Удалить" Margin="5" Name="DeleteTagBtn" Click="DeleteTagBtn_Click" 
+                        Style="{StaticResource DisableOnEmptySelection}"/>
+                <Button x:Uid="UpTagBtn" Content="Вверх" Margin="5" Name="UpTagBtn" Style="{StaticResource DisableOnNotOneSelected}"
+                        Click="UpTagBtn_Click"/>
+                <Button x:Uid="DownTagBtn" Content="Вниз" Margin="5" Name="DownTagBtn" Style="{StaticResource DisableOnNotOneSelected}"
+                        Click="DownTagBtn_Click"/>
+                <Separator x:Uid="Separator_1"/>
+                <CheckBox x:Uid="CheckBox_3" Content="Детали" VerticalAlignment="Center" Margin="5" IsChecked="{Binding ShowDetails}"/>
+            </StackPanel>
+        </Grid>
+        <Grid x:Uid="Grid_2" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Uid="ColumnDefinition_3" Width="Auto"/>
+                <ColumnDefinition x:Uid="ColumnDefinition_4" />
+                <ColumnDefinition x:Uid="ColumnDefinition_5" Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Uid="TextBlock_8" Text="Фильтр: " VerticalAlignment="Center" Margin="3"/>
+            <TextBox x:Uid="TextBox_2" Text="{Binding Filter}" VerticalAlignment="Center" Grid.Column="1" PreviewKeyDown="TextBox_PreviewKeyDown"
+                     x:Name="FilterTextBox"/>
+            <StackPanel x:Uid="StackPanel_3" Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2">
+                <Button x:Uid="OkBtn" Content="OK" HorizontalAlignment="Right"
+                    MinWidth="{Binding ActualWidth, ElementName=CancelBtn}"
+                    Margin="5" VerticalAlignment="Center"
+                    Name="OkBtn" IsDefault="True" Click="OkBtn_Click" />
+                <Button x:Uid="CancelBtn" Content="Отмена"
+                    MinWidth="{Binding ActualWidth, ElementName=AddTagBtn}"
+                    Margin="5" VerticalAlignment="Center"
+                    Name="CancelBtn" Grid.Column="4"
+                    IsCancel="True"/>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</commonDialogs:DATDialogWindow>

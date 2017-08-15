@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="NeuroSoft.DeviceAutoTest.OldDevicesTest.Controls.PatternStimualtorControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:hardCommon="clr-namespace:NeuroSoft.Devices;assembly=NeuroSoft.Devices.EEGDevice"
+             xmlns:numeric="clr-namespace:NeuroSoft.WPFComponents.NumericInput;assembly=NeuroSoft.WPFComponents.NumericUpDown"
+             MinWidth="300">
+    <Grid>
+        <Grid.Resources>
+            <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="PatternPoles">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="hardCommon:PatternStimulationPole"/>
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <GroupBox Header="Настройки паттерна">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Тип поля:"/>
+                <ComboBox Grid.Column="1" Margin="2" ItemsSource="{Binding Source={StaticResource PatternPoles}}" SelectedItem="{Binding PatternPole}"/>
+                <TextBlock Grid.Row="1" Text="Период стимуляции (c):"/>
+                <numeric:NumericUpDown Grid.Column="1" Grid.Row="1" DecimalPlaces="2" Increment="0.01" MinValue="0.1" MaxValue="10.0" Margin="2" Value="{Binding Period}"/>
+            </Grid>
+        </GroupBox>
+        <TextBlock Grid.Row="1" Margin="3" FontWeight="Bold">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Text" Value="Стимуляция запущена"/>
+                    <Setter Property="Foreground" Value="Green"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding StimulationIsRun}" Value="False">
+                            <Setter Property="Text" Value="Стимуляция отсутствует"/>
+                            <Setter Property="Foreground" Value="Red"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+    </Grid>
+</UserControl>

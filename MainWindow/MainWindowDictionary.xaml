@@ -1,0 +1,45 @@
+﻿<ResourceDictionary x:Uid="ResourceDictionary_1" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:common="clr-namespace:NeuroSoft.WPFPrototype.Interface.Common;assembly=NeuroSoft.WPFPrototype.Interface.Common"
+                    xmlns:commandManager="clr-namespace:NeuroSoft.WPFComponents.CommandManager;assembly=NeuroSoft.WPFComponents.CommandManager"
+                    xmlns:commands="clr-namespace:NeuroSoft.DeviceAutoTest.Commands"
+                    xmlns:prototypeCommands="clr-namespace:NeuroSoft.WPFPrototype.Interface.Commands;assembly=NeuroSoft.WPFPrototype.Interface"
+                    xmlns:tbc="clr-namespace:NeuroSoft.WPFComponents.ToolBarCustomizer;assembly=NeuroSoft.WPFComponents.ToolBarCustomizer">
+
+    <!--Добавочное меню-->
+    <Menu x:Uid="Menu_1" x:Key="AdditionalMainMenu">
+        <MenuItem x:Uid="MenuItem_4" Header="Наладка" common:MergeHelper.MergeAction="Insert" common:MergeHelper.MergeIndex="0">
+            <MenuItem x:Uid="MenuItem_5" commandManager:CommandHelper.Command="prototypeCommands:CheckupCommands.OpenCommand"/>
+            <MenuItem x:Uid="MenuItem_6" commandManager:CommandHelper.Command="commands:DATTestingCommands.ShowTestingHistoryCommand"/>            
+        </MenuItem>
+        <MenuItem x:Uid="MenuItem_7" common:MergeHelper.MergeAction="Remove" common:MergeHelper.MergeIndex="1"/>        
+        <MenuItem x:Uid="MenuItem_1" common:MergeHelper.MergeAction="Insert" common:MergeHelper.MergeIndex="2">
+            <MenuItem.Style>
+                <Style x:Uid="Style_1" TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                    <Setter x:Uid="Setter_1" Property="Header">
+                        <Setter.Value>
+                            <TextBlock x:Uid="TextBlock_1" ToolTip="В базу знаний добавлены новые записи...">
+                                <TextBlock.Inlines>
+                                    <Run x:Uid="Run_1" Text="Инструкции"/>
+                                    <Bold x:Uid="Bold_1">
+                                        <Run x:Uid="Run_2" Text="{Binding NewCorrectionsCount, StringFormat=({0}), Mode=OneWay}"/>
+                                    </Bold>
+                                </TextBlock.Inlines>
+                            </TextBlock>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <DataTrigger x:Uid="DataTrigger_1" Binding="{Binding NewCorrectionsCount}" Value="0">
+                            <Setter x:Uid="Setter_2" Property="Header" Value="Инструкции"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </MenuItem.Style>
+            <MenuItem x:Uid="MenuItem_2" commandManager:CommandHelper.Command="commands:DATTemplateCommands.OpenTestTemplateCommand"/>
+            <MenuItem x:Uid="MenuItem_3" commandManager:CommandHelper.Command="commands:DATTemplateCommands.EditUsedTestTemplateCommand"/>
+        </MenuItem>
+        <MenuItem x:Uid="MenuItem_8" Header="Настройка" common:MergeHelper.MergeAction="MatchOnly" common:MergeHelper.MergeIndex="4">
+            <MenuItem x:Uid="MenuItem_9" commandManager:CommandHelper.Command="commands:DATSettingsCommands.ToggleAutoSaveCommand"/>            
+        </MenuItem>
+    </Menu>
+</ResourceDictionary>

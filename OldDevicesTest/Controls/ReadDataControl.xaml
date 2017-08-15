@@ -1,0 +1,158 @@
+﻿<UserControl x:Class="NeuroSoft.DeviceAutoTest.OldDevicesTest.Controls.ReadDataControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:NeuroSoft.DeviceAutoTest.OldDevicesTest.Controls"
+             xmlns:controls="clr-namespace:NeuroSoft.DeviceAutoTest.Common.Controls;assembly=NeuroSoft.DeviceAutoTest.Common"
+             xmlns:converters="clr-namespace:NeuroSoft.DeviceAutoTest.Common.Converters;assembly=NeuroSoft.DeviceAutoTest.Common"             
+             xmlns:numeric="clr-namespace:NeuroSoft.WPFComponents.NumericInput;assembly=NeuroSoft.WPFComponents.NumericUpDown"
+             xmlns:nstoolkit="clr-namespace:NeuroSoft.WPFComponents.WPFToolkit;assembly=NeuroSoft.WPFComponents.WPFToolkit"
+             xmlns:nsg="clr-namespace:NeuroSoft.WPFComponents.NSGridView;assembly=NeuroSoft.WPFComponents.NSGrid">    
+    <UserControl.Resources>                
+        <converters:ScaleConvertor x:Key="VoltToMilliVoltConvertor" Scale="1000"/>
+        <converters:ScaleConvertor x:Key="WidthWithoutScrollBarConverter" Scale="0.95"/>
+        <DataTemplate x:Key="FilterItemTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{Binding ChannelName}" VerticalAlignment="Center"/>
+                <numeric:NumericUpDown MinValue="0" MaxValue="{Binding MaxFreq}" Value="{Binding MinFreq}" Margin="2" Grid.Column="1" DecimalPlaces="2"/>
+                <numeric:NumericUpDown MinValue="{Binding MinFreq}" MaxValue="{Binding MaxFreqValue}" Value="{Binding MaxFreq}" Grid.Column="2" Margin="2" DecimalPlaces="1"/>
+                <CheckBox Content="Вкл." IsChecked="{Binding IsEnabled}" Grid.Column="3" Margin="2"/>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>            
+        </Grid.ColumnDefinitions>
+        <Expander ExpandDirection="Left" IsExpanded="True" Header="Мониторинг">
+            <Expander.Style>
+                <Style TargetType="Expander" BasedOn="{StaticResource {x:Type Expander}}">
+                    <Setter Property="HeaderTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <ContentPresenter Content="{Binding}">
+                                    <ContentPresenter.LayoutTransform>
+                                        <RotateTransform Angle="-90"/>
+                                    </ContentPresenter.LayoutTransform>
+                                </ContentPresenter>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Expander.Style>
+            <controls:MonitoringPlotter x:Name="MonitoringPlotter" Height="350"/>
+        </Expander>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TabControl>
+                <TabItem Header="Статистика">
+                    <DataGrid AutoGenerateColumns="False" Name="StatisticsDataGrid"
+                              IsReadOnly="True" CanUserResizeColumns="False"
+                              CanUserSortColumns="False" 
+                              ItemsSource="{Binding StatisticsCollection}" MaxHeight="400">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Канал" Width="Auto" Binding="{Binding ChannelName}"/>
+                            <DataGridTextColumn Header="Среднее (мВ)"
+                                                Binding="{Binding Average.Value, StringFormat=F5, Converter={StaticResource VoltToMilliVoltConvertor}}">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Average.IsValidValue}" Value="False">
+                                                <Setter Property="Background" Value="Red"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Размах (мВ)"
+                                                Binding="{Binding Swing.Value, StringFormat=F5, Converter={StaticResource VoltToMilliVoltConvertor}}">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Swing.IsValidValue}" Value="False">
+                                                <Setter Property="Background" Value="Red"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="RMS (мВ)"
+                                                Binding="{Binding RMS.Value, StringFormat=F6, Converter={StaticResource VoltToMilliVoltConvertor}}">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding RMS.IsValidValue}" Value="False">
+                                                <Setter Property="Background" Value="Red"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+                <TabItem Header="Каналы">
+                    <nsg:NSGrid ItemsSource="{Binding ChannelsInfo}" MinWidth="{Binding ActualWidth, ElementName=StatisticsDataGrid}"
+                                AutoGenerateColumns="False" CanUserResizeColumns="False" CanUserAddRows="False"
+                                CanUserDeleteRows="False" CanUserSortColumns="False" VerticalGridLinesBrush="LightGray"
+                                HorizontalGridLinesBrush="LightGray" SelectionUnit="Cell" CanUserEditRowsVisibility="False"
+                                CanUserEditGroups="False" CanUserChangeWidthType="False"
+                                CanUserEditColumnsVisibility="False">
+                        <nsg:NSGrid.Columns>
+                            <nsg:NSGridTextColumn Header="№" Binding="{Binding ChannelNumber}" IsReadOnly="True"/>
+                            <nsg:NSGridComboBoxColumn Header="Диапазон (В)" ComboBoxItemsSource="{Binding ChannelSupportedRanges}" 
+                                                      SelectedItemBinding="{Binding SelectedChannelRange}"/>
+                            <nsg:NSGridComboBoxColumn Header="НЧ (Гц)" ComboBoxItemsSource="{Binding LowFreqPassBands}" 
+                                                      SelectedItemBinding="{Binding SelectedLowFreq}"/>
+                            <nsg:NSGridComboBoxColumn Header="ВЧ (Гц)" ComboBoxItemsSource="{Binding HighFreqPassBands}" 
+                                                      SelectedItemBinding="{Binding SelectedHighFreq}"/>
+                            <nsg:NSGridCheckBoxColumn Header="0" Binding="{Binding ChannelIsNull}" />
+                        </nsg:NSGrid.Columns>
+                    </nsg:NSGrid>                    
+                </TabItem>
+            </TabControl>
+            <GroupBox Header="Фильтры" Grid.Row="1">
+                <StackPanel>
+                    <Grid>
+                        <Grid.Resources>
+                            <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                <Setter Property="Margin" Value="2"/>
+                                <Setter Property="Padding" Value="2,0"/>
+                            </Style>
+                        </Grid.Resources>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button Content="Выкл." Click="Button_Click" Visibility="{Binding FiltersButtonsUsed}"/>
+                        <Button Content="1 ... 100 Гц" Grid.Column="1" Click="Button_Click_1" Visibility="{Binding FiltersButtonsUsed}"/>
+                        <Button Content="20 ... 10000 Гц" Grid.Column="2" Click="Button_Click_2" Visibility="{Binding FiltersButtonsUsed}"/>
+                        <Button Content="0 ... 20 Гц" Grid.Row="1" Click="Button_Click_3" Visibility="{Binding FiltersButtonsUsed}"/>
+                        <Button Content="10 ... 500 Гц" Grid.Column="1" Grid.Row="1" Click="Button_Click_4" Visibility="{Binding FiltersButtonsUsed}"/>
+                        <Button Content="200 ... 20000 Гц" Grid.Column="2" Grid.Row="1" Click="Button_Click_5" Visibility="{Binding FiltersButtonsUsed}"/>
+                    </Grid>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="120">
+                        <ItemsControl ItemsSource="{Binding FiltersInfo}" ItemTemplate="{StaticResource FilterItemTemplate}"/>
+                    </ScrollViewer>
+                    <CheckBox Content="Фильтр сетевой помехи" IsChecked="{Binding EnablePowerRejector}"
+                                Margin="2"/>
+                </StackPanel>
+            </GroupBox>            
+        </Grid>       
+    </Grid>
+</UserControl>

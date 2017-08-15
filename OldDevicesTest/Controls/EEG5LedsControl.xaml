@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="NeuroSoft.DeviceAutoTest.OldDevicesTest.Controls.EEG5LedsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             Width="Auto" Height="Auto">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="Ellipse">
+                <Setter Property="Height" Value="20"/>
+                <Setter Property="Width" Value="20"/>
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="Stroke" Value="Black"/>
+                <Setter Property="Fill" Value="{Binding LedsColor}"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Ellipse Grid.Row="1" Fill="{Binding LedsColors[E1_MINUS].LedBrush}"/>
+        <Ellipse Grid.Row="2" Fill="{Binding LedsColors[E2_MINUS].LedBrush}"/>
+        <Ellipse Grid.Row="3" Fill="{Binding LedsColors[E3_MINUS].LedBrush}"/>
+        <Ellipse Grid.Row="4" Fill="{Binding LedsColors[E4_MINUS].LedBrush}"/>
+        <Ellipse Grid.Column="1" Grid.Row="1" Fill="{Binding LedsColors[E1_PLUS].LedBrush}"/>
+        <Ellipse Grid.Column="1" Grid.Row="2" Fill="{Binding LedsColors[E2_PLUS].LedBrush}"/>
+        <Ellipse Grid.Column="1" Grid.Row="3" Fill="{Binding LedsColors[E3_PLUS].LedBrush}"/>
+        <Ellipse Grid.Column="1" Grid.Row="4" Fill="{Binding LedsColors[E4_PLUS].LedBrush}"/>
+        <Ellipse Grid.Column="2" Fill="{Binding LedsColors[X1].LedBrush}" Visibility="{Binding isNS5}"/>
+        <Ellipse Grid.Column="2" Grid.Row="1" Fill="{Binding LedsColors[X2].LedBrush}" Visibility="{Binding isNS5}"/>
+        <Ellipse Grid.Column="2" Grid.Row="2" Fill="{Binding LedsColors[X3].LedBrush}" Visibility="{Binding isNS5}"/>
+        <Ellipse Grid.Column="2" Grid.Row="3" Fill="{Binding LedsColors[X4].LedBrush}" Visibility="{Binding isNS5}"/>
+        <Ellipse Grid.Column="2" Grid.Row="4" Fill="{Binding LedsColors[X5].LedBrush}" Visibility="{Binding isNS5}"/>
+        <Ellipse Grid.Column="3" Fill="{Binding LedsColors[X6].LedBrush}" Visibility="{Binding isNS5}"/>
+        <Ellipse Grid.Column="3" Grid.Row="1" Fill="{Binding LedsColors[X7].LedBrush}" Visibility="{Binding isNS5}"/>
+        <Ellipse Grid.Column="3" Grid.Row="2" Fill="{Binding LedsColors[X8].LedBrush}" Visibility="{Binding isNS5}"/>
+        <Ellipse Grid.Column="3" Grid.Row="3" Fill="{Binding LedsColors[X9].LedBrush}" Visibility="{Binding isNS5}"/>
+        <Ellipse Grid.Column="3" Grid.Row="4" Fill="{Binding LedsColors[X10].LedBrush}" Visibility="{Binding isNS5}"/>
+        <Ellipse Grid.Column="4" Grid.Row="0" Fill="{Binding LedsColors[X11].LedBrush}" Visibility="{Binding isNS5}"/>
+        <Ellipse Grid.Column="4" Grid.Row="2" Fill="{Binding LedsColors[A2].LedBrush}"/>
+        <Ellipse Grid.Column="5" Grid.Row="1" Fill="{Binding LedsColors[F8].LedBrush}"/>
+        <Ellipse Grid.Column="5" Grid.Row="2" Fill="{Binding LedsColors[T4].LedBrush}"/>
+        <Ellipse Grid.Column="5" Grid.Row="3" Fill="{Binding LedsColors[T6].LedBrush}"/>
+        <Ellipse Grid.Column="6" Fill="{Binding LedsColors[FP2].LedBrush}"/>
+        <Ellipse Grid.Column="6" Grid.Row="1" Fill="{Binding LedsColors[F4].LedBrush}"/>
+        <Ellipse Grid.Column="6" Grid.Row="2" Fill="{Binding LedsColors[C4].LedBrush}"/>
+        <Ellipse Grid.Column="6" Grid.Row="3" Fill="{Binding LedsColors[P4].LedBrush}"/>
+        <Ellipse Grid.Column="6" Grid.Row="4" Fill="{Binding LedsColors[O2].LedBrush}"/>
+        <Ellipse Grid.Column="7" Fill="{Binding LedsColors[FPZ].LedBrush}"/>
+        <Ellipse Grid.Column="7" Grid.Row="1" Fill="{Binding LedsColors[FZ].LedBrush}"/>
+        <Ellipse Grid.Column="7" Grid.Row="2" Fill="{Binding LedsColors[CZ].LedBrush}"/>
+        <Ellipse Grid.Column="7" Grid.Row="3" Fill="{Binding LedsColors[PZ].LedBrush}"/>
+        <Ellipse Grid.Column="7" Grid.Row="4" Fill="{Binding LedsColors[OZ].LedBrush}"/>
+        <Ellipse Grid.Column="8" Fill="{Binding LedsColors[FP1].LedBrush}"/>
+        <Ellipse Grid.Column="8" Grid.Row="1" Fill="{Binding LedsColors[F3].LedBrush}"/>
+        <Ellipse Grid.Column="8" Grid.Row="2" Fill="{Binding LedsColors[C3].LedBrush}"/>
+        <Ellipse Grid.Column="8" Grid.Row="3" Fill="{Binding LedsColors[P3].LedBrush}"/>
+        <Ellipse Grid.Column="8" Grid.Row="4" Fill="{Binding LedsColors[O1].LedBrush}"/>
+        <Ellipse Grid.Column="9" Grid.Row="1" Fill="{Binding LedsColors[F7].LedBrush}"/>
+        <Ellipse Grid.Column="9" Grid.Row="2" Fill="{Binding LedsColors[T3].LedBrush}"/>
+        <Ellipse Grid.Column="9" Grid.Row="3" Fill="{Binding LedsColors[T5].LedBrush}"/>
+        <Ellipse Grid.Column="10" Grid.Row="2" Fill="{Binding LedsColors[A1].LedBrush}"/>
+        <Ellipse Grid.Column="11" Grid.Row="4" Fill="{Binding LedsColors[ECG_PLUS].LedBrush}"/>
+        <Ellipse Grid.Column="12" Grid.Row="1" Fill="{Binding LedsColors[REF].LedBrush}"/>
+        <Ellipse Grid.Column="12" Grid.Row="2" Fill="{Binding LedsColors[ZERO].LedBrush}"/>
+        <Ellipse Grid.Column="12" Grid.Row="4" Fill="{Binding LedsColors[ECG_MINUS].LedBrush}"/>
+    </Grid>
+</UserControl>

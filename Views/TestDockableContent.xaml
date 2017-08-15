@@ -1,0 +1,460 @@
+﻿<common:ChildContent x:Uid="TestContent" x:Class="NeuroSoft.DeviceAutoTest.TestDockableContent"
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:common="clr-namespace:NeuroSoft.WPFPrototype.Interface.Common;assembly=NeuroSoft.WPFPrototype.Interface.Common"
+                     xmlns:local="clr-namespace:NeuroSoft.DeviceAutoTest"
+                     xmlns:commandManager="clr-namespace:NeuroSoft.WPFComponents.CommandManager;assembly=NeuroSoft.WPFComponents.CommandManager"                     
+                     xmlns:commands="clr-namespace:NeuroSoft.DeviceAutoTest.Commands"
+                     xmlns:converters="clr-namespace:NeuroSoft.DeviceAutoTest.Common.Converters;assembly=NeuroSoft.DeviceAutoTest.Common"
+                     Name="TestContent">
+    <common:ChildContent.Resources>
+        <ResourceDictionary x:Uid="ResourceDictionary_1">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Uid="ResourceDictionary_2" Source="/NeuroSoft.WPFPrototype.Interface;component/Resources/VectorImages.xaml" />
+                <ResourceDictionary x:Uid="ResourceDictionary_3" Source="/NeuroSoft.DeviceAutoTest;component/Resources/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <converters:ScaleConvertor x:Uid="converters:ScaleConvertor_1" x:Key="CorrectionsWidthConverter" Scale="0.3"/>
+            <Style x:Uid="Style_1" TargetType="FlowDocumentScrollViewer" x:Key="ContentViewerStyle">
+                <Style.Triggers>
+                    <DataTrigger x:Uid="DataTrigger_1" Binding="{Binding Model.CanExecute}" Value="False">
+                        <Setter x:Uid="Setter_1" Property="IsHitTestVisible" Value="False"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Uid="Style_2" TargetType="Border" x:Key="LockExecutionBorderStyle">
+                <Setter x:Uid="Setter_2" Property="Visibility" Value="Collapsed"/>
+                <Setter x:Uid="Setter_3" Property="Background">
+                    <Setter.Value>
+                        <SolidColorBrush x:Uid="SolidColorBrush_1" Color="Black" Opacity="0.1"/>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <DataTrigger x:Uid="DataTrigger_2" Binding="{Binding Model.CanExecute}" Value="False">
+                        <Setter x:Uid="Setter_4" Property="Visibility" Value="Visible"/>
+                    </DataTrigger>
+                    <DataTrigger x:Uid="DataTrigger_3" Binding="{Binding Model.Status}" Value="Success">
+                        <Setter x:Uid="Setter_5" Property="Background">
+                            <Setter.Value>
+                                <SolidColorBrush x:Uid="SolidColorBrush_2" Color="DarkGreen" Opacity="0.1"/>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                    <DataTrigger x:Uid="DataTrigger_4" Binding="{Binding Model.Status}" Value="HasErrors">
+                        <Setter x:Uid="Setter_6" Property="Background">
+                            <Setter.Value>
+                                <SolidColorBrush x:Uid="SolidColorBrush_3" Color="Red" Opacity="0.2"/>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                    <DataTrigger x:Uid="DataTrigger_5" Binding="{Binding Model.Status}" Value="Corrected">
+                        <Setter x:Uid="Setter_7" Property="Background">
+                            <Setter.Value>
+                                <SolidColorBrush x:Uid="SolidColorBrush_4" Color="Orange" Opacity="0.2"/>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Uid="Style_3" TargetType="TextBlock" x:Key="AbortTextBlockStyle">
+                <Setter x:Uid="Setter_8" Property="Visibility" Value="Collapsed"/>
+                <Style.Triggers>
+                    <DataTrigger x:Uid="DataTrigger_6" Binding="{Binding Model.Finished}" Value="True">
+                        <Setter x:Uid="Setter_9" Property="Visibility" Value="Visible"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Uid="Style_4" TargetType="TextBlock" x:Key="RefreshTextBlockStyle">
+                <Setter x:Uid="Setter_10" Property="Visibility" Value="Collapsed"/>
+                <Style.Triggers>
+                    <DataTrigger x:Uid="DataTrigger_7" Binding="{Binding Model.Finished}" Value="False">
+                        <Setter x:Uid="Setter_11" Property="Visibility" Value="Visible"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            
+            <Style x:Uid="Style_5" TargetType="Border" x:Key="FailedBorderStyle">
+                <Setter x:Uid="Setter_12" Property="Opacity" Value="0"/>
+                <Style.Triggers>
+                    <Trigger x:Uid="Trigger_1" Property="Opacity" Value="0">
+                        <Setter x:Uid="Setter_13" Property="Visibility" Value="Collapsed"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Uid="Style_6" TargetType="Border" x:Key="HighlightBorder">                
+                <Setter x:Uid="Setter_14" Property="Background">
+                    <Setter.Value>
+                        <SolidColorBrush x:Uid="SolidColorBrush_5" Color="White" Opacity="0.5"/>
+                    </Setter.Value>
+                </Setter>
+                <Setter x:Uid="Setter_15" Property="CornerRadius" Value="10"/>
+                <Setter x:Uid="Setter_16" Property="BorderThickness" Value="0"/>
+            </Style>
+
+            <Style x:Uid="Style_7" TargetType="StackPanel" x:Key="ReExecutePanelStyle">
+                <Setter x:Uid="Setter_17" Property="Visibility" Value="Collapsed"/>
+                <Style.Triggers>
+                    <MultiDataTrigger x:Uid="MultiDataTrigger_1">
+                        <MultiDataTrigger.Conditions>
+                            <Condition x:Uid="Condition_1" Binding="{Binding Model.TemplateItem.ReExecutable}" Value="True"/>
+                            <Condition x:Uid="Condition_2" Binding="{Binding Model.Finished}" Value="True"/>
+                            <Condition x:Uid="Condition_3" Binding="{Binding Model.FinishingIsConfirmed}" Value="False"/>
+                        </MultiDataTrigger.Conditions>
+                        <Setter x:Uid="Setter_18" Property="Visibility" Value="Visible"/>
+                    </MultiDataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <DataTemplate x:Uid="DataTemplate_1" x:Key="TestLinkTemplate">
+                <TextBlock x:Uid="TextBlock_1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                           FontSize="25" FontWeight="Bold">
+                    <Hyperlink x:Uid="Hyperlink_1" Click="Hyperlink_Click">
+                        <Run x:Uid="Run_1" Text="{Binding TemplateItem.Name}"/>
+                    </Hyperlink>
+                </TextBlock>
+            </DataTemplate>
+
+            <converters:ScaleConvertor x:Uid="converters:ScaleConvertor_2" x:Key="ScaleToPercentConverter" Scale="100"/>
+        </ResourceDictionary>
+    </common:ChildContent.Resources>
+    <Grid x:Uid="ContentGrid" Name="ContentGrid">
+        <DockPanel x:Uid="DockPanel_1" LastChildFill="True">            
+            <Grid x:Uid="Grid_1" DockPanel.Dock="Bottom">
+                <Grid.Resources>
+                    <Style x:Uid="Style_8" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                        <Setter x:Uid="Setter_19" Property="Margin" Value="30,10,10,10"/>
+                        <Setter x:Uid="Setter_20" Property="Padding" Value="15,8"/>
+                        <Setter x:Uid="Setter_21" Property="MinWidth" Value="150"/>
+                        <Setter x:Uid="Setter_22" Property="FontSize" Value="20"/>
+                        <Setter x:Uid="Setter_23" Property="IsEnabled" Value="{Binding Model.CanExecute}"/>
+                    </Style>
+
+                    <Style x:Uid="Style_9" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}"
+                           x:Key="CorrectButtonStyle">
+                        <Setter x:Uid="Setter_24" Property="Visibility" Value="Collapsed"/>
+                        <Setter x:Uid="Setter_25" Property="Grid.Column" Value="1"/>
+                        <Style.Triggers>
+                            <DataTrigger x:Uid="DataTrigger_8" Binding="{Binding Model.TemplateItem.Buttons}" Value="YesNoCorrect">
+                                <Setter x:Uid="Setter_26" Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger x:Uid="DataTrigger_9" Binding="{Binding Model.TemplateItem.Buttons}" Value="YesCorrect">
+                                <Setter x:Uid="Setter_27" Property="Visibility" Value="Visible"/>
+                                <Setter x:Uid="Setter_28" Property="Grid.Column" Value="0"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+
+                    <Style x:Uid="Style_10" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}"
+                           x:Key="CorrectBeforeExecuteBtnStyle">
+                        <Style.Triggers>
+                            <DataTrigger x:Uid="DataTrigger_10" Binding="{Binding Model.TemplateItem.Buttons}" Value="Execute">
+                                <Setter x:Uid="Setter_29" Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                    <Style x:Uid="Style_11" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}"
+                           x:Key="NoButtonStyle">
+                        <Setter x:Uid="Setter_30" Property="Visibility" Value="Visible"/>
+                        <Style.Triggers>
+                            <DataTrigger x:Uid="DataTrigger_11" Binding="{Binding Model.TemplateItem.Buttons}" Value="YesCorrect">
+                                <Setter x:Uid="Setter_31" Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+
+                    <Style x:Uid="Style_12" TargetType="Grid" x:Key="YesNoCorrectGridStyle">
+                        <Setter x:Uid="Setter_32" Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger x:Uid="DataTrigger_12" Binding="{Binding Model.TemplateItem.Buttons}" Value="YesNo">
+                                <Setter x:Uid="Setter_33" Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger x:Uid="DataTrigger_13" Binding="{Binding Model.TemplateItem.Buttons}" Value="YesNoCorrect">
+                                <Setter x:Uid="Setter_34" Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger x:Uid="DataTrigger_14" Binding="{Binding Model.TemplateItem.Buttons}" Value="YesCorrect">
+                                <Setter x:Uid="Setter_35" Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+
+                    <Style x:Uid="Style_13" TargetType="Grid" x:Key="ExecuteGridStyle">
+                        <Setter x:Uid="Setter_36" Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger x:Uid="DataTrigger_15" Binding="{Binding Model.TemplateItem.Buttons}" Value="Execute">
+                                <Setter x:Uid="Setter_37" Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger x:Uid="DataTrigger_16" Binding="{Binding Model.TemplateItem.Buttons}" Value="ExecuteCorrect">
+                                <Setter x:Uid="Setter_38" Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>                    
+                </Grid.Resources>
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition x:Uid="RowDefinition_1"/>
+                    <RowDefinition x:Uid="RowDefinition_2"/>
+                </Grid.RowDefinitions>
+                <Expander x:Uid="Expander_1" DockPanel.Dock="Bottom" Header="Замечания"
+                          Grid.ColumnSpan="2" IsExpanded="True">
+                    <Grid x:Uid="CommentsGrid" x:Name="CommentsGrid" MaxHeight="200" MinHeight="100">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition x:Uid="ColumnDefinition_1"/>
+                            <ColumnDefinition x:Uid="ColumnDefinition_2" Width="Auto"/>                                
+                        </Grid.ColumnDefinitions>                                                
+                        <TextBox x:Uid="CommentsTextBox" Text="{Binding Model.Comments, UpdateSourceTrigger=PropertyChanged}" 
+                                 HorizontalAlignment="Stretch" x:Name="CommentsTextBox"
+                                 AcceptsReturn="True" AcceptsTab="True"
+                                 TextWrapping="WrapWithOverflow" VerticalAlignment="Stretch"
+                                 IsEnabled="{Binding Model.CanExecute}"/>                        
+                        <Expander x:Uid="Expander_2" ExpandDirection="Right" Grid.Column="1">
+                            <Expander.Header>
+                                <TextBlock x:Uid="TextBlock_2" Text="Возможные проблемы" TextWrapping="Wrap" Cursor="Hand">
+                                    <TextBlock.LayoutTransform>
+                                        <RotateTransform x:Uid="RotateTransform_1" Angle="-90"/> 
+                                    </TextBlock.LayoutTransform>
+                                    <TextBlock.Style>
+                                        <Style x:Uid="Style_14" TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                            <Setter x:Uid="Setter_39" Property="Foreground" Value="Blue"/>
+                                            <Style.Triggers>
+                                                <Trigger x:Uid="Trigger_2" Property="IsMouseOver" Value="True">
+                                                    <Setter x:Uid="Setter_40" Property="Foreground" Value="Red"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Expander.Header>
+                            <Expander.Style>
+                                <Style x:Uid="Style_15" TargetType="Expander" BasedOn="{StaticResource {x:Type Expander}}">
+                                    <Style.Triggers>
+                                        <DataTrigger x:Uid="DataTrigger_17" Binding="{Binding Model.TemplateItem.ProbableCorrections.Count}" Value="0">
+                                            <Setter x:Uid="Setter_41" Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Expander.Style>
+                            <ListBox x:Uid="ListBox_1" ItemsSource="{Binding Model.TemplateItem.ProbableCorrections}"  
+                                     Grid.Row="1" Width="{Binding ActualWidth, ElementName=CommentsGrid, Converter={StaticResource CorrectionsWidthConverter}}"
+                                     VerticalAlignment="Stretch"
+                                     HorizontalAlignment="Stretch"                                     
+                                     ItemContainerStyleSelector="{StaticResource ListBoxItemAlternatingStyleSelector}"
+                                     MouseDoubleClick="ListBox_MouseDoubleClick"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+                        </Expander>
+                    </Grid>
+                </Expander>
+                <Grid x:Uid="Grid_2" Grid.Row="1" Style="{StaticResource YesNoCorrectGridStyle}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition x:Uid="ColumnDefinition_3"/>
+                        <ColumnDefinition x:Uid="ColumnDefinition_4" Width="Auto"/>
+                        <ColumnDefinition x:Uid="ColumnDefinition_5"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Uid="NoBtn" Name="NoBtn" commandManager:CommandHelper.Command="commands:DATTestingCommands.HasErrorsTestCommand"
+                            HorizontalAlignment="Left" Style="{StaticResource NoButtonStyle}"/>
+                    <Button x:Uid="CorrectBtn" Name="CorrectBtn" commandManager:CommandHelper.Command="commands:DATTestingCommands.CorrectTestCommand"
+                            HorizontalAlignment="Left"
+                            Style="{StaticResource CorrectButtonStyle}"/>
+                    <Button x:Uid="YesBtn" Name="YesBtn" commandManager:CommandHelper.Command="commands:DATTestingCommands.SuccessTestCommand"
+                            Grid.Column="2" HorizontalAlignment="Right"/>
+                </Grid>
+                <Grid x:Uid="Grid_3" Style="{StaticResource ExecuteGridStyle}" Grid.Row="1">
+                    <Button x:Uid="CorrectBeforeExecuteBtn" Name="CorrectBeforeExecuteBtn" Content="Внести исправления"
+                            Command="commands:DATTestingCommands.CorrectTestCommand"
+                            HorizontalAlignment="Left" Style="{StaticResource CorrectBeforeExecuteBtnStyle}"/>
+                    <Button x:Uid="ExecuteBtn" Name="ExecuteBtn" commandManager:CommandHelper.Command="commands:DATTestingCommands.ExecuteTestCommand"
+                            HorizontalAlignment="Right"/>
+                </Grid>
+            </Grid>
+            <Border x:Uid="Border_1" Background="White">
+                <FlowDocumentScrollViewer x:Uid="ContentViewer" Document="{Binding ModelContent}" Style="{StaticResource ContentViewerStyle}"
+                                          HorizontalScrollBarVisibility="Auto" x:Name="ContentViewer" 
+                                          MinZoom="50" MaxZoom="200" ZoomIncrement="25" Zoom="{Binding Zoom, Mode=TwoWay}">
+                    <FlowDocumentScrollViewer.ContextMenu>
+                        <ContextMenu x:Uid="ContextMenu_1">
+                            <ContextMenu.CommandBindings>
+                                <CommandBinding x:Uid="CommandBinding_1" Command="NavigationCommands.Zoom" 
+                                                Executed="OnExecutedZoomCommand"/>
+                            </ContextMenu.CommandBindings>
+                            <MenuItem x:Uid="MenuItem_1" Command="NavigationCommands.IncreaseZoom"  Header="Увеличить" />
+                            <MenuItem x:Uid="MenuItem_2" Command="NavigationCommands.DecreaseZoom" Header="Уменьшить" />
+                            <MenuItem x:Uid="MenuItem_3" Command="NavigationCommands.Zoom" CommandParameter="100" Header="Масштаб 100%" />
+                        </ContextMenu>
+                    </FlowDocumentScrollViewer.ContextMenu>
+                </FlowDocumentScrollViewer>
+            </Border>
+        </DockPanel>
+        <Border x:Uid="LockBorder" Style="{StaticResource LockExecutionBorderStyle}" x:Name="LockBorder">
+            <Grid x:Uid="Grid_4">
+                <Grid.RowDefinitions>
+                    <RowDefinition x:Uid="RowDefinition_3" Height="Auto"/>
+                    <RowDefinition x:Uid="RowDefinition_4"/>
+                    <RowDefinition x:Uid="RowDefinition_5" Height="Auto" MinHeight="200"/>
+                </Grid.RowDefinitions>                
+                <TextBlock x:Uid="TextBlock_3" HorizontalAlignment="Right" Margin="5">
+                    <TextBlock.Style>
+                        <Style x:Uid="Style_16" TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger x:Uid="DataTrigger_18" Binding="{Binding Model.CanIgnoreTestDependencies}" Value="False">
+                                    <Setter x:Uid="Setter_42" Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                    <TextBlock.Inlines>
+                        <Hyperlink x:Uid="Hyperlink_2" Click="Hyperlink_Click_1">
+                            <Hyperlink.Inlines>
+                                <Run x:Uid="Run_2" Text="Игнорировать зависимости..."/>
+                            </Hyperlink.Inlines>
+                        </Hyperlink>
+                    </TextBlock.Inlines>
+                </TextBlock>                
+                <Border x:Uid="Border_2" Style="{StaticResource HighlightBorder}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel x:Uid="StackPanel_1">                    
+                        <TextBlock x:Uid="TextBlock_4" FontSize="40" FontWeight="Bold"
+                                   Text="{Binding Model.LockExecutionReason}" 
+                                   TextWrapping="Wrap" MaxWidth="{Binding ActualWidth, ElementName=LockBorder}"/>                    
+                        <TextBlock x:Uid="TextBlock_5" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center"
+                                   Style="{StaticResource AbortTextBlockStyle}">
+                            <Hyperlink x:Uid="Hyperlink_3" Click="Abort_Click">
+                                <Run x:Uid="Run_3" Text="Отменить..." ToolTip="Отменить результаты данного теста и всех зависящих от него"/>
+                            </Hyperlink>
+                        </TextBlock>
+                        <ScrollViewer x:Uid="ScrollViewer_1" VerticalScrollBarVisibility="Auto" MaxHeight="300">
+                            <ItemsControl x:Uid="ItemsControl_1" ItemsSource="{Binding Model.RequareToExecuteTests}"
+                                          ItemTemplate="{StaticResource TestLinkTemplate}"/>
+                        </ScrollViewer>
+                        <StackPanel x:Uid="StackPanel_2" Style="{StaticResource ReExecutePanelStyle}" HorizontalAlignment="Center"
+                                    MaxWidth="{Binding ActualWidth, ElementName=LockBorder}">
+                            <TextBlock x:Uid="TextBlock_6" FontSize="15" FontWeight="Bold"                                       
+                                       TextWrapping="Wrap">
+                                <TextBlock.Style>
+                                    <Style x:Uid="Style_17" TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <DataTrigger x:Uid="DataTrigger_19" Binding="{Binding Model.ReExecuted}" Value="False">
+                                                <Setter x:Uid="Setter_43" Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                                <TextBlock.Inlines>
+                                    <Run x:Uid="Run_4" Text="Завершение теста не подтверждено."/>
+                                    <Run x:Uid="Run_5" Text="Вы можете "/>
+                                    <Hyperlink x:Uid="Hyperlink_4" Command="commands:DATTestingCommands.ReTestCommand">
+                                        <Run x:Uid="Run_6" Text="повторно выполнить" ToolTip="Кликните по ссылке для повторного прохождения теста"/>
+                                    </Hyperlink>
+                                    <Run x:Uid="Run_7" Text=" тест,"/>
+                                    <Run x:Uid="Run_8" Text=" либо "/>
+                                    <Hyperlink x:Uid="Hyperlink_5" Command="commands:DATTestingCommands.ConfirmFinishTestCommand">
+                                        <Run x:Uid="Run_9" Text="подтвердить" ToolTip="Кликните по ссылке для завершения прохождения данного теста"/>
+                                    </Hyperlink>
+                                    <Run x:Uid="Run_10" Text=" завершенность теста."/>
+                                </TextBlock.Inlines>
+                            </TextBlock>
+                            <TextBlock x:Uid="TextBlock_7" FontSize="15" FontWeight="Bold"                                       
+                                       TextWrapping="Wrap">
+                                <TextBlock.Style>
+                                    <Style x:Uid="Style_18" TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <DataTrigger x:Uid="DataTrigger_20" Binding="{Binding Model.ReExecuted}" Value="True">
+                                                <Setter x:Uid="Setter_44" Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>                                
+                                <Run x:Uid="Run_11" Text="{Binding Model.TemplateItem.ReExecuteDescription}"/>
+                                <Hyperlink x:Uid="Hyperlink_6" Command="commands:DATTestingCommands.ReTestCommand">
+                                    <Run x:Uid="Run_12" Text="Выполнить повторно." ToolTip="Кликните по ссылке для повторного прохождения теста"/>
+                                </Hyperlink>                                
+                            </TextBlock>
+                        </StackPanel>
+                        <Expander x:Uid="Expander_3" Header="Исправления" Margin="3" IsExpanded="True" FontWeight="Bold">
+                            <Expander.Resources>
+                                <local:ItemsControlAlternatingTemplateSelector x:Uid="local:ItemsControlAlternatingTemplateSelector_1" x:Key="ItemsControlAlternatingTemplateSelector">
+                                    <local:ItemsControlAlternatingTemplateSelector.EvenTemplate>
+                                        <DataTemplate x:Uid="DataTemplate_3">
+                                            <TextBlock x:Uid="TextBlock_10" TextWrapping="Wrap" Text="{Binding}" Margin="3,0">
+                                                <TextBlock.Background>
+                                                    <SolidColorBrush x:Uid="SolidColorBrush_7" Color="WhiteSmoke" Opacity="0.6"/>
+                                                </TextBlock.Background>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </local:ItemsControlAlternatingTemplateSelector.EvenTemplate>
+                                    <local:ItemsControlAlternatingTemplateSelector.OddTemplate>
+                                        <DataTemplate x:Uid="DataTemplate_4">
+                                            <TextBlock x:Uid="TextBlock_11" TextWrapping="Wrap" Text="{Binding}" Margin="3,0">
+                                                <TextBlock.Background>
+                                                    <SolidColorBrush x:Uid="SolidColorBrush_8" Color="LightBlue" Opacity="0.4"/>
+                                                </TextBlock.Background>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </local:ItemsControlAlternatingTemplateSelector.OddTemplate>
+                                </local:ItemsControlAlternatingTemplateSelector>
+                            </Expander.Resources>
+                            <Expander.Style>
+                                <Style x:Uid="Style_21" TargetType="Expander" BasedOn="{StaticResource {x:Type Expander}}">
+                                    <Style.Triggers>
+                                        <DataTrigger x:Uid="DataTrigger_23" Binding="{Binding Model.WasCorrected}" Value="False">
+                                            <Setter x:Uid="Setter_49" Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Expander.Style>
+                            <ScrollViewer x:Uid="ScrollViewer_2" VerticalScrollBarVisibility="Auto" MaxHeight="300"
+                                          HorizontalAlignment="Stretch">
+                                <ItemsControl x:Uid="ItemsControl_2" ItemsSource="{Binding Model.TestCorrections}"  
+                                              ItemTemplateSelector="{StaticResource ItemsControlAlternatingTemplateSelector}"
+                                              MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=StackPanel}}">                              
+                                </ItemsControl>
+                            </ScrollViewer>
+                        </Expander>
+                    </StackPanel>
+                </Border>
+                <!--<Border x:Uid="Border_4" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Border.Style>
+                        <Style x:Uid="Style_21" TargetType="Border" BasedOn="{StaticResource HighlightBorder}">                            
+                            <Style.Triggers>
+                                <DataTrigger x:Uid="DataTrigger_23" Binding="{Binding Model.WasCorrected}" Value="False">
+                                    <Setter x:Uid="Setter_49" Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <ListView x:Uid="ListView_1" ItemsSource="{Binding Model.TestCorrections}" VerticalAlignment="Top"/>
+                </Border>-->
+            </Grid>
+        </Border>
+        <Border x:Uid="Border_3" Background="Gray" Opacity="0.5">
+            <Border.Style>
+                <Style x:Uid="Style_19" TargetType="Border">
+                    <Setter x:Uid="Setter_45" Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger x:Uid="DataTrigger_21" Binding="{Binding IsExecuting}" Value="True">
+                            <Setter x:Uid="Setter_46" Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+        </Border>
+        <Border x:Uid="ManualAutoTestBorder" x:Name="ManualAutoTestBorder" MouseMove="ManualAutoTestBorder_MouseMove">
+            <TextBlock x:Uid="TextBlock_8" FontSize="70" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Text="Тест требует ручного выполнения" Foreground="Blue"
+                       TextWrapping="Wrap" MaxWidth="{Binding ActualWidth, ElementName=ManualAutoTestBorder}"/>
+            <Border.Style>
+                <Style x:Uid="Style_20" TargetType="Border">
+                    <Setter x:Uid="Setter_47" Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger x:Uid="DataTrigger_22" Binding="{Binding ShowManualAutoTestMessage}" Value="True">
+                            <Setter x:Uid="Setter_48" Property="Visibility" Value="Visible"/>                            
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <Border.Background>
+                <SolidColorBrush x:Uid="SolidColorBrush_6" Color="LightGray" Opacity="0.7"/>
+            </Border.Background>
+        </Border>
+    </Grid>
+</common:ChildContent>

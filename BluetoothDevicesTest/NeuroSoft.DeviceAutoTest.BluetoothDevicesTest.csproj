@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1BFA4228-DCC3-44A2-85AD-52BD48776976}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NeuroSoft.DeviceAutoTest.BluetoothDevicesTest</RootNamespace>
+    <AssemblyName>NeuroSoft.DeviceAutoTest.BluetoothDevicesTest</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\BreakeElectrode.xaml.cs">
+      <DependentUpon>BreakeElectrode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MonitoringData.xaml.cs">
+      <DependentUpon>MonitoringData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SelectBTDevices.xaml.cs">
+      <DependentUpon>SelectBTDevices.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProtocolPS8EXv2012.cs" />
+    <Compile Include="Scripts\PolySpectrum8EXScripts.cs" />
+    <Compile Include="Scripts\StandOperation.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\NeuroSoft.Common.csproj">
+      <Project>{B2B3079A-FC7D-472F-BCFF-105E65D2DFBF}</Project>
+      <Name>NeuroSoft.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Devices\Bluetooth\NeuroSoft.Devices.Bluetooth.csproj">
+      <Project>{FF946BBE-DF87-4D6F-81DF-7302B9DDD36D}</Project>
+      <Name>NeuroSoft.Devices.Bluetooth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Devices\InTheHand.Net.Personal\InTheHand.Net.Personal.FX2.csproj">
+      <Project>{98BDDE14-8F8C-40CC-9E45-5BAC73573EF4}</Project>
+      <Name>InTheHand.Net.Personal.FX2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Devices\NSDevice\NeuroSoft.Devices.NSDevice.csproj">
+      <Project>{62B852DB-FE7F-4527-9A04-478295A38198}</Project>
+      <Name>NeuroSoft.Devices.NSDevice</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hardware\Devices\UniversalTestStend\Neurosoft.Hardware.Devices.UniversalTestStend.csproj">
+      <Project>{E2103D46-F851-4BFF-8C1A-9A5444146078}</Project>
+      <Name>Neurosoft.Hardware.Devices.UniversalTestStend</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\MathLib\Basic\NeuroSoft.MathLib.Basic.csproj">
+      <Project>{02AAA8D6-9549-4F58-8940-776C80F32178}</Project>
+      <Name>NeuroSoft.MathLib.Basic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\MathLib\Filters\NeuroSoft.MathLib.Filters.csproj">
+      <Project>{274B8E15-E399-4242-A74B-CDEF281F1108}</Project>
+      <Name>NeuroSoft.MathLib.Filters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\WPFComponents\ScalableWindows\NeuroSoft.WPFComponents.ScalableWindows.csproj">
+      <Project>{649FCAFE-9E2D-4994-809D-14F86B0B4D9D}</Project>
+      <Name>NeuroSoft.WPFComponents.ScalableWindows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\NeuroSoft.DeviceAutoTest.Common.csproj">
+      <Project>{BFCAD07E-7F4C-4148-B485-A0B0E540F45B}</Project>
+      <Name>NeuroSoft.DeviceAutoTest.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\BreakeElectrode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MonitoringData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SelectBTDevices.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

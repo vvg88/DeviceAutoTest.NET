@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="NeuroSoft.DeviceAutoTest.OldDevicesTest.Controls.PhotoStimulatorControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:numeric="clr-namespace:NeuroSoft.WPFComponents.NumericInput;assembly=NeuroSoft.WPFComponents.NumericUpDown"
+             xmlns:local="clr-namespace:NeuroSoft.DeviceAutoTest.OldDevicesTest.Controls" 
+             MinWidth="300">
+    <Grid DataContext="{Binding RelativeSource={RelativeSource AncestorType=local:PhotoStimulatorControl, Mode=FindAncestor}}">
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="5,2"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <GroupBox Header="Настройки фотостимулятора">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Длительность (мс):"/>
+                <numeric:NumericUpDown Grid.Column="1" DecimalPlaces="2" MinValue="2.0" MaxValue="1500.0" Increment="0.01" Value="{Binding Duration}"
+                                       Margin="2"/>
+                <TextBlock Text="Период (с):" Grid.Row="1"/>
+                <numeric:NumericUpDown Grid.Column="1" Grid.Row="1" Margin="2"
+                                       DecimalPlaces="2" MinValue="0.01" MaxValue="10.0" Increment="0.01" Value="{Binding Period}"/>
+                <GroupBox Header="Сторона" Grid.Row="2" Grid.ColumnSpan="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <RadioButton Content="Левая" GroupName="Side" IsChecked="{Binding LeftSide}"/>
+                        <RadioButton Content="Правая" GroupName="Side" Grid.Column="1" IsChecked="{Binding RightSide}"/>
+                        <RadioButton Content="Обе" GroupName="Side"  Grid.Column="2" IsChecked="{Binding BothSides}"/>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </GroupBox>
+        <TextBlock Grid.Row="1" Margin="3" FontWeight="Bold">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Text" Value="Стимуляция запущена"/>
+                    <Setter Property="Foreground" Value="Green"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding StimulationIsRun}" Value="False">
+                            <Setter Property="Text" Value="Стимуляция отсутствует"/>
+                            <Setter Property="Foreground" Value="Red"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+    </Grid>
+</UserControl>

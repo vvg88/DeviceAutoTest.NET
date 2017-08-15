@@ -1,0 +1,66 @@
+﻿<commonDialogs:DATDialogWindow x:Uid="commonDialogs:DATDialogWindow_1" x:Class="NeuroSoft.DeviceAutoTest.Dialogs.ButtonScriptsWindow"
+                               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"                       
+                               xmlns:commonDialogs="clr-namespace:NeuroSoft.DeviceAutoTest.Dialogs;assembly=NeuroSoft.DeviceAutoTest.Common"
+                               xmlns:controls="clr-namespace:NeuroSoft.DeviceAutoTest.Controls"
+                               xmlns:local="clr-namespace:NeuroSoft.DeviceAutoTest.Dialogs"
+                               xmlns:commandManager="clr-namespace:NeuroSoft.WPFComponents.CommandManager;assembly=NeuroSoft.WPFComponents.CommandManager"
+                               Title="Список скриптов, выполняемых по нажатию кнопок" Height="600" Width="900"
+                               WindowStartupLocation="CenterScreen"
+                               ShowInTaskbar="False">
+    <commonDialogs:DATDialogWindow.Resources>
+        <ResourceDictionary x:Uid="ResourceDictionary_1">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Uid="ResourceDictionary_2" Source="/NeuroSoft.DeviceAutoTest;component/Resources/VectorImages.xaml" />
+                <ResourceDictionary x:Uid="ResourceDictionary_3" Source="/NeuroSoft.DeviceAutoTest;component/Resources/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>            
+        </ResourceDictionary>
+    </commonDialogs:DATDialogWindow.Resources>
+    <Grid x:Uid="Grid_1" Margin="3">
+        <Grid.RowDefinitions>
+            <RowDefinition x:Uid="RowDefinition_1"/>
+            <RowDefinition x:Uid="RowDefinition_2" Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Uid="ColumnDefinition_1"/>
+            <ColumnDefinition x:Uid="ColumnDefinition_2" Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox x:Uid="GroupBox_1" Header="Содержимое скрипта">
+            <controls:EditScriptControl x:Uid="controls:EditScriptControl_1" ScriptObject="{Binding SelectedScript}" Tags="{Binding Tags}" IsEnabled="{Binding HasSelection}"/>
+        </GroupBox>
+        <GroupBox x:Uid="ScriptListGroup" Header="Список скриптов" Grid.Column="1" Name="ScriptListGroup">
+            <Grid x:Uid="Grid_2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition x:Uid="ColumnDefinition_3" />
+                    <ColumnDefinition x:Uid="ColumnDefinition_4" Width="Auto"/>                    
+                </Grid.ColumnDefinitions>
+                <ListBox x:Uid="ListBox_1" ItemsSource="{Binding TestItem.ButtonScripts}"
+                         SelectedItem="{Binding SelectedScript}"
+                         DisplayMemberPath="DisplayValue" 
+                         MinHeight="170" Margin="0,5"/>
+                <ToolBarTray x:Uid="ToolBarTray_1" Orientation="Vertical" Margin="0,5,0,0" Grid.Column="1">
+                    <ToolBar x:Uid="ToolBar_1">
+                        <Button x:Uid="Button_1" Focusable="False" ToolTip="Добавить..."
+                                commandManager:CommandHelper.Command="local:ButtonScriptsWindow.AddCommand">
+                            <Image x:Uid="Image_1" Source="{StaticResource DI_Add}" Style="{StaticResource CommonImageStyle}" />
+                        </Button>
+                        <Button x:Uid="Button_2" Focusable="False" ToolTip="Настроить описание..."                                
+                                commandManager:CommandHelper.Command="local:ButtonScriptsWindow.RenameCommand">
+                            <Image x:Uid="Image_2" Source="{StaticResource DI_Rename}" Style="{StaticResource CommonImageStyle}" />
+                        </Button>
+                        <Button x:Uid="Button_3" Focusable="False" commandManager:CommandHelper.Command="local:ButtonScriptsWindow.RemoveCommand"
+                                IsEnabled="{Binding HasSelection}" ToolTip="Удалить">
+                            <Image x:Uid="Image_3" Source="{StaticResource DI_Remove}" Style="{StaticResource CommonImageStyle}" />
+                        </Button>
+                    </ToolBar>
+                </ToolBarTray>
+            </Grid>
+        </GroupBox>            
+        <StackPanel x:Uid="StackPanel_1" Orientation="Horizontal" Grid.Row="1" Grid.Column="1"
+                    HorizontalAlignment="Right">
+            <Button x:Uid="OkBtn" Content="Закрыть" Name="OkBtn"                     
+                    Click="OkBtn_Click" IsCancel="True"
+                    Margin="5" Padding="5,2"/>            
+        </StackPanel>        
+    </Grid>
+</commonDialogs:DATDialogWindow>

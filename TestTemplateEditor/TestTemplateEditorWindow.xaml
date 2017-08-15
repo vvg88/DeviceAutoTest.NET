@@ -1,0 +1,622 @@
+﻿<commonDialogs:DATDialogWindow x:Uid="commonDialogs:DATDialogWindow_1" x:Class="NeuroSoft.DeviceAutoTest.TestTemplateEditor.TestTemplateEditorWindow"
+                               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                               xmlns:ad="clr-namespace:AvalonDock;assembly=AvalonDock"
+                               xmlns:dat="clr-namespace:NeuroSoft.DeviceAutoTest"
+                               xmlns:local="clr-namespace:NeuroSoft.DeviceAutoTest.TestTemplateEditor"
+                               xmlns:controls="clr-namespace:NeuroSoft.DeviceAutoTest.Controls"
+                               xmlns:commandManager="clr-namespace:NeuroSoft.WPFComponents.CommandManager;assembly=NeuroSoft.WPFComponents.CommandManager"
+                               xmlns:interface="clr-namespace:NeuroSoft.WPFPrototype.Interface;assembly=NeuroSoft.WPFPrototype.Interface"        
+                               xmlns:media="clr-namespace:System.Windows.Media;assembly=PresentationCore"
+                               xmlns:commands="clr-namespace:NeuroSoft.DeviceAutoTest.Commands"
+                               xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                               xmlns:commonDialogs="clr-namespace:NeuroSoft.DeviceAutoTest.Dialogs;assembly=NeuroSoft.DeviceAutoTest.Common"
+                               Title="{Binding Model.Name}" FocusManager.FocusedElement="{Binding ., ElementName=TreeView}"
+                               MinHeight="400" MinWidth="600" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+    <commonDialogs:DATDialogWindow.Resources>
+        <ResourceDictionary x:Uid="ResourceDictionary_1">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Uid="ResourceDictionary_2" Source="/NeuroSoft.DeviceAutoTest;component/Resources/VectorImages.xaml" />
+                <ResourceDictionary x:Uid="ResourceDictionary_3" Source="/NeuroSoft.DeviceAutoTest;component/Resources/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Uid="BooleanToVisibilityConverter_1" x:Key="BooleanToVisibilityConverter"/>
+            <ObjectDataProvider x:Uid="ObjectDataProvider_1" MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="ButtonsEnum">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type x:Uid="x:Type_1" TypeName="dat:TestButtons"/>
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+        </ResourceDictionary>
+    </commonDialogs:DATDialogWindow.Resources>
+    <DockPanel x:Uid="DockPanel_1" LastChildFill="True">
+        <ToolBarTray x:Uid="ToolBarTray_1" DockPanel.Dock="Top">
+            <ToolBar x:Uid="ToolBar_1">
+                <Button x:Uid="Button_8" commandManager:CommandHelper.Command="commands:DATTemplateCommands.SaveTemplateCommand" ToolTip="Сохранить инструкцию">
+                    <Image x:Uid="Image_52" Source="{StaticResource DI_Save}" Style="{StaticResource CommonImageStyle}" />
+                </Button>
+                <Button x:Uid="Button_9" ToolTip="Экспорт в файл..." commandManager:CommandHelper.Command="commands:DATTemplateCommands.ExportTemplateCommand">
+                    <Image x:Uid="Image_61" Source="{StaticResource DI_Export}" Style="{StaticResource CommonImageStyle}" />
+                </Button>                
+                <Button x:Uid="Button_10" Content="Экспорт в базу..." commandManager:CommandHelper.Command="commands:DATTemplateCommands.SaveTemplateInDBCommand"/>
+                <Button x:Uid="Button_36" Content="Путь по умолчанию..." commandManager:CommandHelper.Command="commands:DATTemplateCommands.EditDefaultCardCommand"/>
+                <Button x:Uid="Button_11" Content="Список переменных..." commandManager:CommandHelper.Command="commands:DATTemplateCommands.EditDATVariablesCommand"/>
+                <Button x:Uid="Button_12" Content="Переименовать..." commandManager:CommandHelper.Command="commands:DATTemplateCommands.RenameTemplateCommand"/>
+                <Button x:Uid="Button_13" Content="Шаблоны протоколов..." commandManager:CommandHelper.Command="commands:DATTemplateCommands.ProtocolPatternsCommand"/>
+                <Button x:Uid="Button_14" Content="Валидация скриптов..." commandManager:CommandHelper.Command="commands:DATTemplateCommands.ValidateScriptsCommand"/>                
+                <Button x:Uid="Button_15" Content="Группы..." commandManager:CommandHelper.Command="commands:DATTemplateCommands.EditTestGroupsCommand" ToolTip="Редактировать группы тестов"/>
+                <Button x:Uid="Button_16" Content="Изображения..." commandManager:CommandHelper.Command="commands:DATTemplateCommands.OpenImagesFolderCommand" ToolTip="Открыть папку, содержащую доступные для вставки по ссылке изображения"/>
+                <Separator x:Uid="Separator_11"/>
+                <Button x:Uid="Button_17" Content="{Binding Model.Version}" ContentStringFormat="Версия: {0}" ToolTip="Изменить версию инструкции..." 
+                        commandManager:CommandHelper.Command="commands:DATTemplateCommands.ChangeTemplateVersionCommand"/>
+                <TextBlock x:Uid="Label_1" Text="{Binding Model.LastEditDate, StringFormat=(dd.MM.yy HH:mm:ss), TargetNullValue=''}" VerticalAlignment="Center" ToolTip="Дата последнего изменения инструкции"/>
+            </ToolBar>
+        </ToolBarTray>
+        <Grid x:Uid="Grid_5" DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Uid="ColumnDefinition_1"/>
+                <ColumnDefinition x:Uid="ColumnDefinition_2"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Uid="TextBlock_5" VerticalAlignment="Center" Margin="5" FontWeight="Bold">
+                <Hyperlink x:Uid="CheckCorrectionsLink" Name="CheckCorrectionsLink" Click="CheckCorrectionsLink_Click">
+                    <Hyperlink.Inlines>
+                        <Run x:Uid="Run_1" Text="Новые исправления ("/> 
+                        <Run x:Uid="Run_2" Text="{Binding NewCorrectionsCount, Mode=OneWay}"/>
+                        <Run x:Uid="Run_3" Text=")"/>                        
+                    </Hyperlink.Inlines>
+                </Hyperlink>
+                <TextBlock.Style>
+                    <Style x:Uid="Style_5" TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger x:Uid="DataTrigger_3" Binding="{Binding NewCorrectionsCount}" Value="0">
+                                <Setter x:Uid="Setter_7" Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            <StackPanel x:Uid="StackPanel_4" HorizontalAlignment="Right" Orientation="Horizontal"
+                        Grid.Column="1">
+                <StackPanel.Resources>
+                    <Style x:Uid="Style_6" TargetType="Button">
+                        <Setter x:Uid="Setter_8" Property="Margin" Value="5"/>
+                        <Setter x:Uid="Setter_9" Property="MinWidth" Value="60"/>
+                        <Setter x:Uid="Setter_10" Property="VerticalAlignment" Value="Center"/>
+                    </Style>
+                </StackPanel.Resources>
+                <Button x:Uid="Button_18" Content="OK" IsDefault="True" Click="ButtonOkClick" />
+                <Button x:Uid="Button_19" Content="Отмена" IsCancel="True" />
+            </StackPanel>
+        </Grid>        
+        <Grid x:Uid="Grid_6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Uid="ColumnDefinition_3" Width="0.3*" MinWidth="200"/>
+                <ColumnDefinition x:Uid="ColumnDefinition_4"/>
+            </Grid.ColumnDefinitions>
+            <GridSplitter x:Uid="GridSplitter_1" Width="3"/>
+            <!--Navigator-->
+            <Grid x:Uid="NavigationGrid" Margin="3" x:Name="NavigationGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition x:Uid="ColumnDefinition_5" Width="Auto"/>
+                    <ColumnDefinition x:Uid="ColumnDefinition_6"/>
+                </Grid.ColumnDefinitions>
+                <ToolBarTray x:Uid="ToolBarTray_2" Orientation="Vertical">
+                    <ToolBar x:Uid="ToolBar_2">
+                        <Button x:Uid="Button_20" commandManager:CommandHelper.Command="commands:DATTemplateCommands.AddTestCommand" ToolTip="Добавить новый тест">
+                            <Image x:Uid="Image_53" Source="{StaticResource DI_Add}" Style="{StaticResource CommonImageStyle}" />
+                        </Button>
+                        <!--<Button x:Uid="Button_21" Content="+Папка" commandManager:CommandHelper.Command="commands:DATTemplateCommands.CreateDATFolderCommand" ToolTip="Создать новую папку"/>-->
+                        <Button x:Uid="Button_22" commandManager:CommandHelper.Command="commands:DATTemplateCommands.MoveUpNodeCommand" ToolTip="Вверх">
+                            <Image x:Uid="Image_58" Source="{StaticResource DI_Up}" Style="{StaticResource CommonImageStyle}" />
+                        </Button>
+                        <Button x:Uid="Button_23" commandManager:CommandHelper.Command="commands:DATTemplateCommands.MoveDownNodeCommand" ToolTip="Вниз">
+                            <Image x:Uid="Image_54" Source="{StaticResource DI_Down}" Style="{StaticResource CommonImageStyle}" />
+                        </Button>
+                        <Button x:Uid="Button_24" commandManager:CommandHelper.Command="commands:DATTemplateCommands.RemoveNodeCommand" ToolTip="Удалить тест">
+                            <Image x:Uid="Image_59" Source="{StaticResource DI_Remove}" Style="{StaticResource CommonImageStyle}" />
+                        </Button>
+                        <Button x:Uid="Button_25" commandManager:CommandHelper.Command="commands:DATTemplateCommands.RenameNodeCommand" ToolTip="Переименовать">
+                            <Image x:Uid="Image_60" Source="{StaticResource DI_RenameTest}" Style="{StaticResource CommonImageStyle}" />
+                        </Button>
+                    </ToolBar>
+                </ToolBarTray>
+                <TreeView x:Uid="TreeView" Name="TreeView" ItemsSource="{Binding Model.Nodes}" Grid.Column="1">
+                    <TreeView.ItemContainerStyle>
+                        <Style x:Uid="Style_1" TargetType="{x:Type TreeViewItem}">
+                            <EventSetter x:Uid="EventSetter_1" Event="Selected" Handler="TreeViewItem_Selected"/>
+                            <EventSetter x:Uid="EventSetter_2" Event="MouseDoubleClick" Handler="TreeViewItem_MouseDoubleClick"/>
+                            <EventSetter x:Uid="EventSetter_3" Event="PreviewMouseRightButtonDown" Handler="TreeViewItem_PreviewMouseRightButtonDown"/>
+                            <EventSetter x:Uid="EventSetter_4" Event="RequestBringIntoView" Handler="TreeViewItem_RequestBringIntoView"/>
+                            <Setter x:Uid="Setter_1" Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                            <Setter x:Uid="Setter_2" Property="IsSelected" Value="{Binding IsCurrent, Mode=TwoWay}" />
+                            <Setter x:Uid="Setter_3" Property="FontWeight" Value="Normal" />
+                            <Setter x:Uid="Setter_4" Property="Padding" Value="2" />                            
+                            <Style.Triggers>
+                                <DataTrigger x:Uid="DataTrigger_1" Binding="{Binding IsCurrentTest}" Value="True">
+                                    <Setter x:Uid="Setter_5" Property="FontWeight" Value="Bold" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TreeView.ItemContainerStyle>
+
+                    <TreeView.Resources>
+                        <HierarchicalDataTemplate x:Uid="HierarchicalDataTemplate_1" DataType="{x:Type dat:DATTemplateFolder}" ItemsSource="{Binding Nodes}">
+                            <StackPanel x:Uid="StackPanel_1" Orientation="Horizontal" ToolTip="{Binding Name}">
+                                <StackPanel.ContextMenu>
+                                    <ContextMenu x:Uid="ContextMenu_4">
+                                        <MenuItem x:Uid="MenuItem_35" Header="Добавить тест..."
+                                                  commandManager:CommandHelper.Command="commands:DATTemplateCommands.AddTestCommand"
+                                                  CommandParameter="{Binding}"/>
+                                        <MenuItem x:Uid="MenuItem_36" Header="Добавить папку..."
+                                                  commandManager:CommandHelper.Command="commands:DATTemplateCommands.CreateDATFolderCommand"
+                                                  CommandParameter="{Binding}"/>
+                                    </ContextMenu>
+                                </StackPanel.ContextMenu>
+                                <Image x:Uid="image" x:Name="image" Height="16" Source="{StaticResource DI_Folder_Closed}"/>
+                                <TextBlock x:Uid="TextBlock_1" Text="{Binding Name}" VerticalAlignment="Center" Margin="5,0"/>
+                            </StackPanel>
+                            <HierarchicalDataTemplate.Triggers>
+                                <DataTrigger x:Uid="DataTrigger_2" Binding="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
+                                    <Setter x:Uid="Setter_6" TargetName="image" Property="Image.Source" Value="{StaticResource DI_Folder_Opened}" />
+                                </DataTrigger>
+                            </HierarchicalDataTemplate.Triggers>
+                        </HierarchicalDataTemplate>
+
+                        <HierarchicalDataTemplate x:Uid="HierarchicalDataTemplate_3" DataType="{x:Type dat:TestTemplateItem}" ItemsSource="{Binding Nodes}">
+                            <StackPanel x:Uid="StackPanel_3" Orientation="Horizontal" ToolTip="{Binding Name}">
+                                <StackPanel.ContextMenu>
+                                    <ContextMenu x:Uid="ContextMenu_5" Focusable="False">
+                                        <ContextMenu.Resources>
+                                            <Style x:Uid="Style_7" TargetType="MenuItem">
+                                                <Setter x:Uid="Setter_11" Property="Focusable" Value="False"/>
+                                            </Style>
+                                        </ContextMenu.Resources>
+                                        <MenuItem x:Uid="MenuItem_37" Header="Открыть" commandManager:CommandHelper.Command="commands:DATTemplateCommands.OpenTestCommand"
+                                                  CommandParameter="{Binding}"/>
+                                        <MenuItem x:Uid="MenuItem_38" Header="Запускать после..." 
+                                                  commandManager:CommandHelper.Command="commands:DATTemplateCommands.SelectPreviousTestCommand"
+                                                  CommandParameter="{Binding}"/>
+                                        <Separator x:Uid="Separator_12"/>
+                                        <MenuItem x:Uid="MenuItem_39" Header="Добавить тест..."
+                                                  commandManager:CommandHelper.Command="commands:DATTemplateCommands.AddTestCommand"
+                                                  CommandParameter="{Binding}"/>
+                                        <MenuItem x:Uid="MenuItem_40" Header="Добавить папку..."
+                                                  commandManager:CommandHelper.Command="commands:DATTemplateCommands.CreateDATFolderCommand"
+                                                  CommandParameter="{Binding}"/>
+                                        <Separator x:Uid="Separator_13"/>
+                                        <MenuItem x:Uid="MenuItem_41" Header="Изменить идентификатор..."
+                                                  commandManager:CommandHelper.Command="commands:DATTemplateCommands.ChangeTestIdCommand"/>
+                                        <Separator x:Uid="Separator_14"/>
+                                        <MenuItem x:Uid="MenuItem_42" commandManager:CommandHelper.Command="commands:DATTemplateCommands.ChangeIsContainerCommand"
+                                                  CommandParameter="{Binding}">
+                                            <MenuItem.Style>
+                                                <Style x:Uid="Style_8" TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                                                    <Setter x:Uid="Setter_12" Property="Header" Value="Сделать составным"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger x:Uid="DataTrigger_4" Binding="{Binding IsContainer}" Value="True">
+                                                            <Setter x:Uid="Setter_13" Property="Header" Value="Сделать несоставным"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </MenuItem.Style>
+                                        </MenuItem>                                        
+                                    </ContextMenu>
+                                </StackPanel.ContextMenu>
+                                <Image x:Uid="Image_55" Height="16" Name="image" Source="{StaticResource DI_TestItem}"/>
+                                <TextBlock x:Uid="TextBlock_6" Text="{Binding Name}" VerticalAlignment="Center" Margin="5,0"/>
+                            </StackPanel>
+                            <HierarchicalDataTemplate.Triggers>
+                                <DataTrigger x:Uid="DataTrigger_5" Binding="{Binding IsContainer}" Value="True">
+                                    <Setter x:Uid="Setter_14" TargetName="image" Property="Image.Source" Value="{StaticResource DI_TestItemContainer}" />                                    
+                                </DataTrigger>
+                            </HierarchicalDataTemplate.Triggers>
+                        </HierarchicalDataTemplate>
+                    </TreeView.Resources>
+                </TreeView>
+            </Grid>
+            <!---Content-->
+            <DockPanel x:Uid="DockPanel_2" LastChildFill="True" Grid.Column="1"
+                       Margin="3">
+                <DockPanel.Style>
+                    <Style x:Uid="Style_9" TargetType="DockPanel">
+                        <Style.Triggers>
+                            <DataTrigger x:Uid="DataTrigger_6" Binding="{Binding CurrentTest}" Value="{x:Null}">
+                                <Setter x:Uid="Setter_15" Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DockPanel.Style>
+                <Popup x:Uid="VariablesPopup" x:Name="VariablesPopup"
+                       Height="Auto" MaxWidth="400" Width="Auto"
+                       StaysOpen="False" Placement="Bottom" IsOpen="False" 
+                       HorizontalAlignment="Left" Focusable="False">
+                    <Grid x:Uid="Grid_4" Width="Auto" Height="Auto">
+                        <ListBox x:Uid="TagsListBox" Name="TagsListBox"
+                                 ItemsSource="{Binding TestContentTags}"
+                                 IsTextSearchEnabled="True" 
+                                 MouseDoubleClick="TagsListBox_MouseDoubleClick"
+                                 PreviewKeyDown="TagsListBox_PreviewKeyDown"
+                                 DisplayMemberPath="DisplayValue"
+                                 FontSize="12" FontFamily="Segoe UI"
+                                 Focusable="False" FocusManager.IsFocusScope="True">
+                        </ListBox>
+                    </Grid>
+                </Popup>
+                <Expander x:Uid="Expander_1" DockPanel.Dock="Bottom" Header="Скрипт выполнения теста">
+                    <Expander.Style>
+                        <Style x:Uid="Style_10" TargetType="Expander">
+                            <Setter x:Uid="Setter_16" Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <MultiDataTrigger x:Uid="MultiDataTrigger_1">
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition x:Uid="Condition_1" Binding="{Binding CurrentTest.Buttons}" Value="Execute"/>
+                                        <Condition x:Uid="Condition_2" Binding="{Binding CurrentTest.IsContainer}" Value="False"/>
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter x:Uid="Setter_17" Property="Visibility" Value="Visible"/>
+                                </MultiDataTrigger>
+                                <MultiDataTrigger x:Uid="MultiDataTrigger_2">
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition x:Uid="Condition_3" Binding="{Binding CurrentTest.Buttons}" Value="ExecuteCorrect"/>
+                                        <Condition x:Uid="Condition_4" Binding="{Binding CurrentTest.IsContainer}" Value="False"/>
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter x:Uid="Setter_18" Property="Visibility" Value="Visible"/>
+                                </MultiDataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Expander.Style>                   
+                    <controls:EditScriptControl x:Uid="controls:EditScriptControl_1" ScriptObject="{Binding CurrentTest.ExecutionScript}" Tags="{Binding ScriptTags}" Margin="3" Height="250"/>                            
+                </Expander>
+                <Grid x:Uid="Grid_7">
+                    <Grid.RowDefinitions>
+                        <RowDefinition x:Uid="RowDefinition_1" Height="Auto"/>
+                        <RowDefinition x:Uid="RowDefinition_2"/>
+                    </Grid.RowDefinitions>
+                    <ToolBarTray x:Uid="ToolBarTray_3">                        
+                        <ToolBar x:Uid="ToolBar_3">
+                            <Button x:Uid="Button_6" commandManager:CommandHelper.Command="ApplicationCommands.Undo" ToolTip="Отменить последнее действие">
+                                <Image x:Uid="Image_3" Source="{StaticResource DI_Undo}" Style="{StaticResource CommonImageStyle}"/>
+                            </Button>
+                            <Button x:Uid="Button_7" commandManager:CommandHelper.Command="ApplicationCommands.Redo" ToolTip="Восстановить отмененное действие">
+                                <Image x:Uid="Image_4" Source="{StaticResource DI_Redo}" Style="{StaticResource CommonImageStyle}"/>
+                            </Button>
+                            <ComboBox x:Uid="ComboBox_1" ItemsSource="{x:Static local:TestTemplateViewModel.FontFamilies}"
+                                                Width="100" SelectedItem="{Binding SelectedFontFamily}"
+                                                Focusable="False" IsEnabled="True">
+                            </ComboBox>
+                            <ComboBox x:Uid="ComboBox_2" ItemsSource="{Binding FontSizes}"
+                                                MinWidth="50"
+                                                Text="{Binding SelectedFontSize}"
+                                                Focusable="False" IsEnabled="True"/>
+                            <Separator x:Uid="Separator_7"/>
+                            <ToggleButton x:Uid="ToggleButton_1" commandManager:CommandHelper.Command="commands:DATEditingCommands.ToggleBoldCommand"
+                                                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}}"
+                                                    IsChecked="{Binding SelectionIsBold}"
+                                                    ToolTip="Жирный шрифт">
+                                <Image x:Uid="Image_9" Source="{StaticResource DI_Bold}" Style="{StaticResource CommonImageStyle}"/>
+                            </ToggleButton>
+                            <ToggleButton x:Uid="ToggleButton_2" commandManager:CommandHelper.Command="commands:DATEditingCommands.ToggleItalicCommand"
+                                                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}}"
+                                                    IsChecked="{Binding SelectionIsItalic}"
+                                                    ToolTip="Курсив">
+                                <Image x:Uid="Image_56" Source="{StaticResource DI_Italic}" Style="{StaticResource CommonImageStyle}"/>
+                            </ToggleButton>
+                            <ToggleButton x:Uid="ToggleButton_8" commandManager:CommandHelper.Command="commands:DATEditingCommands.ToggleUnderlineCommand"
+                                          CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}}"
+                                          IsChecked="{Binding SelectionIsUnderline}"
+                                          ToolTip="Подеркнутый">
+                                <Image x:Uid="Image_57" Source="{StaticResource DI_UnderLine}" Style="{StaticResource CommonImageStyle}"/>
+                            </ToggleButton>
+                            <Separator x:Uid="Separator_8"/>
+                            <commandManager:DropDownButton x:Uid="common:DropDownButton_1" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditColorCommand"
+                                                           Focusable="False">
+                                <Image x:Uid="Image_12" Source="{StaticResource DI_FontColor}" Style="{StaticResource CommonImageStyle}"/>
+                                <commandManager:DropDownButton.Resources>
+                                    <Style x:Uid="Style_2" TargetType="MenuItem">
+                                        <Setter x:Uid="Setter_19" Property="Focusable" Value="False"/>
+                                        <Setter x:Uid="Setter_20" Property="CommandTarget" Value="{Binding Path=PlacementTarget, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}"/>
+                                    </Style>
+                                </commandManager:DropDownButton.Resources>
+                                <commandManager:DropDownButton.DropDown>
+                                    <ContextMenu x:Uid="ContextMenu_1" Focusable="False">
+                                        <MenuItem x:Uid="MenuItem_1" CommandParameter="{x:Static media:Colors.Black}" Header="Черный" 
+                                                  commandManager:CommandHelper.Command="commands:DATEditingCommands.EditColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_13" Source="{StaticResource DI_Black}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_2" CommandParameter="{x:Static media:Colors.Maroon}" Header="Малиновый" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_14" Source="{StaticResource DI_Maroon}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_3" CommandParameter="{x:Static media:Colors.DarkGreen}" Header="Темно-зеленый" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_15" Source="{StaticResource DI_DarkGreen}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_4" CommandParameter="{x:Static media:Colors.Olive}" Header="Оливковый" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_16" Source="{StaticResource DI_Olive}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_5" CommandParameter="{x:Static media:Colors.Navy}" Header="Темно-синий" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_17" Source="{StaticResource DI_Navy}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_6" CommandParameter="{x:Static media:Colors.Purple}" Header="Сиреневый" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_18" Source="{StaticResource DI_Purple}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_7" CommandParameter="{x:Static media:Colors.Teal}" Header="Бирюзовый" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_19" Source="{StaticResource DI_Teal}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_8" CommandParameter="{x:Static media:Colors.DarkGray}" Header="Темно-серый" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_20" Source="{StaticResource DI_DarkGray}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_9" CommandParameter="{x:Static media:Colors.Silver}" Header="Светло-серый" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_21" Source="{StaticResource DI_Silver}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_10" CommandParameter="{x:Static media:Colors.Red}" Header="Красный" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_22" Source="{StaticResource DI_Red}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_11" CommandParameter="{x:Static media:Colors.Green}" Header="Зеленый" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_23" Source="{StaticResource DI_Green}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_12" CommandParameter="{x:Static media:Colors.Yellow}" Header="Желтый" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_24" Source="{StaticResource DI_Yellow}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_13" CommandParameter="{x:Static media:Colors.Blue}" Header="Синий" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_25" Source="{StaticResource DI_Blue}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_14" CommandParameter="{x:Static media:Colors.Pink}" Header="Розовый" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_26" Source="{StaticResource DI_Pink}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_15" CommandParameter="{x:Static media:Colors.LightBlue}" Header="Голубой" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_27" Source="{StaticResource DI_LightBlue}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_16" CommandParameter="{x:Static media:Colors.White}" Header="Белый" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_28" Source="{StaticResource DI_White}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_17" CommandParameter="{x:Static media:Colors.Black}" Header="Авто" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_29" Source="{StaticResource DI_Black}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                    </ContextMenu>
+                                </commandManager:DropDownButton.DropDown>
+                            </commandManager:DropDownButton>
+                            <commandManager:DropDownButton x:Uid="common:DropDownButton_2" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditBackColorCommand"
+                                                            Focusable="False">
+                                <Image x:Uid="Image_30" Source="{StaticResource DI_BackgroundColor}" Style="{StaticResource CommonImageStyle}"/>
+                                <commandManager:DropDownButton.Resources>
+                                    <Style x:Uid="Style_11" TargetType="MenuItem">
+                                        <Setter x:Uid="Setter_21" Property="Focusable" Value="False"/>
+                                        <Setter x:Uid="Setter_22" Property="CommandTarget" Value="{Binding Path=PlacementTarget, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}"/>
+                                    </Style>
+                                </commandManager:DropDownButton.Resources>
+                                <commandManager:DropDownButton.DropDown>
+                                    <ContextMenu x:Uid="ContextMenu_2" Focusable="False">
+                                        <MenuItem x:Uid="MenuItem_18" CommandParameter="{x:Static media:Colors.Black}" Header="Черный" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditBackColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_31" Source="{StaticResource DI_Black}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_19" CommandParameter="{x:Static media:Colors.Maroon}" Header="Малиновый" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditBackColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_32" Source="{StaticResource DI_Maroon}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_20" CommandParameter="{x:Static media:Colors.DarkGreen}" Header="Темно-зеленый" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditBackColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_33" Source="{StaticResource DI_DarkGreen}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_21" CommandParameter="{x:Static media:Colors.Olive}" Header="Оливковый" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditBackColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_34" Source="{StaticResource DI_Olive}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_22" CommandParameter="{x:Static media:Colors.Navy}" Header="Темно-синий" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditBackColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_35" Source="{StaticResource DI_Navy}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_23" CommandParameter="{x:Static media:Colors.Purple}" Header="Сиреневый" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditBackColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_36" Source="{StaticResource DI_Purple}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_24" CommandParameter="{x:Static media:Colors.Teal}" Header="Бирюзовый" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditBackColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_37" Source="{StaticResource DI_Teal}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_25" CommandParameter="{x:Static media:Colors.DarkGray}" Header="Темно-серый" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditBackColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_38" Source="{StaticResource DI_DarkGray}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_26" CommandParameter="{x:Static media:Colors.Silver}" Header="Светло-серый" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditBackColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_39" Source="{StaticResource DI_Silver}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_27" CommandParameter="{x:Static media:Colors.Red}" Header="Красный" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditBackColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_40" Source="{StaticResource DI_Red}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_28" CommandParameter="{x:Static media:Colors.Green}" Header="Зеленый" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditBackColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_41" Source="{StaticResource DI_Green}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_29" CommandParameter="{x:Static media:Colors.Yellow}" Header="Желтый" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditBackColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_42" Source="{StaticResource DI_Yellow}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_30" CommandParameter="{x:Static media:Colors.Blue}" Header="Синий" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditBackColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_43" Source="{StaticResource DI_Blue}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_31" CommandParameter="{x:Static media:Colors.Pink}" Header="Розовый" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditBackColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_44" Source="{StaticResource DI_Pink}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_32" CommandParameter="{x:Static media:Colors.LightBlue}" Header="Голубой" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditBackColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_45" Source="{StaticResource DI_LightBlue}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_33" CommandParameter="{x:Static media:Colors.White}" Header="Белый" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditBackColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_46" Source="{StaticResource DI_White}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Uid="MenuItem_34" CommandParameter="{x:Static media:Colors.White}" Header="Авто" commandManager:CommandHelper.Command="commands:DATEditingCommands.EditBackColorCommand">
+                                            <MenuItem.Icon>
+                                                <Image x:Uid="Image_47" Source="{StaticResource DI_White}" Height="15"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                    </ContextMenu>
+                                </commandManager:DropDownButton.DropDown>
+                            </commandManager:DropDownButton>
+                            <Separator x:Uid="Separator_9"/>
+                            <ToggleButton x:Uid="ToggleButton_4" commandManager:CommandHelper.Command="commands:DATEditingCommands.FormatLeftAlignCommand"
+                                                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}}"
+                                                    IsChecked="{Binding SelectionIsLeftAlignment}"
+                                                    ToolTip="Выравнивание по левому краю">
+                                <Image x:Uid="Image_48" Source="{StaticResource DI_AlignLeft}" Style="{StaticResource CommonImageStyle}"/>
+                            </ToggleButton>
+                            <ToggleButton x:Uid="ToggleButton_5" commandManager:CommandHelper.Command="commands:DATEditingCommands.FormatCenterAlignCommand"
+                                                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}}"
+                                                    IsChecked="{Binding SelectionIsCenterAlignment}"
+                                                    ToolTip="Выравнивание по центру">
+                                <Image x:Uid="Image_49" Source="{StaticResource DI_AlignCenter}" Style="{StaticResource CommonImageStyle}"/>
+                            </ToggleButton>
+                            <ToggleButton x:Uid="ToggleButton_6" commandManager:CommandHelper.Command="commands:DATEditingCommands.FormatRightAlignCommand"
+                                                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}}"
+                                                    IsChecked="{Binding SelectionIsRightAlignment}"
+                                                    ToolTip="Выравнивание по правому краю">
+                                <Image x:Uid="Image_50" Source="{StaticResource DI_AlignRight}" Style="{StaticResource CommonImageStyle}"/>
+                            </ToggleButton>
+                            <Separator x:Uid="Separator_10"/>
+                            <ToggleButton x:Uid="ToggleButton_7" commandManager:CommandHelper.Command="commands:DATEditingCommands.ToggleBulletsCommand"
+                                                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}}"
+                                                    IsChecked="{Binding SelectionIsList}"
+                                                    ToolTip="Маркированный список">
+                                <Image x:Uid="Image_51" Source="{StaticResource DI_ListBullet}" Style="{StaticResource CommonImageStyle}"/>
+                            </ToggleButton>
+                        </ToolBar>
+                        <ToolBar x:Uid="ToolBar_4" Band="1">                            
+                            <ComboBox x:Uid="ComboBox_3" ItemsSource="{Binding Source={StaticResource ButtonsEnum}}"
+                                      SelectedItem="{Binding CurrentTest.Buttons}" Width="80"
+                                      ToolTip="Набор кнопок, отображаемых пользователю при выполнении теста"/>                            
+                            <Button x:Uid="Button_26" Content="ContentPresenters..." ToolTip="Настройка списка ссылок на ContentPresenter'ы в содержимом теста"
+                                    commandManager:CommandHelper.Command="commands:DATTemplateCommands.ContentPresenterTagsCommand"/>
+                            <Button x:Uid="Button_27" Content="Валидация..." ToolTip="Настройка условий выполнения теста"
+                                    commandManager:CommandHelper.Command="commands:DATTemplateCommands.EditValidationCommand"/>
+                            <Button x:Uid="Button_28" Content="Открытие..." ToolTip="Действия при открытии теста"
+                                    commandManager:CommandHelper.Command="commands:DATTemplateCommands.EditBeginTestScriptCommand"/>
+                            <Button x:Uid="Button_29" Content="Закрытие..." ToolTip="Действия при закрытии теста"
+                                    commandManager:CommandHelper.Command="commands:DATTemplateCommands.EditEndTestScriptCommand"/>                            
+                            <Button x:Uid="Button_30" Content="Кнопки..." ToolTip="Список кнопок, используемых в содержимом теста"
+                                    commandManager:CommandHelper.Command="commands:DATTemplateCommands.ButtonScriptsCommand"/>
+                            <Separator x:Uid="Separator_18"/>
+                            <Button x:Uid="Button_31" Content="Запускать после..." ToolTip="Выбрать тест, после выполнения которого следует запускать текущий..."
+                                    commandManager:CommandHelper.Command="commands:DATTemplateCommands.SelectPreviousTestCommand"
+                                    CommandParameter="{Binding CurrentTest}"/>
+                            <Button x:Uid="Button_32" Content="Исправления..." ToolTip="Редактировать список описаний вероятных исправлений в ходе теста..."
+                                    commandManager:CommandHelper.Command="commands:DATTemplateCommands.EditTestCorrectionsCommand"/>
+                            <Button x:Uid="Button_35" Content="Переменные..." ToolTip="Редактировать список привязанных к тесту переменных..."
+                                    commandManager:CommandHelper.Command="commands:DATTemplateCommands.EditUsedInTestVariablesListCommand"/>
+                            <ToggleButton x:Uid="ToggleButton_9" IsChecked="{Binding CurrentTest.ReExecutable}" Content="Многоразовый" ToolTip="Может ли тест быть повторно пройден"
+                                          x:Name="ReExecutableButton" VerticalAlignment="Stretch"/>
+                            <TextBox x:Uid="TextBox_1" MinWidth="100" MaxWidth="200" Text="{Binding CurrentTest.ReExecuteDescription, UpdateSourceTrigger=PropertyChanged}"
+                                     TextWrapping="Wrap">              
+                                <TextBox.Style>
+                                    <Style x:Uid="Style_13" TargetType="TextBox">
+                                        <Setter x:Uid="Setter_27" Property="Visibility" Value="Collapsed"/>
+                                        <Setter x:Uid="Setter_32" Property="ToolTip" Value="{Binding CurrentTest.ReExecuteDescription}"/>
+                                        <Style.Triggers>
+                                            <Trigger x:Uid="Trigger_1" Property="IsMouseOver" Value="True">
+                                                <Setter x:Uid="Setter_28" Property="Visibility" Value="Visible" />
+                                            </Trigger>
+                                            <Trigger x:Uid="Trigger_2" Property="IsKeyboardFocused" Value="True">
+                                                <Setter x:Uid="Setter_29" Property="Visibility" Value="Visible" />
+                                            </Trigger>
+                                            <DataTrigger x:Uid="DataTrigger_7" Binding="{Binding ElementName=ReExecutableButton, Path=IsMouseOver}" Value="True">
+                                                <Setter x:Uid="Setter_30" Property="Visibility" Value="Visible" />
+                                            </DataTrigger>
+                                            <DataTrigger x:Uid="DataTrigger_8" Binding="{Binding CurrentTest.ReExecutable}" Value="False">
+                                                <Setter x:Uid="Setter_31" Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                            <DataTrigger x:Uid="DataTrigger_9" Binding="{Binding CurrentTest.ReExecuteDescription}" Value="{x:Null}">
+                                                <Setter x:Uid="Setter_33" Property="ToolTip" Value="Описание причин повторного тестирования"/>
+                                            </DataTrigger>
+                                            <DataTrigger x:Uid="DataTrigger_10" Binding="{Binding CurrentTest.ReExecuteDescription}" Value="">
+                                                <Setter x:Uid="Setter_34" Property="ToolTip" Value="Описание причин повторного тестирования"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                            <Separator x:Uid="Separator_15"/>
+                            <Button x:Uid="Button_33" Content="Автотест" ToolTip="Настройка автоматического выполнения теста" 
+                                    commandManager:CommandHelper.Command="commands:DATTemplateCommands.AutoTestSettingsCommand"/>
+                            <Separator x:Uid="Separator_16"/>
+                            <Button x:Uid="Button_34" Content="Preview" commandManager:CommandHelper.Command="commands:DATTemplateCommands.PreviewCommand"/>
+                        </ToolBar>
+                    </ToolBarTray>
+                    <local:DATRichTextBox x:Uid="TestContentRTB" x:Name="TestContentRTB" MinHeight="200" Margin="3,0,3,0" Grid.Row="1"
+                                          IsDocumentEnabled="True" AcceptsTab="True" AcceptsReturn="True"
+                                          SelectionChanged="TestContentRTB_SelectionChanged"
+                                          FontSize="18.67"
+                                          TextChanged="TestContentRTB_TextChanged" VerticalScrollBarVisibility="Visible"
+                                          PreviewKeyDown="TestContentRTB_PreviewKeyDown"
+                                          HorizontalScrollBarVisibility="Auto">
+                        <local:DATRichTextBox.ContextMenu>
+                            <ContextMenu x:Uid="ContextMenu_6" Opened="ContextMenu_Opened">
+                                <MenuItem x:Uid="MenuItem_43" Header="Вырезать" Command="Cut"/>
+                                <MenuItem x:Uid="MenuItem_44" Header="Копировать" Command="Copy"/>
+                                <MenuItem x:Uid="MenuItem_45" Header="Вставить" Command="Paste"/>
+                                <Separator x:Uid="Separator_17"/>
+                                <MenuItem x:Uid="MenuItem_46" Header="Изображение из файла" ItemsSource="{Binding ImagesFromFiles}">
+                                    <MenuItem.ItemContainerStyle>
+                                        <Style x:Uid="Style_12" TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                                            <Setter x:Uid="Setter_24" Property="commandManager:CommandHelper.Command" Value="commands:DATTemplateCommands.PasteImageLinkCommand"/>
+                                            <Setter x:Uid="Setter_25" Property="CommandParameter" Value="{Binding}"/>
+                                        </Style>
+                                    </MenuItem.ItemContainerStyle>
+                                </MenuItem>
+                            </ContextMenu>
+                        </local:DATRichTextBox.ContextMenu>
+                    </local:DATRichTextBox>
+                </Grid>                
+            </DockPanel>
+        </Grid>
+    </DockPanel>
+</commonDialogs:DATDialogWindow>

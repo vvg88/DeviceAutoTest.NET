@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BFCAD07E-7F4C-4148-B485-A0B0E540F45B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NeuroSoft.DeviceAutoTest.Common</RootNamespace>
+    <AssemblyName>NeuroSoft.DeviceAutoTest.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NeuroSoft.Devices.EEGDevice, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\NeuroSoft.Devices.EEGDevice.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.Devices.NeuroMEPMicro">
+      <HintPath>..\..\..\Assemblies\NeuroSoft.Devices.NeuroMEPMicro.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.MathLib.Basic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\NeuroSoft.MathLib.Basic.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.MathLib.Filters, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\NeuroSoft.MathLib.Filters.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.WPFComponents.NumericUpDown, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\NeuroSoft.WPFComponents.NumericUpDown.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.WPFComponents.ScalableWindows, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\NeuroSoft.WPFComponents.ScalableWindows.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.WPFComponents.WPFToolkit, Version=3.5.40128.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\NeuroSoft.WPFComponents.WPFToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.WPFPrototype.Interface.Common">
+      <HintPath>..\..\..\Assemblies\NeuroSoft.WPFPrototype.Interface.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommonScripts.cs" />
+    <Compile Include="Controls\BaseViewModel.cs" />
+    <Compile Include="Controls\CurrentStimulatorSettings.xaml.cs">
+      <DependentUpon>CurrentStimulatorSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OscScopeControl.xaml.cs">
+      <DependentUpon>OscScopeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PatternStimulatorSettings.xaml.cs">
+      <DependentUpon>PatternStimulatorSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FlashStimulatorSettings.xaml.cs">
+      <DependentUpon>FlashStimulatorSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FlashUtilControl.xaml.cs">
+      <DependentUpon>FlashUtilControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\KeyboardEncoder.xaml.cs">
+      <DependentUpon>KeyboardEncoder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MonitoringPlotter.xaml.cs">
+      <DependentUpon>MonitoringPlotter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PhonoStimulatorSettings.xaml.cs">
+      <DependentUpon>PhonoStimulatorSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ReadDataInfo.cs" />
+    <Compile Include="Controls\StimulatorSettings.cs" />
+    <Compile Include="Controls\UsbDevicesListControl.xaml.cs">
+      <DependentUpon>UsbDevicesListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters.cs" />
+    <Compile Include="DevicesManipulation.cs" />
+    <Compile Include="Dialogs\DATDialogWindow.cs" />
+    <Compile Include="Dialogs\CommentsDialog.xaml.cs">
+      <DependentUpon>CommentsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SelectDeviceDialog.xaml.cs">
+      <DependentUpon>SelectDeviceDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Scripts\Indicator.cs" />
+    <Compile Include="Scripts\ScriptEnvironment.cs" />
+    <Compile Include="Scripts\StandOperations.cs" />
+    <Compile Include="Scripts\StandOperationsEEG.cs" />
+    <Compile Include="Scripts\SuplyCurrentIndicator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\CurrentStimulatorSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\OscScopeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PatternStimulatorSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\FlashStimulatorSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\FlashUtilControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\KeyboardEncoder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MonitoringPlotter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PhonoStimulatorSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UsbDevicesListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\CommentsDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\SelectDeviceDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Devices\NSDevice\NeuroSoft.Devices.NSDevice.csproj">
+      <Project>{62B852DB-FE7F-4527-9A04-478295A38198}</Project>
+      <Name>NeuroSoft.Devices.NSDevice</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hardware\Common\Neurosoft.Hardware.Common.csproj">
+      <Project>{00FB971E-D401-48B6-8F49-5C0DC28C1CA4}</Project>
+      <Name>Neurosoft.Hardware.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hardware\Devices\Common\Neurosoft.Hardware.Devices.csproj">
+      <Project>{d085453b-18a3-4bb9-b847-ea97f0ac4e0f}</Project>
+      <Name>Neurosoft.Hardware.Devices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hardware\Devices\NeuroMepMicroM\Neurosoft.Hardware.Devices.NeuroMepMicroM.csproj">
+      <Project>{99489BEC-DE96-4250-B08F-58A4ECE69A5E}</Project>
+      <Name>Neurosoft.Hardware.Devices.NeuroMepMicroM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hardware\Devices\UniversalTestStend\Neurosoft.Hardware.Devices.UniversalTestStend.csproj">
+      <Project>{e2103d46-f851-4bff-8c1a-9a5444146078}</Project>
+      <Name>Neurosoft.Hardware.Devices.UniversalTestStend</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hardware\Tools\Common\Neurosoft.Hardware.Tools.Common.csproj">
+      <Project>{6762720B-BB93-488C-8B98-F4DA8625F2FE}</Project>
+      <Name>Neurosoft.Hardware.Tools.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hardware\Tools\Cypress\Neurosoft.Hardware.Tools.Cypress.csproj">
+      <Project>{D51CA817-2880-4EA0-8742-DA76714D0F93}</Project>
+      <Name>Neurosoft.Hardware.Tools.Cypress</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hardware\Tools\Jtag\Neurosoft.Hardware.Tools.Jtag.csproj">
+      <Project>{0AE36617-4773-439D-8B24-8620247B2137}</Project>
+      <Name>Neurosoft.Hardware.Tools.Jtag</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hardware\Tools\Usb\Neurosoft.Hardware.Tools.Usb.csproj">
+      <Project>{3489FA0B-7F97-4151-A651-56BF8F8667E9}</Project>
+      <Name>Neurosoft.Hardware.Tools.Usb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hardware\Tools\Visa\Neurosoft.Hardware.Tools.Visa.csproj">
+      <Project>{5E4F34C8-F962-4A57-B8AB-96A8A53676B9}</Project>
+      <Name>Neurosoft.Hardware.Tools.Visa</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hardware\Usb\Neurosoft.Hardware.Usb.csproj">
+      <Project>{9269E902-EC52-46C9-9095-9008E3E178FE}</Project>
+      <Name>Neurosoft.Hardware.Usb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\WPFComponents\AvalonDock\AvalonDock\AvalonDock.csproj">
+      <Project>{2FF700C2-A38A-48BD-A637-8CAFD4FE6237}</Project>
+      <Name>AvalonDock</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\WPFComponents\NSGridNew\NSGrid\Neurosoft.WPFComponents.NSGrid.csproj">
+      <Project>{aaba5af6-cfeb-4238-943c-65d69ed2df55}</Project>
+      <Name>Neurosoft.WPFComponents.NSGrid</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\..\Contrib\hil.dll">
+      <Link>hil.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\Contrib\jam.dll">
+      <Link>jam.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\Contrib\msp430.dll">
+      <Link>msp430.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\Contrib\MspFetCon.exe">
+      <Link>MspFetCon.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\Contrib\SiUtil.dll">
+      <Link>SiUtil.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\Contrib\USBHID.dll">
+      <Link>USBHID.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\Hardware\Tools\JAM\Debug\Neurosoft.Hardware.Tools.JAM.dll">
+      <Link>Neurosoft.Hardware.Tools.JAM.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\Impedance.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <None Include="Resources\TestDisplayImage.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

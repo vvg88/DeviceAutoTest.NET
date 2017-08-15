@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="NeuroSoft.DeviceAutoTest.BluetoothDevicesTest.Controls.MonitoringData"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converters="clr-namespace:NeuroSoft.DeviceAutoTest.Common.Converters;assembly=NeuroSoft.DeviceAutoTest.Common"
+             xmlns:my="clr-namespace:NeuroSoft.DeviceAutoTest.Common.Controls;assembly=NeuroSoft.DeviceAutoTest.Common"
+             mc:Ignorable="d" 
+             d:DesignHeight="390" d:DesignWidth="750" >
+    <UserControl.Resources>
+            <converters:ScaleConvertor x:Key="VoltToMilliVoltConvertor" Scale="1000"/>
+    </UserControl.Resources>
+        
+    <Grid>
+        <my:MonitoringPlotter HorizontalAlignment="Left" Name="monitoringPlotter" VerticalAlignment="Bottom" Height="390" Width="535" FontSize="11" />
+        <DataGrid AutoGenerateColumns="False" Height="180" HorizontalAlignment="Left" Margin="563,104,0,0" Name="StatisticDataGrid"
+                  VerticalAlignment="Top" Width="170" ItemsSource="{Binding StatisticsCollection}" FontSize="11" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled" MaxColumnWidth="72" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Канал" SortMemberPath="ChannelName" Binding="{Binding ChannelName}"
+                                    CanUserSort="False" CanUserResize="True" MaxWidth="40" />
+                <DataGridTextColumn Header="Размах (мВ)" SortMemberPath="Swing.Value" Binding="{Binding Path=Swing.Value, StringFormat=F5, Converter={StaticResource VoltToMilliVoltConvertor}}"
+                                    CanUserSort="False" CanUserResize="True">
+                    <DataGridTextColumn.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Swing.IsValidValue}" Value="False">
+                                <Setter Property="Background" Value="Red"/>
+                            </DataTrigger>
+                                <DataTrigger Binding="{Binding Swing.IsValidValue}" Value="True">
+                                    <Setter Property="Background" Value="GreenYellow"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                    </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="RMS (мВ)" SortMemberPath="RMS.Value" Binding="{Binding RMS.Value, StringFormat=F5, Converter={StaticResource VoltToMilliVoltConvertor}}"
+                                    CanUserSort="False" CanUserResize="True" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Height="30" HorizontalAlignment="Left" Margin="563,12,0,0" Name="nameDevice" VerticalAlignment="Top"
+               Width="175" Content="nameBTDevice" FontSize="11" ForceCursor="False" AllowDrop="False" FontWeight="Normal" />
+        <Button Content="OpenBTDevice" Height="23" HorizontalAlignment="Left" Margin="611,41,0,0" Name="openCloseBTDevice"
+                VerticalAlignment="Top" Width="83" Click="openCloseBTDevice_Click" FontSize="11" />
+        <Label Height="28" HorizontalAlignment="Left" Margin="611,70,0,0" Name="dataRateView" VerticalAlignment="Top"
+               Width="83" Content="dataRate" FontSize="11" />
+        <CheckBox Content="Br" Height="16" HorizontalAlignment="Left" Margin="565,300,0,0" Name="checkBoxBr"
+                  VerticalAlignment="Top" FontSize="11" IsChecked="False" Checked="checkBoxBr_Checked" Unchecked="checkBoxBr_Unchecked" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="600,300,0,0" Name="comboBoxFreqBr"
+                  VerticalAlignment="Top" Width="70" SelectionChanged="comboBoxFreqBr_SelectionChanged"
+                  ItemsSource="{Binding FreqScaleBr}" SelectedItem="{Binding SelectedFreqBr}" FontSize="11" Visibility="Visible" Text="Частота канала дыхания"></ComboBox>
+        <Button Content="Reset" Height="23" HorizontalAlignment="Left" Margin="541,366,0,0" Name="buttonReset" VerticalAlignment="Top" Width="75" Click="buttonReset_Click" FontSize="11" />
+    </Grid>
+</UserControl>

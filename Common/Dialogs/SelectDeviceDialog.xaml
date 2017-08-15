@@ -1,0 +1,25 @@
+﻿<local:DATDialogWindow x:Class="NeuroSoft.DeviceAutoTest.Dialogs.SelectDeviceDialog"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"        
+                       xmlns:local="clr-namespace:NeuroSoft.DeviceAutoTest.Dialogs"
+                       xmlns:datcom="clr-namespace:NeuroSoft.DeviceAutoTest.Common.Controls"
+                       xmlns:converters="clr-namespace:NeuroSoft.DeviceAutoTest.Common.Converters"
+                       xmlns:usbTools="clr-namespace:NeuroSoft.Hardware.Tools.Usb;assembly=Neurosoft.Hardware.Tools.Usb"
+                       MinHeight="250" Height="250" Width="500" MinWidth="300" Title="Выбор устройства из списка" 
+                       WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>            
+        </Grid.RowDefinitions>
+        <datcom:UsbDevicesListControl x:Name="UsbDevsList"/>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Right"
+                    Orientation="Horizontal">
+            <Button Name="OkBtn"  Content="ОК"
+                    IsDefault="True" Click="Button_Click"                    
+                    Margin="5" MinWidth="60"/>
+            <Button Content="Отмена" IsCancel="True" Margin="5" MinWidth="60"/>                
+        </StackPanel>
+    </Grid>
+</local:DATDialogWindow>
+

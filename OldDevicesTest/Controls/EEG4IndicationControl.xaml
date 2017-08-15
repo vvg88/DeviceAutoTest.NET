@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="NeuroSoft.DeviceAutoTest.OldDevicesTest.Controls.EEG4IndicationControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NeuroSoft.DeviceAutoTest.OldDevicesTest.Controls"
+             Height="Auto" Width="Auto">
+    <Grid>
+        <GroupBox Header="Индикация">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                    </Grid.RowDefinitions>
+                    <RadioButton Content="Выкл." GroupName="Leds" IsChecked="{Binding LedsOff}" Margin="3"/>
+                    <RadioButton Content="Зеленый" Grid.Row="1" GroupName="Leds" IsChecked="{Binding LedsGreen}" Margin="3"/>
+                    <RadioButton Content="Желтый" Grid.Row="2" GroupName="Leds" IsChecked="{Binding LedsYellow}" Margin="3"/>
+                    <RadioButton Content="Красный" Grid.Row="3" GroupName="Leds" IsChecked="{Binding LedsRed}" Margin="3"/>
+                    <RadioButton Content="Иллюминация " Grid.Row="4" GroupName="Leds" IsChecked="{Binding LedsIllumination}" Margin="3"/>
+                </Grid>
+                <local:EEG4LedsControl x:Name="EEG4LedsControl" Grid.Column="1"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>

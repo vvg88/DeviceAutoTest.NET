@@ -1,0 +1,155 @@
+﻿<UserControl x:Class="NeuroSoft.DeviceAutoTest.OldDevicesTest.Controls.TestInputRangesControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:NeuroSoft.DeviceAutoTest.OldDevicesTest.Controls"
+             xmlns:controls="clr-namespace:NeuroSoft.DeviceAutoTest.Common.Controls;assembly=NeuroSoft.DeviceAutoTest.Common"
+             xmlns:converters="clr-namespace:NeuroSoft.DeviceAutoTest.Common.Converters;assembly=NeuroSoft.DeviceAutoTest.Common"             
+             xmlns:numeric="clr-namespace:NeuroSoft.WPFComponents.NumericInput;assembly=NeuroSoft.WPFComponents.NumericUpDown"
+             xmlns:nstoolkit="clr-namespace:NeuroSoft.WPFComponents.WPFToolkit;assembly=NeuroSoft.WPFComponents.WPFToolkit"
+             xmlns:nsg="clr-namespace:NeuroSoft.WPFComponents.NSGridView;assembly=NeuroSoft.WPFComponents.NSGrid">
+    <UserControl.Resources>
+        <converters:ScaleConvertor x:Key="VoltToMilliVoltConvertor" Scale="1000"/>
+        <converters:ScaleConvertor x:Key="WidthWithoutScrollBarConverter" Scale="0.95"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="400"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Expander ExpandDirection="Left" IsExpanded="True" Header="Мониторинг">
+                <Expander.Style>
+                    <Style TargetType="Expander" BasedOn="{StaticResource {x:Type Expander}}">
+                        <Setter Property="HeaderTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <ContentPresenter Content="{Binding}">
+                                        <ContentPresenter.LayoutTransform>
+                                            <RotateTransform Angle="-90"/>
+                                        </ContentPresenter.LayoutTransform>
+                                    </ContentPresenter>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Expander.Style>
+                <controls:MonitoringPlotter x:Name="MonitoringPlotter" Height="Auto" Width="Auto"/>
+            </Expander>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding InputRangeTests}"
+                          x:Name="dataGrid">
+                    <DataGrid.Resources>
+                        <local:IsVisibleChannelConverter x:Key="IsVisibleChannelConverter"/>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Диап-н" Binding="{Binding Range}" Width="Auto" />
+                        <DataGridTextColumn Header="Размах" Binding="{Binding SwingString}" Width="Auto"/>
+                        <DataGridTextColumn Header="Канал 1" Binding="{Binding ChannelsSwings[0].Value, Converter={StaticResource VoltToMilliVoltConvertor}, StringFormat=F3}" Width="Auto">
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ChannelsSwings[0].IsValidValue}" Value="False">
+                                            <Setter Property="Background" Value="Red"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Канал 2" Binding="{Binding ChannelsSwings[1].Value, Converter={StaticResource VoltToMilliVoltConvertor}, StringFormat=F3}" Width="Auto">
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ChannelsSwings[1].IsValidValue}" Value="False">
+                                            <Setter Property="Background" Value="Red"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Канал 3" Binding="{Binding ChannelsSwings[2].Value, Converter={StaticResource VoltToMilliVoltConvertor}, StringFormat=F3}" Width="Auto">
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ChannelsSwings[2].IsValidValue}" Value="False">
+                                            <Setter Property="Background" Value="Red"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Канал 4" Binding="{Binding ChannelsSwings[3].Value, Converter={StaticResource VoltToMilliVoltConvertor}, StringFormat=F3}" Width="Auto">
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ChannelsSwings[3].IsValidValue}" Value="False">
+                                            <Setter Property="Background" Value="Red"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsValidValues}" Value="True">
+                                    <Setter Property="Background" Value="LightGreen"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+                </DataGrid>
+                <Grid Grid.Row="1">
+                    <CheckBox Content="Фильтр сетевой помехи" IsChecked="{Binding EnablePowerRejector}"
+                                Margin="2"/>
+                </Grid>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock VerticalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding TestingStatus}"
+                   FontWeight="Bold">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding TestingResult}" Value="True">
+                            <Setter Property="Foreground" Value="Green"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding TestingResult}" Value="False">
+                            <Setter Property="Foreground" Value="Red"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+            </TextBlock>
+            <Button Grid.Row="1" HorizontalAlignment="Right"
+                Grid.Column="1" Margin="5" Click="Button_Click"
+                MinWidth="60">
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                        <Setter Property="Content" Value="Начать"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsTesting}" Value="True">
+                                <Setter Property="Content" Value="Остановить"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding SettingParams}" Value="True">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>

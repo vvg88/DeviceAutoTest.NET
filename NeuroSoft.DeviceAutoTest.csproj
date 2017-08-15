@@ -1,0 +1,719 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{46ED7D79-66E3-477F-B9BA-A224200127F7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NeuroSoft.DeviceAutoTest</RootNamespace>
+    <AssemblyName>NeuroSoft.DeviceAutoTest</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>DATIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AvalonDock, Version=1.2.2643.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>../../Assemblies/AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="InTheHand.Net.Personal, Version=3.3.909.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Assemblies\InTheHand.Net.Personal.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>../../Assemblies/NeuroSoft.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.Components.Depository, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>../../Assemblies/NeuroSoft.Components.Depository.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.Components.EditorWord, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Assemblies\NeuroSoft.Components.EditorWord.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.Components.ProtocolPatternMaker, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>../../Assemblies/NeuroSoft.Components.ProtocolPatternMaker.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.Devices.HIDDevices, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Assemblies\NeuroSoft.Devices.HIDDevices.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.Devices.NeuroMEP">
+      <HintPath>..\..\Assemblies\NeuroSoft.Devices.NeuroMEP.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.Devices.NeuroMEPMicro">
+      <HintPath>..\..\Assemblies\NeuroSoft.Devices.NeuroMEPMicro.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.Devices.NSDevice, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>../../Assemblies/NeuroSoft.Devices.NSDevice.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.Devices.NsHID, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Assemblies\NeuroSoft.Devices.NsHID.dll</HintPath>
+    </Reference>
+    <Reference Include="Neurosoft.Integration, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Assemblies\Neurosoft.Integration.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.Localization, Version=0.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>../../Assemblies/NeuroSoft.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.Prototype.Database, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>../../Assemblies/NeuroSoft.Prototype.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.Prototype.Database.Provider.OleDb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>../../Assemblies/NeuroSoft.Prototype.Database.Provider.OleDb.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.Prototype.DataModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>../../Assemblies/NeuroSoft.Prototype.DataModel.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.Prototype.Editor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Assemblies\NeuroSoft.Prototype.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.Prototype.Interface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Assemblies\NeuroSoft.Prototype.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.Prototype.Interface.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>../../Assemblies/NeuroSoft.Prototype.Interface.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.Prototype.Interface.Database, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>../../Assemblies/NeuroSoft.Prototype.Interface.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.Prototype.Statistics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Assemblies\NeuroSoft.Prototype.Statistics.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.WPFComponents.AvalonDockHelper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>../../Assemblies/NeuroSoft.WPFComponents.AvalonDockHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.WPFComponents.CommandManager">
+      <HintPath>../../Assemblies/NeuroSoft.WPFComponents.CommandManager.dll</HintPath>
+    </Reference>
+    <Reference Include="Neurosoft.WPFComponents.NumericUpDown, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>../../Assemblies/Neurosoft.WPFComponents.NumericUpDown.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.WPFComponents.ProtocolPatternMaker, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Assemblies\NeuroSoft.WPFComponents.ProtocolPatternMaker.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.WPFComponents.ScalableWindows, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Assemblies\NeuroSoft.WPFComponents.ScalableWindows.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.WPFComponents.ToolBarCustomizer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>../../Assemblies/NeuroSoft.WPFComponents.ToolBarCustomizer.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.WPFComponents.ToolbarManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Assemblies\NeuroSoft.WPFComponents.ToolbarManager.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.WPFComponents.WPFToolkit, Version=3.5.40128.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Assemblies\NeuroSoft.WPFComponents.WPFToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.WPFPrototype.Editor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Assemblies\NeuroSoft.WPFPrototype.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.WPFPrototype.Interface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Assemblies\NeuroSoft.WPFPrototype.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.WPFPrototype.Interface.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>../../Assemblies/NeuroSoft.WPFPrototype.Interface.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Assemblies\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AutoTesting\AutoTestManager.cs" />
+    <Compile Include="Commands\Commands.cs" />
+    <Compile Include="Controls\AutoCompleteTextBox\AutoCompleteItem.cs" />
+    <Compile Include="Controls\AutoCompleteTextBox\AutoCompleteManager.cs" />
+    <Compile Include="Controls\AutoCompleteTextBox\AutoCompleteTextBox.cs" />
+    <Compile Include="Controls\AutoCompleteTextBox\IAutoAppendDataProvider.cs" />
+    <Compile Include="Controls\AutoCompleteTextBox\IAutoCompleteDataProvider.cs" />
+    <Compile Include="Controls\AutoCompleteTextBox\SimpleStaticDataProvider.cs" />
+    <Compile Include="Controls\AutoCompleteTextBox\TagsDataProvider.cs" />
+    <Compile Include="Controls\AutoTestingInfoPanel.xaml.cs">
+      <DependentUpon>AutoTestingInfoPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TestingHistoryControl.xaml.cs">
+      <DependentUpon>TestingHistoryControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters.cs" />
+    <Compile Include="DATHelper.cs" />
+    <Compile Include="DATJournalModel.cs" />
+    <Compile Include="Dialogs\AutoTesting\AutoTestFailedDialog.xaml.cs">
+      <DependentUpon>AutoTestFailedDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\AutoTesting\AutoTestSettingsDialog.xaml.cs">
+      <DependentUpon>AutoTestSettingsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TemplateEditorDialogs\ContentPresentersDialog.xaml.cs">
+      <DependentUpon>ContentPresentersDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TemplateEditorDialogs\EditDefaultCardDialog.xaml.cs">
+      <DependentUpon>EditDefaultCardDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TemplateEditorDialogs\EditUsedTestVarsListDialog.xaml.cs">
+      <DependentUpon>EditUsedTestVarsListDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TemplateEditorDialogs\NewCorrectionsDialog.xaml.cs">
+      <DependentUpon>NewCorrectionsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TemplateEditorDialogs\EditTestCorrectionsDialog.xaml.cs">
+      <DependentUpon>EditTestCorrectionsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TemplateEditorDialogs\RenameTestGroupDialog.xaml.cs">
+      <DependentUpon>RenameTestGroupDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TemplateEditorDialogs\EditTestGroupsDialog.xaml.cs">
+      <DependentUpon>EditTestGroupsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TemplateEditorDialogs\ScriptAssembliesListDialog.xaml.cs">
+      <DependentUpon>ScriptAssembliesListDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TemplateEditorDialogs\SelectPreviousTestDialog.xaml.cs">
+      <DependentUpon>SelectPreviousTestDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EditScriptControl.xaml.cs">
+      <DependentUpon>EditScriptControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TestExecution\ButtonScriptsWindow.xaml.cs">
+      <DependentUpon>ButtonScriptsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TestExecution\TemplateValidationWindow.xaml.cs">
+      <DependentUpon>TemplateValidationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TestExecution\EditScriptWindow.xaml.cs">
+      <DependentUpon>EditScriptWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TestExecution\EditValidationWindow.xaml.cs">
+      <DependentUpon>EditValidationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TestExecution\ScriptTagInfoDialog.xaml.cs">
+      <DependentUpon>ScriptTagInfoDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Testing\CorrectTestDialog.xaml.cs">
+      <DependentUpon>CorrectTestDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Testing\TestingHistoryDetailsDialog.xaml.cs">
+      <DependentUpon>TestingHistoryDetailsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AutoTesting\AutoTestSettings.cs" />
+    <Compile Include="Models\TestingUserInfo.cs" />
+    <Compile Include="Models\CorrecionInfo.cs" />
+    <Compile Include="Models\Tags.cs" />
+    <Compile Include="Models\TestItemGroup.cs" />
+    <Compile Include="ScriptExecution\ScriptInfo.cs" />
+    <Compile Include="Dialogs\Testing\TestCommentsDialog.xaml.cs">
+      <DependentUpon>TestCommentsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Testing\TestingDescriptionDialog.xaml.cs">
+      <DependentUpon>TestingDescriptionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Testing\CreateTestingDialog.xaml.cs">
+      <DependentUpon>CreateTestingDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Testing\TestingHistoryDialog.xaml.cs">
+      <DependentUpon>TestingHistoryDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Testing\TestingHistoryListDialog.xaml.cs">
+      <DependentUpon>TestingHistoryListDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TemplateEditorDialogs\PreviewTemplateWindow.xaml.cs">
+      <DependentUpon>PreviewTemplateWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TemplateEditorDialogs\NewScriptUsingDialog.xaml.cs">
+      <DependentUpon>NewScriptUsingDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TemplateEditorDialogs\ScriptUsingsListDialog.xaml.cs">
+      <DependentUpon>ScriptUsingsListDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TemplateEditorDialogs\SelectTestDependenceDialog.xaml.cs">
+      <DependentUpon>SelectTestDependenceDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TemplateEditorDialogs\TestItemInfoDialog.xaml.cs">
+      <DependentUpon>TestItemInfoDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TestExecution\ScriptPreviewWindow.xaml.cs">
+      <DependentUpon>ScriptPreviewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TemplateEditorDialogs\RenameNodeDialog.xaml.cs">
+      <DependentUpon>RenameNodeDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TemplateEditorDialogs\TemplatesListDialog.xaml.cs">
+      <DependentUpon>TemplatesListDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TemplateEditorDialogs\TestTemplateNameDialog.xaml.cs">
+      <DependentUpon>TestTemplateNameDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TemplateEditorDialogs\EditDATVariablesDialog.xaml.cs">
+      <DependentUpon>EditDATVariablesDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow\MainWindow.cs" />
+    <Compile Include="Models\DATTemplateTreeViewItem.cs" />
+    <Compile Include="Models\TestingSnapshot.cs" />
+    <Compile Include="Models\TestTemplate.cs" />
+    <Compile Include="Models\TestTemplateItem.cs" />
+    <Compile Include="Dialogs\TemplateEditorDialogs\TestTemplateInfoDialog.xaml.cs">
+      <DependentUpon>TestTemplateInfoDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TestTreeObject.cs" />
+    <Compile Include="ScriptExecution\ScriptClassGenerator.cs" />
+    <Compile Include="TestTemplateEditor\DATRichTextBox.cs" />
+    <Compile Include="TestTemplateEditor\TestTemplateViewModel.cs" />
+    <Compile Include="TestTemplateEditor\TestTemplateEditorWindow.xaml.cs">
+      <DependentUpon>TestTemplateEditorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VariableQueries\BoolVariableQuery.cs" />
+    <Compile Include="VariableQueries\IntegerVariableQuery.cs" />
+    <Compile Include="VariableQueries\DoubleVariableQuery.cs" />
+    <Compile Include="VariableQueries\StringVariableQuery.cs" />
+    <Compile Include="VariableQueries\VariableQueryControl.cs" />
+    <Compile Include="ViewModels\TestContentViewModel.cs" />
+    <Compile Include="Views\AboutForm.xaml.cs">
+      <DependentUpon>AboutForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TestHistoryDockableContent.xaml.cs">
+      <DependentUpon>TestHistoryDockableContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TestDockableContent.xaml.cs">
+      <DependentUpon>TestDockableContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZipStorer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DeviceTestCheckupAncestor.cs" />
+    <Compile Include="DeviceTestCheckupManager.cs" />
+    <Compile Include="MainModel.cs" />
+    <Compile Include="Models\DeviceInfo.cs" />
+    <Compile Include="Models\TestObject.cs" />
+    <Compile Include="Models\TestVariable.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\AutoCompleteTextBox\Resources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\AutoTestingInfoPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\TestingHistoryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\AutoTesting\AutoTestFailedDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\AutoTesting\AutoTestSettingsDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\TemplateEditorDialogs\ContentPresentersDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\TemplateEditorDialogs\EditDefaultCardDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\TemplateEditorDialogs\EditUsedTestVarsListDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\TemplateEditorDialogs\NewCorrectionsDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\TemplateEditorDialogs\EditTestCorrectionsDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\TemplateEditorDialogs\RenameTestGroupDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\TemplateEditorDialogs\EditTestGroupsDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\TemplateEditorDialogs\ScriptAssembliesListDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\TemplateEditorDialogs\SelectPreviousTestDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\EditScriptControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\TestExecution\ButtonScriptsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\TestExecution\TemplateValidationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\TestExecution\EditScriptWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\TestExecution\EditValidationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\TestExecution\ScriptTagInfoDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\Testing\CorrectTestDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\Testing\TestCommentsDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\Testing\TestingHistoryDetailsDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\Testing\TestingDescriptionDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\Testing\CreateTestingDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\Testing\TestingHistoryDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\Testing\TestingHistoryListDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\TemplateEditorDialogs\PreviewTemplateWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\TemplateEditorDialogs\NewScriptUsingDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\TemplateEditorDialogs\ScriptUsingsListDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\TemplateEditorDialogs\SelectTestDependenceDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\TemplateEditorDialogs\TestItemInfoDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\TestExecution\ScriptPreviewWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\TemplateEditorDialogs\RenameNodeDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\TemplateEditorDialogs\TestTemplateNameDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\TemplateEditorDialogs\TemplatesListDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\TemplateEditorDialogs\EditDATVariablesDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow\MainWindowDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Commands.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Common.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\VectorImages.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\TemplateEditorDialogs\TestTemplateInfoDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestTemplateEditor\TestTemplateEditorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AboutForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TestHistoryDockableContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TestDockableContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Devices\EEGDevice\NeuroSoft.EEGDevice.csproj">
+      <Project>{79FF62ED-C71F-431E-82B8-EFCD0FB9BD87}</Project>
+      <Name>NeuroSoft.EEGDevice</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Hardware\AboutForm\NeuroSoft.Hardware.AboutForm.csproj">
+      <Project>{67CF338D-75CB-4041-9C46-4B615C4B5FCA}</Project>
+      <Name>NeuroSoft.Hardware.AboutForm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WPFComponents\NSGridNew\NSGrid\Neurosoft.WPFComponents.NSGrid.csproj">
+      <Project>{aaba5af6-cfeb-4238-943c-65d69ed2df55}</Project>
+      <Name>Neurosoft.WPFComponents.NSGrid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WPFPrototype\Database\NeuroSoft.WPFPrototype.Database.csproj">
+      <Project>{B8BEFD8E-9E14-46A2-BC35-3B2830461811}</Project>
+      <Name>NeuroSoft.WPFPrototype.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="Common\NeuroSoft.DeviceAutoTest.Common.csproj">
+      <Project>{BFCAD07E-7F4C-4148-B485-A0B0E540F45B}</Project>
+      <Name>NeuroSoft.DeviceAutoTest.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="NewDevicesTest\NeuroSoft.DeviceAutoTest.NewDevicesTest.csproj">
+      <Project>{614A8ED4-D47F-4C12-B769-D97F43132720}</Project>
+      <Name>NeuroSoft.DeviceAutoTest.NewDevicesTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="OldDevicesTest\NeuroSoft.DeviceAutoTest.OldDevicesTest.csproj">
+      <Project>{6925E729-C8EE-4F51-95C7-43E58E8656B4}</Project>
+      <Name>NeuroSoft.DeviceAutoTest.OldDevicesTest</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DATIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\about_bg1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\about_bg2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\about_bg3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\about_bg4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\about_bg5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Properties\BackGr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Properties\close_1_english.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Properties\close_1_russian.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Properties\close_2_english.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Properties\close_2_russian.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Properties\Nsft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Properties\Nsft_ru.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Properties\Pctgrm.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /t:updateuid /t:checkuid $(ProjectPath)</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "D:\Neurosoft\Hardware\Common\$(OutDir)Neurosoft.Hardware.Common.dll" "D:\Neurosoft\Assemblies" /Y</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

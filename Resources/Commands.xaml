@@ -1,0 +1,159 @@
+﻿<ResourceDictionary 
+    x:Uid="ResourceDictionary_1" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:common="clr-namespace:NeuroSoft.WPFPrototype.Interface.Common;assembly=NeuroSoft.WPFPrototype.Interface.Common"
+    xmlns:commandManager="clr-namespace:NeuroSoft.WPFComponents.CommandManager;assembly=NeuroSoft.WPFComponents.CommandManager"    
+    xmlns:commands="clr-namespace:NeuroSoft.DeviceAutoTest.Commands">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary x:Uid="ResourceDictionary_2" Source="/NeuroSoft.DeviceAutoTest;component/Resources/VectorImages.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    
+    <commandManager:CommandDescription 
+        x:Uid="commands:DATTemplateCommands.OpenTestTemplateCommand" x:Key="{x:Static commands:DATTemplateCommands.OpenTestTemplateCommand}"
+        GroupName="{x:Static commands:DATTemplateCommands.Group}"
+        Text="Редатировать..."
+        MenuText="Редактировать..."
+        ToolTip="Редактировать иструкции по наладке..."
+    />
+    <commandManager:CommandDescription 
+        x:Uid="commands:DATTemplateCommands.EditUsedTestTemplateCommand" x:Key="{x:Static commands:DATTemplateCommands.EditUsedTestTemplateCommand}"
+        GroupName="{x:Static commands:DATTemplateCommands.Group}"
+        Text="Изменить текущую..."
+        MenuText="Изменить текущую..."
+        ToolTip="Редактировать используемую в данный момент иструкцию по наладке..."
+    />
+
+    <commandManager:CommandDescription 
+        x:Uid="commands:DATTemplateCommands.EditDefaultCardCommand" x:Key="{x:Static commands:DATTemplateCommands.EditDefaultCardCommand}"
+        GroupName="{x:Static commands:DATTemplateCommands.Group}"
+        Text="Папка по умолчанию..."
+        MenuText="Папка по умолчанию..."
+        ToolTip="Изменить папку, в которой по умолчанию находятся наладки на основе данной инструкции..."
+    />
+    
+    <commandManager:CommandDescription x:Uid="command_manager:DATSettingsCommands.ToggleAutoSaveCommand" x:Key="{x:Static commands:DATSettingsCommands.ToggleAutoSaveCommand}"
+        GroupName="{x:Static commands:DATSettingsCommands.Group}"
+        Text="Автосохранение"
+        ToolTip="Автоматическое сохранение наладки"
+        TypeInToolBar="{x:Type ToggleButton}"
+    />
+    
+    <commandManager:CommandGroupDescription
+        x:Uid="commandManager:CommandGroupDescription_1" x:Key="{x:Static commands:DATTestingCommands.Group}"
+        Text="Настройка процесса наладки"/>       
+
+    <commandManager:CommandDescription 
+        x:Uid="commands:DATTestingCommands.ShowTestingHistoryCommand" x:Key="{x:Static commands:DATTestingCommands.ShowTestingHistoryCommand}"
+        GroupName="{x:Static commands:DATTestingCommands.Group}"
+        Text="Аналитика..."
+        MenuText="Аналитика..."
+        ToolTip="Инструмент анализа бизнес-процесса наладки..."
+    />
+
+    <commandManager:CommandDescription 
+        x:Uid="commands:DATTestingCommands.ShowTestHistoryCommand" x:Key="{x:Static commands:DATTestingCommands.ShowTestHistoryCommand}"
+        GroupName="{x:Static commands:DATTestingCommands.Group}"
+        Text="Журнал действий..."
+        MenuText="Журнал действий..."
+        ToolTip="Просмотр журнала действий теста..."
+        ImageSource="{StaticResource DI_TestHistory}"
+    />
+    <commandManager:CommandDescription 
+        x:Uid="commands:DATTestingCommands.NextCommand" x:Key="{x:Static commands:DATTestingCommands.NextCommand}"
+        GroupName="{x:Static commands:DATTestingCommands.Group}"
+        Text="Следующий тест"
+        MenuText="Следующий тест"
+        ToolTip="Перейти к следующему тесту"
+        Gestures="Alt+Right"
+        ImageSource="{StaticResource DI_Right}"
+    />
+
+    <commandManager:CommandDescription 
+        x:Uid="commands:DATTestingCommands.PreviousCommand" x:Key="{x:Static commands:DATTestingCommands.PreviousCommand}"
+        GroupName="{x:Static commands:DATTestingCommands.Group}"
+        Text="Предыдущий тест"
+        MenuText="Предыдущий тест"
+        ToolTip="Перейти к предыдущему тесту"
+        Gestures="Alt+Left"
+        ImageSource="{StaticResource DI_Left}"
+    />
+
+    <commandManager:CommandDescription 
+        x:Uid="commands:DATTestingCommands.RefreshTestCommand" x:Key="{x:Static commands:DATTestingCommands.RefreshTestCommand}"
+        GroupName="{x:Static commands:DATTestingCommands.Group}"
+        Text="Обновить"
+        MenuText="Обновить"
+        ToolTip="Обновить тест"
+        Gestures="F5"
+        ImageSource="{StaticResource DI_Refresh}"
+    />
+    <commandManager:CommandDescription 
+        x:Uid="commands:DATTestingCommands.StopTestCommand" x:Key="{x:Static commands:DATTestingCommands.StopTestCommand}"
+        GroupName="{x:Static commands:DATTestingCommands.Group}"        
+        Text="Стоп"
+        MenuText="Стоп"
+        ToolTip="Остановить тест"        
+        ImageSource="{StaticResource DI_StopTest}"
+    />
+
+    <commandManager:CommandDescription 
+        x:Uid="commands:DATTestingCommands.StartTestCommand" x:Key="{x:Static commands:DATTestingCommands.StartTestCommand}"
+        GroupName="{x:Static commands:DATTestingCommands.Group}"        
+        Text="Старт"
+        MenuText="Старт"
+        ToolTip="Возобновить тест"        
+        ImageSource="{StaticResource DI_StartTest}"
+    />
+
+    <commandManager:CommandDescription 
+        x:Uid="commands:DATTestingCommands.ExecuteTestCommand" x:Key="{x:Static commands:DATTestingCommands.ExecuteTestCommand}"
+        GroupName="{x:Static commands:DATTestingCommands.Group}"
+        Text="Выполнить"
+        MenuText="Выполнить"
+        ToolTip="Выполнить тест"
+    />
+
+    <commandManager:CommandDescription 
+        x:Uid="commands:DATTestingCommands.SuccessTestCommand" x:Key="{x:Static commands:DATTestingCommands.SuccessTestCommand}"
+        GroupName="{x:Static commands:DATTestingCommands.Group}"
+        Text="Выполнено"
+        MenuText="Выполнено"
+        ToolTip="Пометить тест как выполненный"
+    />
+
+    <commandManager:CommandDescription 
+        x:Uid="commands:DATTestingCommands.HasErrorsTestCommand" x:Key="{x:Static commands:DATTestingCommands.HasErrorsTestCommand}"
+        GroupName="{x:Static commands:DATTestingCommands.Group}"
+        Text="Выполнено с ошибками"
+        MenuText="Выполнено с ошибками"
+        ToolTip="Пометить тест как выполненный с ошибками"
+    />
+
+    <commandManager:CommandDescription 
+        x:Uid="commands:DATTestingCommands.CorrectTestCommand" x:Key="{x:Static commands:DATTestingCommands.CorrectTestCommand}"
+        GroupName="{x:Static commands:DATTestingCommands.Group}"
+        Text="Исправлено"
+        MenuText="Исправлено"
+        ToolTip="Пометить тест как выполненный с исправлениями"
+    />
+
+
+    <commandManager:CommandDescription 
+        x:Uid="commands:DATTestingCommands.StopAutoTestCommand" x:Key="{x:Static commands:DATTestingCommands.StopAutoTestCommand}"
+        GroupName="{x:Static commands:DATTestingCommands.Group}"        
+        Text="Стоп"
+        MenuText="Стоп"
+        ToolTip="Остановить автоматическое тестирование"        
+        ImageSource="{StaticResource DI_StopAutoTest}"
+    />
+
+    <commandManager:CommandDescription 
+        x:Uid="commands:DATTestingCommands.StartAutoTestCommand" x:Key="{x:Static commands:DATTestingCommands.StartAutoTestCommand}"
+        GroupName="{x:Static commands:DATTestingCommands.Group}"        
+        Text="Старт"
+        MenuText="Старт "
+        ToolTip="Начать автоматическое тестирование"        
+        ImageSource="{StaticResource DI_StartAutoTest}"
+    />
+</ResourceDictionary>

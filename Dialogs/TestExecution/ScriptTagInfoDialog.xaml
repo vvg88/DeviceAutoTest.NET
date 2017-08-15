@@ -1,0 +1,83 @@
+﻿<commonDialogs:DATDialogWindow x:Uid="commonDialogs:DATDialogWindow_1" x:Class="NeuroSoft.DeviceAutoTest.Dialogs.ScriptTagInfoDialog"
+                               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                               xmlns:dat="clr-namespace:NeuroSoft.DeviceAutoTest"
+                               xmlns:commonDialogs="clr-namespace:NeuroSoft.DeviceAutoTest.Dialogs;assembly=NeuroSoft.DeviceAutoTest.Common"
+                               xmlns:local="clr-namespace:NeuroSoft.DeviceAutoTest.Dialogs"
+                               xmlns:commonConverters="clr-namespace:NeuroSoft.DeviceAutoTest.Common.Converters;assembly=NeuroSoft.DeviceAutoTest.Common"
+                               SizeToContent="Height" Width="400" ResizeMode="NoResize"
+                               Title="Описание скрипта" ShowInTaskbar="False"
+                               WindowStartupLocation="CenterScreen">
+    <commonDialogs:DATDialogWindow.Resources>
+        <BooleanToVisibilityConverter x:Uid="BooleanToVisibilityConverter_1" x:Key="BoolToVisibilityConverter"/>
+        <Style x:Uid="Style_1" x:Key="OkButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter x:Uid="Setter_1" Property="IsEnabled" Value="False"/>
+            <Style.Triggers>
+                <MultiDataTrigger x:Uid="MultiDataTrigger_1">
+                    <MultiDataTrigger.Conditions>
+                        <Condition x:Uid="Condition_1" Binding="{Binding ElementName=ScriptNameTextBox, Path=(Validation.Errors)[0].ErrorContent}" Value="{x:Null}"/>
+                        <Condition x:Uid="Condition_2" Binding="{Binding ElementName=ScriptDescriptionTextBox, Path=(Validation.Errors)[0].ErrorContent}" Value="{x:Null}"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter x:Uid="Setter_2" Property="IsEnabled" Value="True"/>
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
+    </commonDialogs:DATDialogWindow.Resources>
+    <StackPanel x:Uid="StackPanel_1">        
+        <Grid x:Uid="Grid_1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Uid="ColumnDefinition_1"/>
+                <ColumnDefinition x:Uid="ColumnDefinition_2"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition x:Uid="RowDefinition_1" Height="Auto"/>
+                <RowDefinition x:Uid="RowDefinition_2" Height="Auto"/>
+                <RowDefinition x:Uid="RowDefinition_3" Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Uid="TextBlock_1" Text="Идентификатор:" VerticalAlignment="Center" Margin="5,0,3,0"/>
+            <TextBlock x:Uid="TextBlock_2" Text="Описание:" Grid.Row="1" VerticalAlignment="Center" Margin="5,0,3,0"/>
+            <TextBox x:Uid="ScriptNameTextBox" Grid.Column="1" Margin="0,3,5,3" Name="ScriptNameTextBox">
+                <TextBox.Text>
+                    <Binding x:Uid="Binding_1" Path="ScriptName" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:ScriptNameValidator x:Uid="local:ScriptNameValidator_1" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+                <TextBox.Style>
+                    <Style x:Uid="Style_2" TargetType="TextBox">
+                        <Style.Triggers>
+                            <Trigger x:Uid="Trigger_1" Property="Validation.HasError" Value="true">
+                                <Setter x:Uid="Setter_3" Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <TextBox x:Uid="ScriptDescriptionTextBox" Grid.Column="1" Grid.Row="1" Margin="0,3,5,3" Name="ScriptDescriptionTextBox">
+                <TextBox.Text>
+                    <Binding x:Uid="Binding_2" Path="ScriptDescription" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <commonConverters:NotEmptyStringValidator x:Uid="commonConverters:NotEmptyStringValidator_1" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>            
+        </Grid>
+        <StackPanel x:Uid="StackPanel_2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <StackPanel.Resources>
+                <Style x:Uid="Style_3" TargetType="Button">
+                    <Setter x:Uid="Setter_4" Property="MinWidth" Value="60"/>
+                    <Setter x:Uid="Setter_5" Property="Margin" Value="0,5,5,5"/>
+                </Style>
+            </StackPanel.Resources>
+            <Button x:Uid="OkBtn" Name="OkBtn"
+                        Content="ОК" IsDefault="True" Click="Button_Click"                        
+                        Style="{StaticResource OkButtonStyle}"
+                        Margin="5,5,0,5" MinWidth="60"
+                        Width="{Binding ActualWidth, ElementName=CancelBtn}"/>
+            <Button x:Uid="CancelBtn" Content="Cancel" IsCancel="True"
+                        Margin="5" MinWidth="60" Name="CancelBtn"/>
+        </StackPanel>
+    </StackPanel>
+</commonDialogs:DATDialogWindow>

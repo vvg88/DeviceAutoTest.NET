@@ -1,0 +1,113 @@
+﻿<ResourceDictionary x:Uid="ResourceDictionary_1" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:NeuroSoft.DeviceAutoTest"
+                    xmlns:numInput="clr-namespace:NeuroSoft.WPFComponents.NumericInput;assembly=NeuroSoft.WPFComponents.NumericUpDown"
+                    xmlns:commandManager="clr-namespace:NeuroSoft.WPFComponents.CommandManager;assembly=NeuroSoft.WPFComponents.CommandManager"    
+                    xmlns:commands="clr-namespace:NeuroSoft.DeviceAutoTest.Commands">
+
+    <local:StatusToImageConverter x:Uid="local:StatusToImageConverter_1" x:Key="StatusToImageConverter"/>
+    <local:IntToDoubleConverter x:Uid="local:IntToDoubleConverter_1" x:Key="IntToDoubleConverter"/>    
+    
+    <HierarchicalDataTemplate x:Uid="HierarchicalDataTemplate_1" DataType="{x:Type local:TestTreeViewItem}" ItemsSource="{Binding Nodes}">
+        <StackPanel  x:Uid="StackPanel_1" Orientation="Horizontal" ToolTip="{Binding TreeObject.Text}" Cursor="Hand">
+            <Image x:Uid="Image_1" Height="16" Source="{Binding TestObject.Status, Converter={StaticResource StatusToImageConverter}}">
+                <Image.Style>
+                    <Style x:Uid="Style_1" TargetType="Image">
+                        <Style.Triggers>
+                            <MultiDataTrigger x:Uid="MultiDataTrigger_1">
+                                <MultiDataTrigger.Conditions>
+                                    <Condition x:Uid="Condition_1" Binding="{Binding TestObject.TemplateItem.ReExecutable}" Value="True"/>
+                                    <Condition x:Uid="Condition_2" Binding="{Binding TestObject.Finished}" Value="True"/>
+                                    <Condition x:Uid="Condition_3" Binding="{Binding TestObject.FinishingIsConfirmed}" Value="False"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter x:Uid="Setter_1" Property="Opacity" Value="0.25"/>
+                            </MultiDataTrigger>                            
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+            <TextBlock x:Uid="TextBlock_1" Text="{Binding TreeObject.Text}" VerticalAlignment="Center" Margin="5,0"/>
+        </StackPanel>
+    </HierarchicalDataTemplate>    
+
+    <Style x:Uid="Style_2" x:Key="QueryBorderStyle" TargetType="Border">
+        <!--<Setter Property="BorderBrush" Value="LightGray"/>
+        <Setter Property="Background" Value="LightGoldenrodYellow"/>
+        <Setter Property="BorderThickness" Value="1"/>-->
+        <Setter x:Uid="Setter_2" Property="Cursor" Value="Arrow"/>     
+    </Style>
+    
+    <Style x:Uid="Style_3" TargetType="{x:Type local:StringVariableQuery}">        
+        <Setter x:Uid="Setter_3" Property="Template">
+            <Setter.Value>
+                <ControlTemplate x:Uid="ControlTemplate_1" TargetType="{x:Type local:StringVariableQuery}">
+                    <Border x:Uid="Border_1" Style="{StaticResource QueryBorderStyle}">
+                        <TextBox x:Uid="TextBox_1" Text="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}, Path=Variable.VariableValue, UpdateSourceTrigger=PropertyChanged}"
+                                 ToolTip="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}, Path=Variable.TestVariableID, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
+                                 Width="200" Margin="3"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Uid="Style_7" TargetType="numInput:NumericUpDown" x:Key="NumericUpDownQueryStyle">
+        <Setter x:Uid="Setter_8" Property="MaxWidth" Value="200"/>
+        <Style.Triggers>
+            <DataTrigger x:Uid="DataTrigger_1" Binding="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}, Path=Variable.IsValid}" Value="False">
+                <Setter x:Uid="Setter_7" Property="Background">
+                    <Setter.Value>
+                        <SolidColorBrush x:Uid="SolidColorBrush_1" Color="Red" Opacity="0.4"/>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    
+    <Style x:Uid="Style_4" TargetType="{x:Type local:DoubleVariableQuery}">
+        <Setter x:Uid="Setter_4" Property="Template">
+            <Setter.Value>
+                <ControlTemplate x:Uid="ControlTemplate_2" TargetType="{x:Type local:DoubleVariableQuery}">
+                    <Border x:Uid="Border_2" Style="{StaticResource QueryBorderStyle}">
+                        <numInput:NumericUpDown x:Uid="numInput:NumericUpDown_1" DecimalPlaces="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}, Path=Variable.DoubleValueDecimalPlaces, UpdateSourceTrigger=PropertyChanged}"
+                                                Increment="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}, Path=Variable.DoubleValueIncrement, UpdateSourceTrigger=PropertyChanged}" 
+                                                Value="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}, Path=Variable.VariableValue, UpdateSourceTrigger=PropertyChanged}"
+                                                ToolTip="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}, Path=Variable.TestVariableID, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"                                                
+                                                Margin="3" Style="{StaticResource NumericUpDownQueryStyle}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Uid="Style_5" TargetType="{x:Type local:IntegerVariableQuery}">
+        <Setter x:Uid="Setter_5" Property="Template">
+            <Setter.Value>
+                <ControlTemplate x:Uid="ControlTemplate_3" TargetType="{x:Type local:IntegerVariableQuery}">
+                    <Border x:Uid="Border_3" Style="{StaticResource QueryBorderStyle}">
+                        <numInput:NumericUpDown x:Uid="numInput:NumericUpDown_2" Value="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}, Path=Variable.VariableValue, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource IntToDoubleConverter}}"
+                                                ToolTip="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}, Path=Variable.TestVariableID, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
+                                                DecimalPlaces="0" Margin="3"
+                                                Style="{StaticResource NumericUpDownQueryStyle}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    
+    <Style x:Uid="Style_6" TargetType="{x:Type local:BoolVariableQuery}">
+        <Setter x:Uid="Setter_6" Property="Template">
+            <Setter.Value>
+                <ControlTemplate x:Uid="ControlTemplate_4" TargetType="{x:Type local:BoolVariableQuery}">
+                    <Border x:Uid="Border_4" Style="{StaticResource QueryBorderStyle}">
+                        <CheckBox x:Uid="CheckBox_1" Content="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}, Path=Variable.TestVariableID, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
+                                  IsChecked="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}, Path=Variable.VariableValue, UpdateSourceTrigger=PropertyChanged}"
+                                  Margin="3"/>                        
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>    
+</ResourceDictionary>

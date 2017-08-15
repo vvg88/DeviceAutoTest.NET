@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="NeuroSoft.DeviceAutoTest.OldDevicesTest.Controls.DeviceInformationControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008">
+    <DataGrid ItemsSource="{Binding DeviceInfoItems}"
+              AutoGenerateColumns="False" IsReadOnly="True">
+        <DataGrid.RowStyle>
+            <Style TargetType="DataGridRow">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsValid}" Value="False">
+                        <Setter Property="Background" Value="Red"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </DataGrid.RowStyle>
+        <DataGrid.Columns>
+            <DataGridTextColumn Binding="{Binding ParamName}" Header="Параметр"/>
+            <DataGridTextColumn Binding="{Binding ParamValue}" Header="Значение"/>
+        </DataGrid.Columns>
+    </DataGrid>
+</UserControl>

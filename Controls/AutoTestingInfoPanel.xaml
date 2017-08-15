@@ -1,0 +1,17 @@
+﻿<UserControl x:Uid="UserControl_1" x:Class="NeuroSoft.DeviceAutoTest.Controls.AutoTestingInfoPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:NeuroSoft.DeviceAutoTest.Controls">
+    <!--<UserControl.Visibility>
+        <Binding Path="CurrentAutoTestManager.CanStop">
+            <Binding.Converter>
+                <BooleanToVisibilityConverter/>
+            </Binding.Converter>
+        </Binding>
+    </UserControl.Visibility>-->
+    <StackPanel x:Uid="StackPanel_1">
+        <ProgressBar x:Uid="ProgressBar_1" Width="250" Minimum="0" Maximum="{Binding CurrentAutoTestManager.Statistics.All}" Value="{Binding CurrentAutoTestManager.Statistics.Finished, Mode=OneWay}"
+                     Height="20"/>
+        <TextBlock x:Uid="TextBlock_1" Text="{Binding CurrentAutoTestManager.Status}"/>
+    </StackPanel>
+</UserControl>

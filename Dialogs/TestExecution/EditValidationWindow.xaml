@@ -1,0 +1,81 @@
+﻿<commonDialogs:DATDialogWindow x:Uid="commonDialogs:DATDialogWindow_1" x:Class="NeuroSoft.DeviceAutoTest.Dialogs.EditValidationWindow"
+                               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"                       
+                               xmlns:commonDialogs="clr-namespace:NeuroSoft.DeviceAutoTest.Dialogs;assembly=NeuroSoft.DeviceAutoTest.Common"
+                               xmlns:common="clr-namespace:NeuroSoft.WPFPrototype.Interface.Common;assembly=NeuroSoft.WPFPrototype.Interface.Common"
+                               xmlns:controls="clr-namespace:NeuroSoft.DeviceAutoTest.Controls"
+                               Title="Условия выполнения теста" Height="400" Width="800"
+                               WindowStartupLocation="CenterScreen"
+                               ShowInTaskbar="False">
+    <commonDialogs:DATDialogWindow.Resources>
+        <ResourceDictionary x:Uid="ResourceDictionary_1">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Uid="ResourceDictionary_2" Source="/NeuroSoft.DeviceAutoTest;component/Resources/VectorImages.xaml" />
+                <ResourceDictionary x:Uid="ResourceDictionary_3" Source="/NeuroSoft.DeviceAutoTest;component/Resources/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Uid="Style_1" TargetType="Button" x:Key="DeleteDepBtnStyle">
+                <Style.Triggers>
+                    <DataTrigger x:Uid="DataTrigger_1" Binding="{Binding SelectedTest}" Value="{x:Null}">
+                        <Setter x:Uid="Setter_1" Property="IsEnabled" Value="False"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </commonDialogs:DATDialogWindow.Resources>
+    <Grid x:Uid="Grid_1" Margin="3">
+        <Grid.Resources>
+            <Style x:Uid="Style_2" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                <Setter x:Uid="Setter_2" Property="Margin" Value="5"/>
+                <Setter x:Uid="Setter_3" Property="Padding" Value="5,2"/>
+                <Setter x:Uid="Setter_4" Property="MinWidth" Value="70"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>            
+            <RowDefinition x:Uid="RowDefinition_1"/>
+            <RowDefinition x:Uid="RowDefinition_2" Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Uid="ColumnDefinition_1"/>
+            <ColumnDefinition x:Uid="ColumnDefinition_2" Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        <common:ImprovedGroupBox x:Uid="common:ImprovedGroupBox_1">
+            <common:ImprovedGroupBox.Header>
+                <CheckBox x:Uid="CheckBox_1" Content="Скрипт валидации" IsChecked="{Binding TestItem.ValidationScript.IsEnabled}"
+                          ToolTip="Использовать валидацию заданным скриптом"/>
+            </common:ImprovedGroupBox.Header>
+            <controls:EditScriptControl x:Uid="controls:EditScriptControl_1" ScriptObject="{Binding TestItem.ValidationScript}" Tags="{Binding Tags}" IsEnabled="{Binding TestItem.ValidationScript.IsEnabled}"/>
+        </common:ImprovedGroupBox>
+        <GroupBox x:Uid="GroupBox_2" Grid.Column="1">
+            <GroupBox.Header>
+                <TextBlock x:Uid="TextBlock_1" Text="Зависимости" ToolTip="Тесты, без выполнения которых валидация не будет пройдена"/>
+            </GroupBox.Header>
+            <Grid x:Uid="Grid_2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition x:Uid="ColumnDefinition_3" />
+                    <ColumnDefinition x:Uid="ColumnDefinition_4" Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <ListBox x:Uid="ListBox_1" ItemsSource="{Binding TestDependences}"
+                     SelectedItem="{Binding SelectedTest}"
+                     DisplayMemberPath="Name"
+                     MinHeight="170" Margin="5"/>
+                <ToolBarTray x:Uid="ToolBarTray_1" Grid.Column="1" Orientation="Vertical">
+                    <ToolBar x:Uid="ToolBar_1">
+                        <Button x:Uid="AddTestDependenceBtn" IsEnabled="{Binding HasAvailableTests}" Focusable="False" ToolTip="Добавить..."
+                                Name="AddTestDependenceBtn" Click="AddTestDependenceBtn_Click">
+                            <Image x:Uid="Image_1" Source="{StaticResource DI_Add}" Style="{StaticResource CommonImageStyle}" />
+                        </Button>
+                        <Button x:Uid="DeleteTestDependenceBtn" Name="DeleteTestDependenceBtn" Click="DeleteTestDependenceBtn_Click" Focusable="False"
+                                Style="{StaticResource DeleteDepBtnStyle}" ToolTip="Удалить">
+                            <Image x:Uid="Image_2" Source="{StaticResource DI_Remove}" Style="{StaticResource CommonImageStyle}" />
+                        </Button>
+                    </ToolBar>
+                </ToolBarTray>
+            </Grid>
+        </GroupBox>            
+        <StackPanel x:Uid="StackPanel_1" Orientation="Horizontal" Grid.Row="1" Grid.Column="1"
+                    HorizontalAlignment="Right">
+            <Button x:Uid="OkBtn" Content="Закрыть" Name="OkBtn"                     
+                    Click="OkBtn_Click" IsCancel="True"/>            
+        </StackPanel>        
+    </Grid>
+</commonDialogs:DATDialogWindow>

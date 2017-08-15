@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="NeuroSoft.DeviceAutoTest.Common.Controls.KeyboardEncoder"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NeuroSoft.DeviceAutoTest.Common.Controls"
+             xmlns:converters="clr-namespace:NeuroSoft.DeviceAutoTest.Common.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converters:ScaleConvertor x:Key="HalfConverter" Scale="0.5"/>
+        <converters:MinValueConverter x:Key="MinValueConverter"/>
+    </UserControl.Resources>
+    <Grid x:Name="EncoderGrid">
+        <Grid.RenderTransform>
+            <RotateTransform Angle="{Binding EncoderAngle, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:KeyboardEncoder}}" CenterX="{Binding ActualWidth, ElementName=EncoderGrid, Converter={StaticResource HalfConverter}}"
+                             CenterY="{Binding ActualHeight, ElementName=EncoderGrid, Converter={StaticResource HalfConverter}}"/>
+        </Grid.RenderTransform>
+        <Ellipse Stretch="Uniform" HorizontalAlignment="Center" Stroke="Black" Fill="{Binding EncoderBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:KeyboardEncoder}}">
+            <Ellipse.Width>
+                <MultiBinding Converter="{StaticResource MinValueConverter}">
+                    <Binding ElementName="EncoderGrid" Path="ActualWidth"/>
+                    <Binding ElementName="EncoderGrid" Path="ActualHeight"/>
+                </MultiBinding>
+            </Ellipse.Width>
+        </Ellipse>
+        <Line HorizontalAlignment="Center" Stroke="Black" StrokeThickness="1" X1="0" Y1="0" 
+              X2="0" Y2="{Binding ActualHeight, ElementName=EncoderGrid, Converter={StaticResource HalfConverter}}"/>
+    </Grid>
+</UserControl>

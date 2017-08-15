@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="NeuroSoft.DeviceAutoTest.OldDevicesTest.Controls.TestImputImpedanceControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:commonControls="clr-namespace:NeuroSoft.DeviceAutoTest.Common.Controls;assembly=NeuroSoft.DeviceAutoTest.Common"
+             xmlns:converters="clr-namespace:NeuroSoft.DeviceAutoTest.Common.Converters;assembly=NeuroSoft.DeviceAutoTest.Common"
+             Width="Auto" Height="Auto">
+    <Grid>
+        <Grid.Resources>
+            <Style x:Key="RowHeaderStyle" TargetType="DataGridRowHeader" BasedOn="{StaticResource {x:Type DataGridRowHeader}}">
+                <Setter Property="Content" Value="{Binding Header}"/>
+            </Style>
+            <converters:ScaleConvertor x:Key="VoltToMicroVoltConvertor" Scale="1e6"/>
+            <converters:ScaleConvertor x:Key="ToMegaConverter" Scale="1e-6"/>
+            <converters:ScaleConvertor x:Key="ToPicoConverter" Scale="1e12"/>
+
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <DataGrid AutoGenerateColumns="False" IsReadOnly="True"
+                  ItemsSource="{Binding Rows}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Размах 2 Гц (мкВ)" Binding="{Binding Swing2HzInfo.SwingValue, Mode=OneWay, Converter={StaticResource VoltToMicroVoltConvertor}, StringFormat=F1}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Foreground" Value="Gray"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Swing2HzInfo.IsStable}" Value="True">
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Размах 2 КГц (мкВ)" Binding="{Binding Swing2000HzInfo.SwingValue, Mode=OneWay, Converter={StaticResource VoltToMicroVoltConvertor}, StringFormat=F1}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Foreground" Value="Gray"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Swing2000HzInfo.IsStable}" Value="True">
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Входная ёмкость (пФ)" Binding="{Binding Capacity.Value, Mode=OneWay, Converter={StaticResource ToPicoConverter}, StringFormat=F1}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CapacityIsValid}" Value="False">
+                                    <Setter Property="Background" Value="Red"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding CapacityIsValid}" Value="True">
+                                    <Setter Property="Background" Value="LightGreen"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Входное сопротивление (МОм)" Binding="{Binding Resistance.Value, Mode=OneWay, Converter={StaticResource ToMegaConverter}, StringFormat=F2}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ResistanceIsValid}" Value="False">
+                                    <Setter Property="Background" Value="Red"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ResistanceIsValid}" Value="True">
+                                    <Setter Property="Background" Value="LightGreen"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Expander Header="Мониторинг" Grid.Row="1" IsExpanded="True">
+            <commonControls:MonitoringPlotter x:Name="MonitoringPlotter" MinWidth="600" MinHeight="350"/>
+        </Expander>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Button Grid.Row="2" HorizontalAlignment="Left"
+                Margin="5" Click="Button_Click" MinWidth="60">
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                        <Setter Property="Content" Value="Начать"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsTesting}" Value="True">
+                                <Setter Property="Content" Value="Остановить"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <TextBlock VerticalAlignment="Center" Text="{Binding TestingStatus}"
+                   FontWeight="Bold"/>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6925E729-C8EE-4F51-95C7-43E58E8656B4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NeuroSoft.DeviceAutoTest.OldDevicesTest</RootNamespace>
+    <AssemblyName>NeuroSoft.DeviceAutoTest.OldDevicesTest</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NeuroSoft.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\NeuroSoft.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.Devices.EEGDevice, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\NeuroSoft.Devices.EEGDevice.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.Devices.NeuroMEPMicro, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\NeuroSoft.Devices.NeuroMEPMicro.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.Devices.NSDevice, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\NeuroSoft.Devices.NSDevice.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.MathLib.Basic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\NeuroSoft.MathLib.Basic.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.MathLib.Filters, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\NeuroSoft.MathLib.Filters.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.WPFComponents.NumericUpDown, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\NeuroSoft.WPFComponents.NumericUpDown.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.WPFComponents.ScalableWindows, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\NeuroSoft.WPFComponents.ScalableWindows.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.WPFComponents.WPFToolkit, Version=3.5.40128.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\NeuroSoft.WPFComponents.WPFToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\CurrentStimulatorControl.xaml.cs">
+      <DependentUpon>CurrentStimulatorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DeviceInformationControl.xaml.cs">
+      <DependentUpon>DeviceInformationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DisplayControl.xaml.cs">
+      <DependentUpon>DisplayControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EEG4IndicationControl.xaml.cs">
+      <DependentUpon>EEG4IndicationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EEG4LedsControl.xaml.cs">
+      <DependentUpon>EEG4LedsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EEG4SocketsControl.xaml.cs">
+      <DependentUpon>EEG4SocketsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EEG5LedsControl.xaml.cs">
+      <DependentUpon>EEG5LedsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EEG5SocketsControl.xaml.cs">
+      <DependentUpon>EEG5SocketsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EEG5KeysControl.xaml.cs">
+      <DependentUpon>EEG5KeysControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EEGPolarisationControl.xaml.cs">
+      <DependentUpon>EEGPolarisationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NSDeviceSolderingControl.xaml.cs">
+      <DependentUpon>NSDeviceSolderingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ImpedancesViewModel.cs" />
+    <Compile Include="Controls\IndicationEEG5Control.xaml.cs">
+      <DependentUpon>IndicationEEG5Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\KeyboardControl.xaml.cs">
+      <DependentUpon>KeyboardControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NSDevicesImpedanceControl.xaml.cs">
+      <DependentUpon>NSDevicesImpedanceControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PatternStimualtorControl.xaml.cs">
+      <DependentUpon>PatternStimualtorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PhonoStimulatorControl.xaml.cs">
+      <DependentUpon>PhonoStimulatorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PhotoStimulatorControl.xaml.cs">
+      <DependentUpon>PhotoStimulatorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ReadDataControl.xaml.cs">
+      <DependentUpon>ReadDataControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ReadDataViewModel.cs" />
+    <Compile Include="Controls\ReadDataViewModelBase.cs" />
+    <Compile Include="Controls\ReadDataViewModelEEG4.cs" />
+    <Compile Include="Controls\ReadDataViewModelEEG5.cs" />
+    <Compile Include="Controls\TestImputImpedanceControl.xaml.cs">
+      <DependentUpon>TestImputImpedanceControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TestInputImpedanceViewModel.cs" />
+    <Compile Include="Controls\TestInputRangesControl.xaml.cs">
+      <DependentUpon>TestInputRangesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TestInputRangesViewModel.cs" />
+    <Compile Include="Controls\TestInputRangesViewModelBase.cs" />
+    <Compile Include="Controls\TestInputRangesViewModelEEG.cs" />
+    <Compile Include="NSDeviceWrapper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs" />
+    <Compile Include="Properties\Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Scripts\EEG4Scripts.cs" />
+    <Compile Include="Scripts\EEG5Scripts.cs" />
+    <Compile Include="Scripts\NeuroMEPMicroScripts.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Components\Depository\NeuroSoft.Components.Depository.csproj">
+      <Project>{C1D1C143-34ED-4B12-BDEB-0B31035861B9}</Project>
+      <Name>NeuroSoft.Components.Depository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Devices\EEGDevice\NeuroSoft.EEGDevice.csproj">
+      <Project>{79FF62ED-C71F-431E-82B8-EFCD0FB9BD87}</Project>
+      <Name>NeuroSoft.EEGDevice</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hardware\Devices\Common\Neurosoft.Hardware.Devices.csproj">
+      <Project>{D085453B-18A3-4BB9-B847-EA97F0AC4E0F}</Project>
+      <Name>Neurosoft.Hardware.Devices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hardware\Devices\UniversalTestStend\Neurosoft.Hardware.Devices.UniversalTestStend.csproj">
+      <Project>{e2103d46-f851-4bff-8c1a-9a5444146078}</Project>
+      <Name>Neurosoft.Hardware.Devices.UniversalTestStend</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hardware\Tools\Cypress\Neurosoft.Hardware.Tools.Cypress.csproj">
+      <Project>{D51CA817-2880-4EA0-8742-DA76714D0F93}</Project>
+      <Name>Neurosoft.Hardware.Tools.Cypress</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hardware\Tools\Usb\Neurosoft.Hardware.Tools.Usb.csproj">
+      <Project>{3489FA0B-7F97-4151-A651-56BF8F8667E9}</Project>
+      <Name>Neurosoft.Hardware.Tools.Usb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hardware\Usb\Neurosoft.Hardware.Usb.csproj">
+      <Project>{9269E902-EC52-46C9-9095-9008E3E178FE}</Project>
+      <Name>Neurosoft.Hardware.Usb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\WPFComponents\NSGridNew\NSGrid\Neurosoft.WPFComponents.NSGrid.csproj">
+      <Project>{aaba5af6-cfeb-4238-943c-65d69ed2df55}</Project>
+      <Name>Neurosoft.WPFComponents.NSGrid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\EEG\EEGMontageMaker\EEGMontageMaker.csproj">
+      <Project>{F3158EC7-ED03-41C0-B679-E7F72DE3BFA3}</Project>
+      <Name>EEGMontageMaker</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\NeuroSoft.DeviceAutoTest.Common.csproj">
+      <Project>{BFCAD07E-7F4C-4148-B485-A0B0E540F45B}</Project>
+      <Name>NeuroSoft.DeviceAutoTest.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\CurrentStimulatorControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\DeviceInformationControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\DisplayControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\EEG4IndicationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\EEG4LedsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\EEG4SocketsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\EEG5LedsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\EEG5SocketsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\EEG5KeysControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\EEGPolarisationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\NSDeviceSolderingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\IndicationEEG5Control.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\KeyboardControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\NSDevicesImpedanceControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PatternStimualtorControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\PhonoStimulatorControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\PhotoStimulatorControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ReadDataControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\TestImputImpedanceControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TestInputRangesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\..\Hardware\Legacy\eeg32_dll\Release\eeg32_dll.dll">
+      <Link>eeg32_dll.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\Hardware\Legacy\Eeg4dll\Release\eeg4dll.dll">
+      <Link>eeg4dll.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\Hardware\Legacy\neuro_emg_dll\Release\neuro_emg_dll.dll">
+      <Link>neuro_emg_dll.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\Hardware\Legacy\NS4M\Release\NS4M.dll">
+      <Link>NS4M.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\Hardware\Legacy\NsEzUSB\Release\NsEzUSB.dll">
+      <Link>NsEzUSB.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx" />
+    <EmbeddedResource Include="Properties\Resource1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,90 @@
+﻿<commonDialogs:DATDialogWindow x:Uid="Window_1" x:Class="NeuroSoft.DeviceAutoTest.Dialogs.TestingHistoryListDialog"
+                               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                               xmlns:commonDialogs="clr-namespace:NeuroSoft.DeviceAutoTest.Dialogs;assembly=NeuroSoft.DeviceAutoTest.Common"                               
+                               xmlns:dat="clr-namespace:NeuroSoft.DeviceAutoTest"        
+                               xmlns:commandManager="clr-namespace:NeuroSoft.WPFComponents.CommandManager;assembly=NeuroSoft.WPFComponents.CommandManager"
+                               xmlns:local="clr-namespace:NeuroSoft.DeviceAutoTest.Dialogs"
+                               xmlns:nsg="clr-namespace:NeuroSoft.WPFComponents.NSGridView;assembly=NeuroSoft.WPFComponents.NSGrid"
+                               xmlns:nstoolkit="http://schemas.microsoft.com/wpf/2008/nstoolkit"
+                               Title="Список налаженных (налажеваемых) приборов" Width="800" MinWidth="600" Height="500"
+                               WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+    <DockPanel x:Uid="DockPanel_1" LastChildFill="True">
+        <DockPanel.Resources>
+            <!--<dat:PatientInfoToTemplateNameConverter x:Uid="dat:GuidToTemplateNameConverter_1" x:Key="PatientInfoToTemplateNameConverter"/>
+            <local:DeviceTypeNameConverter x:Uid="local:DeviceTypeNameConverter_1" x:Key="DeviceTypeNameConverter"/>-->
+            <dat:TimeSpanToStringConverter x:Uid="local:TimeSpanToStringConverter_1" x:Key="TimeSpanToStringConverter"/>
+        </DockPanel.Resources>
+        <Grid x:Uid="Grid_2" DockPanel.Dock="Top" Margin="0,5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Uid="ColumnDefinition_4" Width="Auto"/>
+                <ColumnDefinition x:Uid="ColumnDefinition_5"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition x:Uid="RowDefinition_1" Height="Auto"/>
+                <RowDefinition x:Uid="RowDefinition_2" Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Uid="TextBlock_3" Text="База данных: " Margin="5,3" VerticalAlignment="Center"/>
+            <TextBlock x:Uid="TextBlock_4" Grid.Column="1" Margin="0,3">
+                <Hyperlink x:Uid="Hyperlink_1" Click="Hyperlink_Click" TextDecorations="None">
+                    <TextBlock x:Uid="TextBlock_5" Text="{Binding CurrentConnection.DbPath}"/>
+                </Hyperlink>
+            </TextBlock>
+            <TextBlock x:Uid="TextBlock_2" Grid.Row="1" Text="Тип устройства: " VerticalAlignment="Center" Margin="5,0"/>
+            <ComboBox x:Uid="ComboBox_1" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding DeviceTypes}"                       
+                      VerticalAlignment="Center" SelectedItem="{Binding DeviceTypeFilter}"
+                      DisplayMemberPath="Name"/>
+        </Grid>
+        
+        <Grid x:Uid="Grid_1" DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Uid="ColumnDefinition_1" Width="Auto"/>
+                <ColumnDefinition x:Uid="ColumnDefinition_2"/>
+                <ColumnDefinition x:Uid="ColumnDefinition_3" Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Uid="DetailsBtn" Content="Подробно..."
+                    MinWidth="{Binding ActualWidth, ElementName=CancelBtn}"
+                    Margin="5" HorizontalAlignment="Left" Padding="5,2"
+                    Name="DetailsBtn" IsDefault="True"
+                    Click="DetailsBtn_Click">
+                <Button.Style>
+                    <Style x:Uid="Style_1" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                        <Style.Triggers>
+                            <DataTrigger x:Uid="DataTrigger_1" Binding="{Binding SelectedTesting}" Value="{x:Null}">
+                                <Setter x:Uid="Setter_1" Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            
+            <Button x:Uid="CancelBtn" Content="Выход" Margin="5" Padding="5,2"
+                    Name="CancelBtn" Grid.Column="2"
+                    MinWidth="{Binding ActualWidth, ElementName=DetailsBtn}"
+                    IsCancel="True" HorizontalAlignment="Right"/>
+        </Grid>
+        <nsg:NSGrid x:Uid="nsg:NSGrid_1" ItemsSource="{Binding TestingsInfo}"                    
+                    SelectionMode="Single" MinHeight="200"
+                    SelectedItem="{Binding SelectedTesting}"
+                    AutoGenerateColumns="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    CanUserAddRows="False" CanUserDeleteRows="False"
+                    VerticalGridLinesBrush="LightGray" HorizontalGridLinesBrush="LightGray"
+                    HeadersVisibility="Column" IsReadOnly="True">
+            <nsg:NSGrid.Resources>
+                <Style x:Uid="Style_2" TargetType="nsg:NSGridRow">
+                    <EventSetter x:Uid="EventSetter_1" Event="MouseDoubleClick" Handler="NSGridRow_MouseDoubleClick"/>
+                </Style>
+            </nsg:NSGrid.Resources>
+            <nsg:NSGrid.Columns>
+                <nsg:NSGridTextColumn x:Uid="nstoolkit:NSDataGridTextColumn_2" Header="Тип устройства" 
+                                                Binding="{Binding DeviceTypeName}" Width="Auto"/>
+                <nsg:NSGridTextColumn x:Uid="nstoolkit:NSDataGridTextColumn_1" Header="S/N" Binding="{Binding CheckupInfo.PacientInfo.FirstName}" Width="Auto"/>
+                <nsg:NSGridCheckBoxColumn x:Uid="nstoolkit:NSDataGridCheckBoxColumn_1" Binding="{Binding Finished, Mode=OneWay}" Header="Наладка&#x0a;завершена"/>
+                <nsg:NSGridTextColumn x:Uid="nstoolkit:NSDataGridTextColumn_4" Header="Дата последнего&#x0a;изменения" Binding="{Binding LastEditDate, StringFormat=dd.MM.yy HH:mm}" Width="Auto"/>
+                <nsg:NSGridTextColumn x:Uid="nstoolkit:NSDataGridTextColumn_6" Header="Затраченное&#x0a;время" Binding="{Binding TestingTime, Converter={StaticResource TimeSpanToStringConverter}, TargetNullValue=''}" IsReadOnly="True" Width="Auto"/>
+                <nsg:NSGridTextColumn x:Uid="nstoolkit:NSDataGridTextColumn_5" Header="Участники" Binding="{Binding Users}" Width="Auto"/>
+            </nsg:NSGrid.Columns>
+        </nsg:NSGrid>
+        
+    </DockPanel>
+</commonDialogs:DATDialogWindow>

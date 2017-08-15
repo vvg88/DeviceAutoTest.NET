@@ -1,0 +1,399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="A1Left" xml:space="preserve">
+    <value>A1 слева</value>
+  </data>
+  <data name="A1Right" xml:space="preserve">
+    <value>A1 справа</value>
+  </data>
+  <data name="Absent" xml:space="preserve">
+    <value>Отсутствует</value>
+  </data>
+  <data name="ADCModuleInformation" xml:space="preserve">
+    <value>Информация с модуля АЦП</value>
+  </data>
+  <data name="ButtonsStateAtXS1" xml:space="preserve">
+    <value>Состояние кнопок или педалей на разъеме XS1</value>
+  </data>
+  <data name="ButtonsStateAtXS2" xml:space="preserve">
+    <value>Состояние кнопок или педалей на разъеме XS2</value>
+  </data>
+  <data name="CalibrVolatage" xml:space="preserve">
+    <value>Напряжение сигнала калибровки</value>
+  </data>
+  <data name="CalibrVoltageCodeMinus" xml:space="preserve">
+    <value>Код тестового сигнала калибровки -</value>
+  </data>
+  <data name="CalibrVoltageCodePlus" xml:space="preserve">
+    <value>Код тестового сигнала калибровки +</value>
+  </data>
+  <data name="Connected" xml:space="preserve">
+    <value>Подключен</value>
+  </data>
+  <data name="CurrentStimAnswerCode" xml:space="preserve">
+    <value>Код по каналу контроля ответа стимула</value>
+  </data>
+  <data name="CurrentStimInformation" xml:space="preserve">
+    <value>Информация с модуля токового стимулятора</value>
+  </data>
+  <data name="CurrentStimModuleVersion" xml:space="preserve">
+    <value>Версия модуля токового стимулятора</value>
+  </data>
+  <data name="CurrentStimSettingCode" xml:space="preserve">
+    <value>Код по каналу задания стимула</value>
+  </data>
+  <data name="DC1Voltage" xml:space="preserve">
+    <value>Напряжение на канале DC1</value>
+  </data>
+  <data name="DC2Voltage" xml:space="preserve">
+    <value>Напряжение на канале DC2</value>
+  </data>
+  <data name="DeviceName" xml:space="preserve">
+    <value>Имя устройства</value>
+  </data>
+  <data name="DeviceSerialNumber" xml:space="preserve">
+    <value>Серийный номер прибора</value>
+  </data>
+  <data name="DeviceVersion" xml:space="preserve">
+    <value>Версия прибора</value>
+  </data>
+  <data name="EEGAmplifiersType" xml:space="preserve">
+    <value>Тип усилителей в каналах ЭЭГ</value>
+  </data>
+  <data name="FirmwareVersion" xml:space="preserve">
+    <value>Версия встроенного ПО</value>
+  </data>
+  <data name="FrontPanelHeadOrientation" xml:space="preserve">
+    <value>Ориентация головы на панели прибора</value>
+  </data>
+  <data name="HighVoltControlChannelCode" xml:space="preserve">
+    <value>Код по каналу контроля высокого напряжения</value>
+  </data>
+  <data name="ImpedanceMeasureVoltage" xml:space="preserve">
+    <value>Напряжение сигнала измерения импеанса</value>
+  </data>
+  <data name="InfomationFromUSBProc" xml:space="preserve">
+    <value>Информация с процессора USB</value>
+  </data>
+  <data name="KeyIndicationModuleVersion" xml:space="preserve">
+    <value>Версия модуля индикации и клавиатуры</value>
+  </data>
+  <data name="KeyModuleButtonsState" xml:space="preserve">
+    <value>Состояние кнопок модуля клавиатуры</value>
+  </data>
+  <data name="KeyModuleInformation" xml:space="preserve">
+    <value>Информация о модуле клавиатуры</value>
+  </data>
+  <data name="KeyModuleVersion" xml:space="preserve">
+    <value>Версия модуля клавиатуры</value>
+  </data>
+  <data name="KeysNumber" xml:space="preserve">
+    <value>Количество ключей</value>
+  </data>
+  <data name="mA" xml:space="preserve">
+    <value>мА</value>
+  </data>
+  <data name="MalfunctionInDevice" xml:space="preserve">
+    <value>Неисправность в устройстве</value>
+  </data>
+  <data name="mkV" xml:space="preserve">
+    <value>мкВ</value>
+  </data>
+  <data name="MultiChanCurrentStimIsConnected" xml:space="preserve">
+    <value>Подключение многоканального коммутатора токового стимулятора</value>
+  </data>
+  <data name="mV" xml:space="preserve">
+    <value>мВ</value>
+  </data>
+  <data name="NotConnected" xml:space="preserve">
+    <value>Не подключен</value>
+  </data>
+  <data name="NotPushed" xml:space="preserve">
+    <value>Не нажата</value>
+  </data>
+  <data name="PatternConnection" xml:space="preserve">
+    <value>Подключение паттерна</value>
+  </data>
+  <data name="PhotoPhonoModuleInformation" xml:space="preserve">
+    <value>Информация с модуля фото-фоностимулятора</value>
+  </data>
+  <data name="PhotoPhonoStimVersion" xml:space="preserve">
+    <value>Версия фото-фоно стимулятора</value>
+  </data>
+  <data name="PushButtonInformation" xml:space="preserve">
+    <value>Информация о нажатии кнопки</value>
+  </data>
+  <data name="Pushed" xml:space="preserve">
+    <value>Нажата</value>
+  </data>
+  <data name="ReferenceVoltage" xml:space="preserve">
+    <value>Опорное напряжение</value>
+  </data>
+  <data name="RefVoltageCode" xml:space="preserve">
+    <value>Код опорного напряжения +2,5В</value>
+  </data>
+  <data name="RestartCode" xml:space="preserve">
+    <value>Код перезапуска</value>
+  </data>
+  <data name="Setted" xml:space="preserve">
+    <value>Установлен</value>
+  </data>
+  <data name="SpO2Availability" xml:space="preserve">
+    <value>Наличие модуля SpO2</value>
+  </data>
+  <data name="SpO2ModuleInformation" xml:space="preserve">
+    <value>Информация с модуля SpO2</value>
+  </data>
+  <data name="StimModuleInformation" xml:space="preserve">
+    <value>Информация о модуле стимулятора</value>
+  </data>
+  <data name="TestVoltageCodeMinus" xml:space="preserve">
+    <value>Код тестового сигнала измерения импеданса -</value>
+  </data>
+  <data name="TestVoltageCodePlus" xml:space="preserve">
+    <value>Код тестового сигнала измерения импеданса +</value>
+  </data>
+  <data name="ThreadModuleInformation" xml:space="preserve">
+    <value>Информация с модуля потоков</value>
+  </data>
+  <data name="ThreadModuleVersion" xml:space="preserve">
+    <value>Версия модуля потоков</value>
+  </data>
+  <data name="USBProcFirmwareVersion" xml:space="preserve">
+    <value>Версия встроенного ПО процессора USB</value>
+  </data>
+  <data name="USBProcVersion" xml:space="preserve">
+    <value>Версия процессора USB</value>
+  </data>
+  <data name="V" xml:space="preserve">
+    <value>В</value>
+  </data>
+  <data name="VoltageControlChannelCode" xml:space="preserve">
+    <value>Код по каналу контроля напряжения</value>
+  </data>
+  <data name="BreathChannelCode" xml:space="preserve">
+    <value>Код по каналу дыхания</value>
+  </data>
+  <data name="DeviceFullName" xml:space="preserve">
+    <value>Полное наименование прибора</value>
+  </data>
+  <data name="DeviceType" xml:space="preserve">
+    <value>Тип прибора</value>
+  </data>
+  <data name="ErrorProcRestart" xml:space="preserve">
+    <value>Перезапуск процессора по неизвестной причине</value>
+  </data>
+  <data name="ErrorStackOverFlow" xml:space="preserve">
+    <value>Переполнение стека</value>
+  </data>
+  <data name="ErrorSupplyAbsent" xml:space="preserve">
+    <value>Отсутствует сигнал от источника питания</value>
+  </data>
+  <data name="ErrorSwitchesTest" xml:space="preserve">
+    <value>Ошибка в тесте регистров ключей</value>
+  </data>
+  <data name="GndChannelCode" xml:space="preserve">
+    <value>Код нуля</value>
+  </data>
+  <data name="ConnectElectrode" xml:space="preserve">
+    <value>Подключите электрод</value>
+  </data>
+  <data name="ConnectRefTo" xml:space="preserve">
+    <value>Подключите электрод Ref к {0}-му разъему земли прибора.</value>
+  </data>
+  <data name="ECG" xml:space="preserve">
+    <value>ЭКГ</value>
+  </data>
+  <data name="ElectrodeToDeviceGnd" xml:space="preserve">
+    <value> {0} к разъему земли прибора.</value>
+  </data>
+  <data name="GND" xml:space="preserve">
+    <value>Земля</value>
+  </data>
+  <data name="ImpedanceOfIs" xml:space="preserve">
+    <value>Сопротивление электрода {0} составляет {1} кОм</value>
+  </data>
+  <data name="Successful" xml:space="preserve">
+    <value>успешно</value>
+  </data>
+  <data name="S_PluralEnd" xml:space="preserve">
+    <value>ы</value>
+  </data>
+  <data name="TestingFinished" xml:space="preserve">
+    <value>Тестирование завершено</value>
+  </data>
+  <data name="TestPreparing" xml:space="preserve">
+    <value>Подготовка к тестированию...</value>
+  </data>
+  <data name="WithMistakes" xml:space="preserve">
+    <value>с ошибками</value>
+  </data>
+  <data name="CheckSocketsErrors" xml:space="preserve">
+    <value>Во время выполнения проверки распайки разъемов фронтальной панели прибора возникли ошибки. Перезапустите тест и выполните его повторно.</value>
+  </data>
+  <data name="TestingNotFinished" xml:space="preserve">
+    <value>Тестирование не было завершено. Выполните тест полностью.</value>
+  </data>
+  <data name="UnableGetCheckSocketsResult" xml:space="preserve">
+    <value>Не удалсоь получить результаты проверки распайки разъемов фронтальной панели прибора. Перезапустите тест и выполните его повторно.</value>
+  </data>
+  <data name="CalibrSignalSwingsInvalid" xml:space="preserve">
+    <value>Значание размаха калибровочного сигнала в канале {0} не соответствует требованиям. Внесите необходимые исправления и выполните тест заново.</value>
+  </data>
+  <data name="UnableGetReadDataControl" xml:space="preserve">
+    <value>Невозможно получить контрол чтения данных</value>
+  </data>
+  <data name="Electrode" xml:space="preserve">
+    <value>Электрод</value>
+  </data>
+  <data name="ElectrodeImpInvalidMessage" xml:space="preserve">
+    <value>Значение сопротивления {0} не соответствует требованию. Внесите исправления и выполните тест заново.</value>
+  </data>
+  <data name="NoiseSwingsInvalidMessage" xml:space="preserve">
+    <value>Значание размаха сигнала {0} в канале {1} не соответствует требованиям. Внесите необходимые исправления и выполните тест заново.</value>
+  </data>
+  <data name="OfNoise" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TestWasStoppedForcibly" xml:space="preserve">
+    <value>Проверка принудительно остановлена.</value>
+  </data>
+  <data name="InputRagesTestInvalidMessage" xml:space="preserve">
+    <value>Размах сигнала в канале {0} на диапазоне {1} не соответствует требуемому значению {2}. Внесите необходимые исправления и выполните тест заново.</value>
+  </data>
+  <data name="UnableGetSwingsValues" xml:space="preserve">
+    <value>Не удалось получить значения размахов сигнала.</value>
+  </data>
+  <data name="NotSynchroImpulse" xml:space="preserve">
+    <value>Синхроимпульсы не зафиксированы. Устраните неисправность и выполните тест заново.</value>
+  </data>
+  <data name="PatternNotConnected" xml:space="preserve">
+    <value>Адаптер шахматного паттерна не подключен к устройству.</value>
+  </data>
+  <data name="ElectrodePolarDiffInvalidMessage" xml:space="preserve">
+    <value>Значение напряжения поляризации электрода {0} отличается от напряжения поляризации других электродов более чем на 2 мВ. Внесите необходимые исправления и выполните тест заново.</value>
+  </data>
+  <data name="ElectrodePolarisationInvalidMessage" xml:space="preserve">
+    <value>Значение напряжения поляризации {0} не соответствует требованию. Внесите исправления и выполните тест заново.</value>
+  </data>
+  <data name="PilaTestErrMsg" xml:space="preserve">
+    <value>Во время проверки обмена возникли ошибки!</value>
+  </data>
+</root>

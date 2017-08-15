@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{614A8ED4-D47F-4C12-B769-D97F43132720}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NeuroSoft.DeviceAutoTest.NewDevicesTest</RootNamespace>
+    <AssemblyName>NeuroSoft.DeviceAutoTest.NewDevicesTest</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <RegisterForComInterop>false</RegisterForComInterop>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NeuroSoft.MathLib.Basic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\NeuroSoft.MathLib.Basic.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.MathLib.Filters, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\NeuroSoft.MathLib.Filters.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.WPFComponents.NumericUpDown, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\NeuroSoft.WPFComponents.NumericUpDown.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuroSoft.WPFComponents.ScalableWindows, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Assemblies\NeuroSoft.WPFComponents.ScalableWindows.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\NeuroMepBase\DisplayControl.xaml.cs">
+      <DependentUpon>DisplayControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NeuroMepBase\ForkStimulatorControl.xaml.cs">
+      <DependentUpon>ForkStimulatorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NeuroMepBase\ImpedancesSolderingControl.xaml.cs">
+      <DependentUpon>ImpedancesSolderingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NeuroMepBase\ImpedancesView.xaml.cs">
+      <DependentUpon>ImpedancesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NeuroMepBase\NeuroMEPKeyboardControl.xaml.cs">
+      <DependentUpon>NeuroMEPKeyboardControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NeuroMepBase\ReadDataControl.xaml.cs">
+      <DependentUpon>ReadDataControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NeuroMepBase\ReadDataViewModel.cs" />
+    <Compile Include="Controls\NeuroMepBase\TestAFCControl.xaml.cs">
+      <DependentUpon>TestAFCControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NeuroMepBase\TestAFCViewModel.cs" />
+    <Compile Include="Controls\NeuroMepBase\TestInputResistanceControl.xaml.cs">
+      <DependentUpon>TestInputResistanceControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NeuroMepBase\TestInputResistanceViewModel.cs" />
+    <Compile Include="NeuroMepMicroMWrapper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Scripts\ImpedanceIndicator.cs" />
+    <Compile Include="Scripts\NeuroMEPMicroMScripts.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Hardware\Common\Neurosoft.Hardware.Common.csproj">
+      <Project>{00FB971E-D401-48B6-8F49-5C0DC28C1CA4}</Project>
+      <Name>Neurosoft.Hardware.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hardware\Devices\Common\Neurosoft.Hardware.Devices.csproj">
+      <Project>{D085453B-18A3-4BB9-B847-EA97F0AC4E0F}</Project>
+      <Name>Neurosoft.Hardware.Devices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hardware\Devices\NeuroMepMicroM\Neurosoft.Hardware.Devices.NeuroMepMicroM.csproj">
+      <Project>{99489BEC-DE96-4250-B08F-58A4ECE69A5E}</Project>
+      <Name>Neurosoft.Hardware.Devices.NeuroMepMicroM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hardware\Devices\UniversalTestStend\Neurosoft.Hardware.Devices.UniversalTestStend.csproj">
+      <Project>{e2103d46-f851-4bff-8c1a-9a5444146078}</Project>
+      <Name>Neurosoft.Hardware.Devices.UniversalTestStend</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hardware\Tools\Cypress\Neurosoft.Hardware.Tools.Cypress.csproj">
+      <Project>{D51CA817-2880-4EA0-8742-DA76714D0F93}</Project>
+      <Name>Neurosoft.Hardware.Tools.Cypress</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hardware\Tools\Jtag\Neurosoft.Hardware.Tools.Jtag.csproj">
+      <Project>{0AE36617-4773-439D-8B24-8620247B2137}</Project>
+      <Name>Neurosoft.Hardware.Tools.Jtag</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hardware\Tools\Usb\Neurosoft.Hardware.Tools.Usb.csproj">
+      <Project>{3489FA0B-7F97-4151-A651-56BF8F8667E9}</Project>
+      <Name>Neurosoft.Hardware.Tools.Usb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hardware\Usb\Neurosoft.Hardware.Usb.csproj">
+      <Project>{9269E902-EC52-46C9-9095-9008E3E178FE}</Project>
+      <Name>Neurosoft.Hardware.Usb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\WPFComponents\NSGridNew\NSGrid\Neurosoft.WPFComponents.NSGrid.csproj">
+      <Project>{aaba5af6-cfeb-4238-943c-65d69ed2df55}</Project>
+      <Name>Neurosoft.WPFComponents.NSGrid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\NeuroSoft.DeviceAutoTest.Common.csproj">
+      <Project>{BFCAD07E-7F4C-4148-B485-A0B0E540F45B}</Project>
+      <Name>NeuroSoft.DeviceAutoTest.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\NeuroMepBase\DisplayControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\NeuroMepBase\ForkStimulatorControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\NeuroMepBase\ImpedancesSolderingControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\NeuroMepBase\ImpedancesView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\NeuroMepBase\NeuroMEPKeyboardControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\NeuroMepBase\ReadDataControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\NeuroMepBase\TestAFCControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\NeuroMepBase\TestInputResistanceControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

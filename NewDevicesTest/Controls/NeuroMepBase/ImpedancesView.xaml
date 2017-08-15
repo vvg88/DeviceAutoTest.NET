@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="NeuroSoft.DeviceAutoTest.NewDevicesTest.Controls.ImpedancesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:NeuroSoft.DeviceAutoTest.NewDevicesTest.Controls">
+    <DataGrid ItemsSource="{Binding Impedances, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ImpedancesView}}}"
+              IsReadOnly="True" AutoGenerateColumns="False">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="Channel" Binding="{Binding Title}" Width="Auto"/>
+            <DataGridTextColumn Header="Abs (Ом)" Binding="{Binding Abs, StringFormat=F0}" Width="Auto"/>
+            <DataGridTextColumn Header="Phi (deg)" Binding="{Binding Phi, StringFormat=F0}" Width="Auto"/>
+            <DataGridTextColumn Header="Real (Ом)" Binding="{Binding Real, StringFormat=F0}" Width="Auto"/>
+            <DataGridTextColumn Header="Image (Ом)" Binding="{Binding Image, StringFormat=F0}" Width="Auto"/>
+            <DataGridTextColumn Header="R (Ом)" Binding="{Binding Resistance.Value, StringFormat=F0}" Width="100">
+                <DataGridTextColumn.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Resistance.IsValidValue}" Value="False">
+                                <Setter Property="Background" Value="Red"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGridTextColumn.CellStyle>
+            </DataGridTextColumn>
+            <DataGridTextColumn Header="C (пФ)" Binding="{Binding Capacity.Value, StringFormat=F0}" Width="100">
+                <DataGridTextColumn.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Capacity.IsValidValue}" Value="False">
+                                <Setter Property="Background" Value="Red"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGridTextColumn.CellStyle>
+            </DataGridTextColumn>
+        </DataGrid.Columns>
+        <DataGrid.RowStyle>
+            <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsValid}" Value="True">
+                        <Setter Property="Background" Value="LightGreen"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding IsValid}" Value="False">
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <SolidColorBrush Color="Red" Opacity="0.5"/>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </DataGrid.RowStyle>
+    </DataGrid>   
+</UserControl>

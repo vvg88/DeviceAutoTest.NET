@@ -1,0 +1,42 @@
+﻿<commonDialogs:DATDialogWindow x:Uid="commonDialogs:DATDialogWindow_1" x:Class="NeuroSoft.DeviceAutoTest.Dialogs.AutoTestFailedDialog"
+                               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                               xmlns:dat="clr-namespace:NeuroSoft.DeviceAutoTest"
+                               xmlns:local="clr-namespace:NeuroSoft.DeviceAutoTest.Dialogs"
+                               xmlns:commonDialogs="clr-namespace:NeuroSoft.DeviceAutoTest.Dialogs;assembly=NeuroSoft.DeviceAutoTest.Common"
+                               SizeToContent="Height" Width="500" ResizeMode="NoResize"
+                               Title="Тест не пройден" ShowInTaskbar="False"
+                               WindowStartupLocation="CenterScreen">
+    <commonDialogs:DATDialogWindow.Resources>
+        <Style x:Uid="Style_1" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter x:Uid="Setter_1" Property="Padding" Value="8,1"/>
+            <Setter x:Uid="Setter_2" Property="Margin" Value="20,5"/>            
+        </Style>        
+    </commonDialogs:DATDialogWindow.Resources>
+    <Grid x:Uid="Grid_1">
+        <Grid.RowDefinitions>
+            <RowDefinition x:Uid="RowDefinition_1"/>
+            <RowDefinition x:Uid="RowDefinition_2" Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Uid="TextBlock_1" TextWrapping="Wrap" Margin="10">
+            <TextBlock.Inlines>
+                <Run x:Uid="Run_1" Text="Процесс автоматического тестирования приостановлен: тест '"/>
+                <Bold x:Uid="Bold_1">
+                    <Run x:Uid="Run_2" Text="{Binding Test.TemplateItem.Name}"/>
+                </Bold>
+                <Run x:Uid="Run_3" Text="' не пройден."/>
+            </TextBlock.Inlines>
+        </TextBlock>
+        <Grid x:Uid="Grid_2" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Uid="ColumnDefinition_1"/>
+                <ColumnDefinition x:Uid="ColumnDefinition_2"/>
+                <ColumnDefinition x:Uid="ColumnDefinition_3"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Uid="RetryButton" Name="RetryButton" Content="Повторить" Click="RetryButton_Click"/>
+            <Button x:Uid="SkipButton" Name="SkipButton" Content="Пропустить" Grid.Column="1" Click="SkipButton_Click"/>            
+            <Button x:Uid="StopButton" Name="StopButton" Content="Завершить" Grid.Column="3" Click="StopButton_Click"/>
+        </Grid>        
+    </Grid>
+</commonDialogs:DATDialogWindow>
+

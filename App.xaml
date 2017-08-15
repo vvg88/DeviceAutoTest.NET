@@ -1,0 +1,17 @@
+﻿<Application x:Uid="Application_1" x:Class="NeuroSoft.DeviceAutoTest.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    Startup="Application_Startup">
+    <Application.Resources>
+        <ResourceDictionary x:Uid="ResourceDictionary_1">
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Установка темы Aero -->
+                <ResourceDictionary x:Uid="ResourceDictionary_2" Source="/PresentationFramework.Aero;V3.0.0.0;31bf3856ad364e35;component/themes/aero.normalcolor.xaml" />
+                <!-- Установка темы Aero для AvalonDock -->
+                <!--<ResourceDictionary x:Uid="ResourceDictionary_3" Source="/AvalonDock;component/themes/aero.normalcolor.xaml"/>-->
+                <!-- Установка стилей источников команд с описанием -->
+                <ResourceDictionary x:Uid="ResourceDictionary_4" Source="/NeuroSoft.WPFPrototype.Interface.Common;component/Resources/CommonStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

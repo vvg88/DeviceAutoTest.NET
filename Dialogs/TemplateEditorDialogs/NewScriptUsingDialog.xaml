@@ -1,0 +1,45 @@
+﻿<commonDialogs:DATDialogWindow x:Uid="commonDialogs:DATDialogWindow_1" x:Class="NeuroSoft.DeviceAutoTest.Dialogs.NewScriptUsingDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dat="clr-namespace:NeuroSoft.DeviceAutoTest"
+        xmlns:commonDialogs="clr-namespace:NeuroSoft.DeviceAutoTest.Dialogs;assembly=NeuroSoft.DeviceAutoTest.Common"
+        SizeToContent="Height" Width="400"
+        Title="Выбор пространства имен" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    <commonDialogs:DATDialogWindow.Resources>
+        <Style x:Uid="Style_1" x:Key="OkButtonStyle" TargetType="Button">            
+            <Style.Triggers>
+                <DataTrigger x:Uid="DataTrigger_1" Binding="{Binding SelectedUsing}" Value="{x:Null}">
+                    <Setter x:Uid="Setter_2" Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger x:Uid="DataTrigger_2" Binding="{Binding SelectedUsing}" Value="">
+                    <Setter x:Uid="Setter_3" Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </commonDialogs:DATDialogWindow.Resources>
+    <Grid x:Uid="Grid_1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Uid="ColumnDefinition_1" Width="Auto"/>
+            <ColumnDefinition x:Uid="ColumnDefinition_2"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>            
+            <RowDefinition x:Uid="RowDefinition_1" Height="Auto"/>
+            <RowDefinition x:Uid="RowDefinition_2" Height="Auto"/>
+        </Grid.RowDefinitions>                
+        <TextBlock x:Uid="TextBlock_1" Text="Пространство имен:" VerticalAlignment="Center" Margin="3,0,10,0"/>
+        <ComboBox x:Uid="ComboBox_1" Grid.Column="1"  Margin="0,3,5,3"
+                  ItemsSource="{Binding AvailableUsings}"                                   
+                  Text="{Binding SelectedUsing}"
+                  IsEditable="True"/>
+        <StackPanel x:Uid="StackPanel_1" Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Uid="OkBtn" Name="OkBtn"
+                    Content="ОК" IsDefault="True" Click="Button_Click"                    
+                    Style="{StaticResource OkButtonStyle}"
+                    Margin="5,5,0,5" MinWidth="60"
+                    Width="{Binding ActualWidth, ElementName=CancelBtn}"/>
+            <Button x:Uid="CancelBtn" Content="Отмена" IsCancel="True"
+                    Margin="5" MinWidth="60" Name="CancelBtn"/>
+        </StackPanel>
+    </Grid>
+</commonDialogs:DATDialogWindow>
